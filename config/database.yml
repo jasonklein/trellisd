@@ -17,8 +17,7 @@ development:
   encoding: unicode
   database: trellisd_development
   pool: 5
-  username: trellisd
-  password:
+
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -43,13 +42,11 @@ test:
   encoding: unicode
   database: trellisd_test
   pool: 5
-  username: trellisd
-  password:
+
 
 production:
   adapter: postgresql
   encoding: unicode
   database: trellisd_production
   pool: 5
-  username: trellisd
-  password:
+
