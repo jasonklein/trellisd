@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  references: 
+  title: MyString
+  content: MyText
+  references: 
+  expiration: 2014-06-06
+  range: MyString
+  alert: false
+
+two:
+  references: 
+  title: MyString
+  content: MyText
+  references: 
+  expiration: 2014-06-06
+  range: MyString
+  alert: false
