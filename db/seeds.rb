@@ -7,15 +7,39 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Category.delete_all
+Keyword.delete_all
 
 categories = Category.create([
-  {name: 'Activity'},
-  {name: 'Collab'},
-  {name: 'Housing'},
-  {name: 'Knowledge and Miscellaneous'},
-  {name: 'PDQ'},
-  {name: 'Romance'},
-  {name: 'Stuff'},
-  {name: 'Travel'},
-  {name: 'Work'}
+  {title: 'Activity'},
+  {title: 'Collab'},
+  {title: 'Housing'},
+  {title: 'Knowledge and Miscellaneous'},
+  {title: 'PDQ'},
+  {title: 'Romance'},
+  {title: 'Stuff'},
+  {title: 'Travel'},
+  {title: 'Work'}
+  ])
+
+keywords = Keyword.create([
+  {title: 'web developer'},
+  {title: 'ruby'},
+  {title: 'ruby on rails'},
+  {title: 'git'},
+  {title: 'github'},
+  {title: 'html'},
+  {title: 'css'},
+  {title: 'scss'},
+  {title: 'haml'},
+  {title: 'remote'},
+  {title: 'project management'},
+  {title: 'scrum'},
+  {title: 'agile'},
+  {title: 'javascript'},
+  {title: 'pair programming'},
+  {title: 'jquery'},
+  {title: 'junior developer'},
+  {title: 'senior developer'},
+  {title: 'nodejs'},
+  {title: 'full stack'}
   ])
