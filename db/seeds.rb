@@ -9,13 +9,13 @@
 Category.delete_all
 
 categories = Category.create([
-  {name: 'Activity', icon: ''},
-  {name: 'Collab', icon: ''},
-  {name: 'Housing', icon: ''},
-  {name: 'Knowledge and Miscellaneous', icon: ''},
-  {name: 'PDQ', icon: ''},
-  {name: 'Romance', icon: ''},
-  {name: 'Stuff', icon: ''},
-  {name: 'Travel', icon: ''},
-  {name: 'Work', icon: ''}
+  {name: 'Activity'},
+  {name: 'Collab'},
+  {name: 'Housing'},
+  {name: 'Knowledge and Miscellaneous'},
+  {name: 'PDQ'},
+  {name: 'Romance'},
+  {name: 'Stuff'},
+  {name: 'Travel'},
+  {name: 'Work'}
   ])
