@@ -24,7 +24,7 @@ namespace :db do
       )
     end
 
-    # Create posts
+    # Create posts in the "Work" category.
 
     50.times do
       Post.create(
