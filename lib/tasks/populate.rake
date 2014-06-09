@@ -28,7 +28,7 @@ namespace :db do
 
     50.times do
       Post.create(
-        category_id: Category.where(title: 'Work'),
+        category_id: Category.where(title: 'Work').first.id,
         title: Faker::Lorem.sentence,
         content: Faker::Lorem.paragraph,
         user_id: (1..20).to_a.sample,
