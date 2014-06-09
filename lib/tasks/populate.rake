@@ -30,8 +30,8 @@ namespace :db do
       Post.create(
         category_id: Category.where(title: 'Work'),
         title: Faker::Lorem.sentence,
-        content: Faker::Lorem.paragraph
-        user_id: (1..20).to_a.sample
+        content: Faker::Lorem.paragraph,
+        user_id: (1..20).to_a.sample,
         expiration: Date.today + 7.weeks
         )
     end
