@@ -7,9 +7,19 @@ class User < ActiveRecord::Base
   has_many :received_connections, class_name: "Connection", foreign_key: "connectee_id"
 
   def connections
-    made_connection_ids = Connection.where(connecter_id: self.id)
-    received_connection_ids = Connection.where(connectee_id: self.id)
-    total_connections = made_connection_ids + received_connection_ids
-    Connection.where(id: total_connections)
+    self.made_connections + self.received_connections
   end
+
+  def posts_of_connections
+    connection_ids = []
+    self.made_connections.each do |connection|
+      connection_ids << connection.connectee_id
+    end
+    self.received_connections.each do |connection|
+      connection_ids << connection.connecter_id
+    end
+    connection_ids = connection_ids.uniq
+    Post.where(user_id: connection_ids)
+  end
+
 end
