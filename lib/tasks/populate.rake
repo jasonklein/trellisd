@@ -1,7 +1,7 @@
 namespace :db do
 
 
-  desc "Erase and fill database"
+  desc "Drop, create, migrate and fill database (including seeds)"
   task :populate => [:environment, :drop, :create, :migrate, :seed] do
     require 'faker'
 
