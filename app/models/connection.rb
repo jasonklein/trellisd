@@ -1,5 +1,6 @@
 class Connection < ActiveRecord::Base
-  belongs_to :connecter
-  belongs_to :connectee
   attr_accessible :connecter_id, :connectee_id
+
+  belongs_to :connecter, class_name: "User"
+  belongs_to :connectee, class_name: "User"
 end
