@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   def posts_of_connections
     Post.where(user_id: self.ids_of_connections)
   end
+
+  def posts_of_connections_by_category(category_id)
+    Post.where(user_id: self.ids_of_connections, category_id: category_id)
+  end
 end
