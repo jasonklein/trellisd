@@ -29,4 +29,16 @@ class Post < ActiveRecord::Base
     posts_and_ids
   end
 
+  def matches
+    posts_to_compare = self.get_posts_and_ids
+    keyword_ids_to_match = self.keyword_ids
+    posts_with_matching_keywords = {}
+    posts_to_compare.each do |post_id, keyword_ids|
+      matching_keyword_ids = keyword_ids.select { |id| keyword_ids_to_match.include?(id) }
+      posts_with_matching_keywords[post_id] = matching_keyword_ids
+    end
+    posts_with_matching_keywords.reject! { |post_id, keyword_ids| keyword_ids.length < 3 }
+  end
+
+
 end
