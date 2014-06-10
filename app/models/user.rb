@@ -21,15 +21,14 @@ class User < ActiveRecord::Base
     self.received_connections.each do |connection|
       connection_ids << connection.connecter_id
     end
-    connection_ids = connection_ids.uniq
-    connection_ids
+    connection_ids.uniq
   end
 
   # Fill array with ids of users to whom a particular user
   # is secondarily connected/connected by another user
   # returning that array
 
-  def ids_of_secondary_connections
+   def ids_of_secondary_connections
     primary_connection_ids = self.ids_of_primary_connections
     secondary_connections_ids = []
     primary_connection_ids.each do |connection_id|
@@ -37,14 +36,22 @@ class User < ActiveRecord::Base
       connection_ids = connection.ids_of_primary_connections
       secondary_connections_ids += connection_ids
     end
-    secondary_connections_ids.reject { |id| primary_connection_ids.include?(id) }
+    secondary_connections_ids -= primary_connection_ids
+    secondary_connections_ids.uniq
   end
 
-  def posts_of_connections
-    Post.where(user_id: self.ids_of_connections)
+  def ids_of_tertiary_connections
+    primary_connection_ids = self.ids_of_primary_connections
+    secondary_connections_ids = self.ids_of_secondary_connections
   end
 
-  def posts_of_connections_for_a_category(category_id)
-    Post.where(user_id: self.ids_of_connections, category_id: category_id)
-  end
+  # TODO: Determine which method to call to get posts by user_id
+
+  # def posts_of_connections
+  #   Post.where(user_id: self.ids_of_connections)
+  # end
+
+  # def posts_of_connections_for_a_category(category_id)
+  #   Post.where(user_id: self.ids_of_connections, category_id: category_id)
+  # end
 end
