@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
       matching_keyword_ids = keyword_ids.select { |id| keyword_ids_to_match.include?(id) }
       posts_with_matching_keywords[post_id] = matching_keyword_ids
     end
-    posts_with_matching_keywords.reject! { |post_id, keyword_ids| keyword_ids.length < 3 }
+    posts_with_matching_keywords = posts_with_matching_keywords.reject { |post_id, keyword_ids| keyword_ids.length < 3 }
   end
 
 
