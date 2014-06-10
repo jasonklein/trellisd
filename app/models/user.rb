@@ -14,14 +14,14 @@ class User < ActiveRecord::Base
   # is connected, returning that array
 
   def ids_of_primary_connections
-    connection_ids = []
+    connections_ids = []
     self.made_connections.each do |connection|
-      connection_ids << connection.connectee_id
+      connections_ids << connection.connectee_id
     end
     self.received_connections.each do |connection|
-      connection_ids << connection.connecter_id
+      connections_ids << connection.connecter_id
     end
-    connection_ids.uniq
+    connections_ids.uniq
   end
 
   # Fill array with ids of users to whom a particular user
@@ -29,20 +29,32 @@ class User < ActiveRecord::Base
   # returning that array
 
    def ids_of_secondary_connections
-    primary_connection_ids = self.ids_of_primary_connections
+    primary_connections_ids = self.ids_of_primary_connections
     secondary_connections_ids = []
-    primary_connection_ids.each do |connection_id|
+    primary_connections_ids.each do |connection_id|
       connection = User.find(connection_id)
-      connection_ids = connection.ids_of_primary_connections
-      secondary_connections_ids += connection_ids
+      connections_ids = connection.ids_of_primary_connections
+      secondary_connections_ids += connections_ids
     end
-    secondary_connections_ids -= primary_connection_ids
+    secondary_connections_ids -= primary_connections_ids
     secondary_connections_ids.uniq
   end
 
+  # Fill array with ids of users to whom a particular user
+  # is tertiarily connected, returning that array.
+  # Given repeat with above method, could be dried up.
+
   def ids_of_tertiary_connections
-    primary_connection_ids = self.ids_of_primary_connections
+    primary_connections_ids = self.ids_of_primary_connections
     secondary_connections_ids = self.ids_of_secondary_connections
+    tertiary_connections_ids = []
+    secondary_connections_ids.each do |connection_id|
+      connection = User.find(connection_id)
+      connections_ids = connection.ids_of_primary_connections
+      tertiary_connections_ids += connections_ids
+    end
+    tertiary_connections_ids -= (primary_connections_ids + secondary_connections_ids)
+    tertiary_connections_ids.uniq
   end
 
   # TODO: Determine which method to call to get posts by user_id
