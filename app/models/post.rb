@@ -16,11 +16,17 @@ class Post < ActiveRecord::Base
     keyword_ids
   end
 
-  def matches
-
+  def get_posts_and_ids
     connections_posts_in_same_category = self.user.posts_of_connections_for_a_category(self.category_id)
-
-
+    posts_and_ids = {}
+    connections_posts_in_same_category.each do |post|
+      posts_ids = []
+      post.keywords.each do |keyword|
+        posts_ids << keyword.id
+      end
+      posts_and_ids[post.id] = posts_ids
+    end
+    posts_and_ids
   end
 
 end
