@@ -7,6 +7,11 @@ gem 'rails', '3.2.18'
 
 gem 'pg'
 
+gem 'normalize-rails'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+
 group :development do
   gem 'faker'
 end
