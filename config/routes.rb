@@ -1,4 +1,16 @@
 Trellisd::Application.routes.draw do
+  get "users/home"
+
+  get "users/index"
+
+  get "users/edit"
+
+  get "users/update"
+
+  get "users/destroy"
+
+  root to: "users#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

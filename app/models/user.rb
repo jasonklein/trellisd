@@ -6,6 +6,14 @@ class User < ActiveRecord::Base
   has_many :made_connections, class_name: "Connection", foreign_key: "connecter_id"
   has_many :received_connections, class_name: "Connection", foreign_key: "connectee_id"
 
+  def name
+    self.first_name + ' ' + self.last_name
+  end
+
+  def short_name
+    self.first_name + ' ' + self.last_name[0] + '.'
+  end
+
   def connections
     self.made_connections + self.received_connections
   end
