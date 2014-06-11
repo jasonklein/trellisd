@@ -6,8 +6,23 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.delete_all
 Category.delete_all
 Keyword.delete_all
+
+User.create(
+  first_name: "Jason",
+  last_name: "Jason",
+  email: "jason@example.com",
+  bio: "I once licked a man in Reno just to watch him smile.",
+  birthday: '1982-04-06',
+  city: "London",
+  postcode: "E8",
+  image: 'http://www.example.com',
+  password: 'jimmies!',
+  password_confirmation: 'jimmies!',
+  role: 'admin'
+  )
 
 categories = Category.create([
   {title: 'Activity'},
@@ -33,7 +48,7 @@ keywords = Keyword.create([
   {title: 'haml'},
   {title: 'remote'},
   {title: 'project management'},
-  {title: 'scrum'},
+  {title: 'tdd'},
   {title: 'agile'},
   {title: 'javascript'},
   {title: 'pair programming'},

@@ -5,11 +5,11 @@ namespace :db do
   task :populate => [:environment, :drop, :create, :migrate, :seed] do
     require 'faker'
 
-    [User, Post, KeywordsPosts, Connection].each(&:delete_all)
+    [Post, KeywordsPosts, Connection].each(&:delete_all)
 
     # Create Users
 
-    20.times do
+    19.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       User.create(
@@ -20,7 +20,10 @@ namespace :db do
         birthday: '1982-04-06',
         city: Faker::Address.city,
         postcode: Faker::Address.postcode,
-        image: 'http://www.example.com'
+        image: 'http://www.example.com',
+        password: 'jimmies!',
+        password_confirmation: 'jimmies!',
+        role: 'basic'
       )
     end
 

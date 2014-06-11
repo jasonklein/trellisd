@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Trellisd</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+!!! 5
+%html
+  %head
+    %title Trellisd
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
 
-<%= yield %>
-
-</body>
-</html>
+    %p.notice
+      = notice
+    %p.alert
+      = alert
+    = yield

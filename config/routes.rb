@@ -1,15 +1,13 @@
 Trellisd::Application.routes.draw do
-  get "users/home"
+  
 
-  get "users/index"
+  devise_for :users
 
-  get "users/edit"
+  root to: "home#index"
 
-  get "users/update"
-
-  get "users/destroy"
-
-  root to: "users#index"
+  resources :users, only: [:index, :edit, :show, :update, :destroy] do
+    resources :posts
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
