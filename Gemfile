@@ -12,6 +12,8 @@ gem 'bourbon'
 gem 'neat'
 gem 'bitters'
 
+gem 'haml-rails'
+
 group :development do
   gem 'faker'
 end
