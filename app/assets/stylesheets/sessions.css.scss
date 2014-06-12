@@ -1,7 +1,7 @@
 body {
   background-color: #E6FFFF;
-  @include outer-container;
-  #session_control_content {
+/*  @include outer-container;
+*/  #session_control_content {
     @include span-columns(8);
     #left_column {
       @include span-columns(4 of 8);

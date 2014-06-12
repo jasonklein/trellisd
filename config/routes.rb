@@ -7,6 +7,8 @@ Trellisd::Application.routes.draw do
     root to: "devise/sessions#new"
   end
 
+  get "/home", to: "home#index", as: "home"
+
   resources :users, only: [:index, :edit, :show, :update, :destroy] do
     resources :posts
   end
