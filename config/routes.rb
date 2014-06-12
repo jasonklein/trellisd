@@ -3,7 +3,9 @@ Trellisd::Application.routes.draw do
 
   devise_for :users
 
-  root to: "home#index"
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
   resources :users, only: [:index, :edit, :show, :update, :destroy] do
     resources :posts
