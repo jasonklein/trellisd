@@ -1,6 +1,4 @@
 %footer.footer-2
-  .footer-logo
-    = render partial: 'layouts/trellisd_icon', locals: {size: '40px', fill: '#B00058', stroke: '#E6FFFF'}
   %ul
     %li
       = link_to 'About', home_path
@@ -14,6 +12,4 @@
         = link_to 'Terms and Conditions', home_path
       %li
         = link_to 'Privacy Policy', home_path
-    %ul.footer-social
-      %li
-        = link_to (render partial: 'layouts/twitter', locals: {fill: '#B00058'}), home_path
+    

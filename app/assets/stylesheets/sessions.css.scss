@@ -9,9 +9,6 @@ body {
     }
     #right_column {
       @include span-columns(4 of 8);
-      .h1_color {
-        color: #008BC6;
-      }
     }
   }
 }

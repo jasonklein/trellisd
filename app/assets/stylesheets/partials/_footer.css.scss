@@ -18,7 +18,7 @@ html, body {
 }
 
 .footer-2 {
-  $footer-background: desaturate(darken($base-accent-color, 20), 30);
+  $footer-background: $footer-background-color;
   $footer-color: white;
   $footer-link-color: transparentize($footer-color, .6);
   $footer-disclaimer-color: transparentize($footer-color, .6);
@@ -26,16 +26,6 @@ html, body {
   background: $footer-background;
   padding: $base-line-height;
   width: 100%;
-
-  .footer-logo {
-    margin-right: 1em;
-    margin-bottom: 1em;
-
-    @include media($large-screen) {
-      float: left;
-      margin-bottom: 0;
-    }
-  }
 
   ul {
     margin-bottom: 1em;
@@ -72,36 +62,6 @@ html, body {
     li {
       font-size: .8em;
       font-weight: 400;
-    }
-
-    ul.footer-social {
-      margin-top: 1em;
-
-      @include media($large-screen) {
-        float: right;
-        margin-top: 0;
-      }
-
-      li {
-        float: left;
-        font-size: 1em;
-        padding-right: .7em;
-
-        &:last-child {
-          padding-right: 0;
-        }
-      }
-
-      svg {
-        fill-opacity: .7;
-        stroke-opacity: .7;
-        padding: 1px;
-
-        &:hover {
-          fill-opacity: 1;
-          stroke-opacity: 1;
-        }
-      }
-    }
+    }    
   }
 }

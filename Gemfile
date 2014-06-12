@@ -8,6 +8,7 @@ gem 'rails', '3.2.18'
 gem 'pg'
 
 gem 'devise'
+gem 'cancan'
 
 gem 'normalize-rails'
 gem 'bourbon'
