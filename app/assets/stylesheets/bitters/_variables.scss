@@ -1,9 +1,10 @@
 // Typography
 ///////////////////////////////////////////////////////////////////////////////
-$sans-serif: $helvetica;
+$sans-serif: 'Lato', $helvetica;
 $serif: $georgia;
 
 $base-font-family: $sans-serif;
+$top-header-font-family: 'Signika', $helvetica;
 $header-font-family: $base-font-family;
 
 // Sizes

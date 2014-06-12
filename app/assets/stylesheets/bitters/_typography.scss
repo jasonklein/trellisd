@@ -6,15 +6,22 @@ body {
   line-height: $base-line-height;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+  font-family: $top-header-font-family;
+}
+
+h2, h3, h4, h5, h6 {
   font-family: $header-font-family;
+}
+
+h1, h2, h3, h4, h5, h6 {
   line-height: 1.25em;
   margin: 0;
   text-rendering: optimizeLegibility; // Fix the character spacing for headings
 }
 
 h1 {
-  font-size: $base-font-size * 2.25; // 16 * 2.25 = 36px
+  font-size: $base-font-size * 7; // 16 * 2.25 = 36px
 }
 
 h2 {
