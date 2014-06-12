@@ -1,0 +1,20 @@
+!!! 5
+%html
+  %head
+    = favicon_link_tag 'favicon.ico'
+    %title Trellisd
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #main
+      = display_session_control_links
+      #session_control_content
+        %p.notice
+          = notice
+        %p.alert
+          = alert
+        #left_column
+          = render partial: 'layouts/trellisd_icon', locals: {size: '400px', fill: '#B00058', stroke: '#FFFFFF'}
+        #right_column
+          = yield

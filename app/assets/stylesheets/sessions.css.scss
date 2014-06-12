@@ -1,0 +1,14 @@
+body {
+  @include outer-container;
+  #session_control_content {
+    @include span-columns(8);
+/*    @include shift(2);
+*/    #left_column {
+      @include span-columns(4 of 8);
+      @include pad();
+    }
+    #right_column {
+      @include span-columns(4 of 8);
+    }
+  }
+}
