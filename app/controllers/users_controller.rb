@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   
   def home
+    @user = current_user
+    @posts = Post.where(ids: )
   end
 
   def index
