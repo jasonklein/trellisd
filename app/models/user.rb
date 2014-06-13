@@ -28,11 +28,6 @@ class User < ActiveRecord::Base
     self.made_connections + self.received_connections
   end
 
-  def connections_hash
-    @connections_hash = {}
-  end
-
-
   # Fill array with ids of users to whom a particular user
   # is connected, returning that array
 
@@ -47,7 +42,6 @@ class User < ActiveRecord::Base
       end
       @primary_connections_hash = {primary: connections_ids.uniq}
     end
-    connections_hash.merge @primary_connections_hash
     @primary_connections_hash || {}
   end
 
@@ -89,17 +83,12 @@ class User < ActiveRecord::Base
     @tertiary_connections_hash || {}
   end
 
-  # As the tertiary connections method also finds primary
-  # and secondary connections, rather than be un-DRY by repeating
-  # that code or make far too many SQL queries by running the
-  # code for each of the levels, the tertiary connections function
-  # is set to return all three levels when called by the
-  # all_connections function
-
-  # def ids_of_all_connections
-  #   primary_connections_hash, secondary_connections_hash, tertiary_connections_hash = ids_of_tertiary_connections([1])
-  #   primary_connections_hash, secondary_connections_hash, tertiary_connections_hash
-  # end
+  def all_connections
+    connections_hash = {}
+    connections_hash.merge! primary_connections
+    connections_hash.merge! secondary_connections
+    connections_hash.merge! tertiary_connections
+  end
 
   # TODO: Determine which method to call to get posts by user_id
 
