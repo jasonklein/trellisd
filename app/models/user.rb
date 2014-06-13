@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   # is secondarily connected/connected by another user
   # returning that array
 
-   def ids_of_secondary_connections
+  def ids_of_secondary_connections
     primary_connections_ids = self.ids_of_primary_connections
     secondary_connections_ids = []
     primary_connections_ids.each do |connection_id|
@@ -62,17 +62,36 @@ class User < ActiveRecord::Base
   # is tertiarily connected, returning that array.
   # Given repeat with above method, could be dried up.
 
-  def ids_of_tertiary_connections
+  # See comment above ids_of_all_connections (below) to understand
+  # the optional array parameter.
+
+  def ids_of_tertiary_connections(all=[])
     primary_connections_ids = self.ids_of_primary_connections
     secondary_connections_ids = self.ids_of_secondary_connections
+    primary_and_secondary_connections_ids = primary_connections_ids + secondary_connections_ids
     tertiary_connections_ids = []
     secondary_connections_ids.each do |connection_id|
       connection = User.find(connection_id)
       connections_ids = connection.ids_of_primary_connections
       tertiary_connections_ids += connections_ids
     end
-    tertiary_connections_ids -= (primary_connections_ids + secondary_connections_ids)
-    tertiary_connections_ids.uniq
+    tertiary_connections_ids -= primary_and_secondary_connections_ids
+    if all.empty?
+      tertiary_connections_ids.uniq
+    else
+      primary_and_secondary_connections_ids + tertiary_connections_ids.uniq
+    end
+  end
+
+  # As the tertiary connections method also finds primary
+  # and secondary connections, rather than be un-DRY by repeating
+  # that code or make far too many SQL queries by running the
+  # code for each of the levels, the tertiary connections function
+  # is set to return all three levels when called by the
+  # all_connections function
+
+  def ids_of_all_connections
+    all_connections_ids = ids_of_tertiary_connections([1])
   end
 
   # TODO: Determine which method to call to get posts by user_id
