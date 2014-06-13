@@ -3,11 +3,7 @@ Trellisd::Application.routes.draw do
 
   devise_for :users
 
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
-
-  get "/home", to: "users#home", as: "home"
+  root to: "users#home"
 
   resources :users do
     resources :posts

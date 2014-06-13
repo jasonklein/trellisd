@@ -63,8 +63,8 @@ module Trellisd
     config.assets.initialize_on_precompile = false
 
     # Set the layout for the Devise Sessions Controller
-    config.to_prepare do
-      Devise::SessionsController.layout "layout_for_sessions_controller" 
-    end
+    # config.to_prepare do
+    #   Devise::SessionsController.layout "layout_for_sessions_controller" 
+    # end
   end
 end

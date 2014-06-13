@@ -1,18 +1,18 @@
-#session_control_row {
-  @include span-columns (12);
-  @include row(table);
-  span {
-    float: right;
+#session_wrapper {
+  @include outer-container;
+  #session_control_links {
+    @include row();
+    span {
+      float: right;
+    }
   }
-}
-
-#session_control_content {
-  @include span-columns(8);
-  #left_column {
-    @include span-columns(4 of 8);
-    @include pad();
-  }
-  #right_column {
-    @include span-columns(4 of 8);
+  #session_control_content {
+    @include span-columns(8);
+    #left_column {
+      @include span-columns(4 of 8);
+    }
+    #right_column {
+      @include span-columns(4 of 8);
+    }
   }
 }

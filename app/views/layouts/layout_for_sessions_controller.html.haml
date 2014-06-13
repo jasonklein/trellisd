@@ -8,17 +8,18 @@
     = csrf_meta_tags
   %body
     .wrapper-for-content-outside-of-footer
-        #session_control_row
+      #session_wrapper
+        #session_control_links
           %span
             = display_session_control_links
         #session_control_content
-          %p.notice
-            = notice
-          %p.alert
-            = alert
           #left_column
             = render partial: 'layouts/trellisd_icon', locals: {size: '400px', fill: '#CF0563', stroke: '#E6FFFF'}
           #right_column
+            %p.notice
+              = notice
+            %p.alert
+              = alert
             = yield
       .push
     = render "layouts/footer"

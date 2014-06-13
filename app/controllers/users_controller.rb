@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+
+  load_and_authorize_resource
   
   def home
     @user = current_user
-    @posts = Post.where(ids: )
+    @posts = @user.posts_of_connections
   end
 
   def index
