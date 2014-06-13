@@ -8,8 +8,9 @@
     = csrf_meta_tags
   %body
     .wrapper-for-content-outside-of-footer
-      #main
-        = display_session_control_links
+        #session_control_row
+          %span
+            = display_session_control_links
         #session_control_content
           %p.notice
             = notice

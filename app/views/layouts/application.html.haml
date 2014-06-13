@@ -8,11 +8,22 @@
     = csrf_meta_tags
   %body
     .wrapper-for-content-outside-of-footer
-      = display_session_control_links
-      %p.notice
-        = notice
-      %p.alert
-        = alert
-      = yield
+      #application_main
+        #session_control_row
+          %span
+            = display_session_control_links
+        #left_column
+          #short_profile
+            = render "users/short_profile"
+          #notifications
+            = render "users/notifications"
+        #middle_column
+          %p.notice
+            = notice
+          %p.alert
+            = alert
+          = yield
+        #right_column
+          = render "layouts/navbar"
       .push
     = render "layouts/footer"

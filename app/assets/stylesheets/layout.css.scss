@@ -1,0 +1,12 @@
+#application_main {
+  @include outer-container;
+  #left_column {
+    @include span-columns(3);
+  }
+  #middle_column {
+    @include span-columns(6);
+  }
+  #right_column {
+    @include span-columns(3);
+  }
+}
