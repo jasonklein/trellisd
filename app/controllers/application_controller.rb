@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  # Set the layout for the Devise Sessions Controller
+
   layout :layout_by_resource
 
   def layout_by_resource
