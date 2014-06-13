@@ -7,10 +7,12 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    = link_to "Sign Out", destroy_user_session_path, method: :delete
-    = link_to "Sign In", new_user_session_path
-    %p.notice
-      = notice
-    %p.alert
-      = alert
-    = yield
+    .wrapper-for-content-outside-of-footer
+      = display_session_control_links
+      %p.notice
+        = notice
+      %p.alert
+        = alert
+      = yield
+      .push
+    = render "layouts/footer"
