@@ -92,11 +92,15 @@ class User < ActiveRecord::Base
 
   # TODO: Determine which method to call to get posts by user_id
 
-  def posts_of_connections(ids)
-    Post.where(user_id: ids)
+  def posts_of_connections
+    connections_ids = []
+    all_connections.each do |key, ids|
+      connections_ids += ids
+    end
+    Post.where(user_id: connections_ids)
   end
 
-  def posts_of_connections_for_a_category(ids, category_id)
-    Post.where(user_id: ids, category_id: category_id)
+  def posts_of_connections_for_a_category(category_id)
+    posts_of_connections.where(category_id: category_id)
   end
 end
