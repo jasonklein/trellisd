@@ -7,8 +7,8 @@ body {
 }
 
 h1 {
-  font-family: $top-header-font-family;
-  color: #008BC6;
+  font-family: $top_header_font_family;
+  color: $top_header_color;
 }
 
 h2, h3, h4, h5, h6 {

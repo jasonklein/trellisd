@@ -1,0 +1,10 @@
+.post_box
+  .post_image
+    / = image_tag(post.user.try(:image))
+    %br
+    = post_user_name(post)
+  .post_title
+    = post.title
+  .post_icons
+    = display_category_icon(post)
+    / = display_attachment_icon
