@@ -20,7 +20,6 @@ namespace :db do
         birthday: '1982-04-06',
         city: Faker::Address.city,
         postcode: Faker::Address.postcode,
-        image: 'http://www.example.com',
         password: 'jimmies!',
         password_confirmation: 'jimmies!',
         role: 'basic'

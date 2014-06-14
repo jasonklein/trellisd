@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def home
     @user = current_user
-    @posts = @user.posts_of_connections.limit(10)
+    @posts = @user.posts_of_all_connections.limit(10)
   end
 
   def index

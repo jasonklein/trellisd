@@ -92,14 +92,16 @@ class User < ActiveRecord::Base
     connections_hash.merge! tertiary_connections
   end
 
-  # TODO: Determine which method to call to get posts by user_id
-
-  def posts_of_connections
+  def all_connections_ids
     connections_ids = []
     all_connections.each do |key, ids|
       connections_ids += ids
     end
-    Post.where(user_id: connections_ids)
+    connections_ids
+  end
+
+  def posts_of_all_connections  
+    Post.where(user_id: all_connections_ids)
   end
 
   def posts_of_connections_for_a_category(category_id)

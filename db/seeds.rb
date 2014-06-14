@@ -18,7 +18,6 @@ User.create(
   birthday: '1982-04-06',
   city: "London",
   postcode: "E8",
-  image: 'http://www.example.com',
   password: 'jimmies!',
   password_confirmation: 'jimmies!',
   role: 'admin'

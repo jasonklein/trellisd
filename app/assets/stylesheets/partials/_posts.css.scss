@@ -4,13 +4,19 @@
   margin: 10px 0;
   padding: 10px;
   @include clearfix;
-  .post_image {
+  .post_box_image {
     @include span-columns(2 of 7);
+    img {
+      border-radius: 10px;
+    }
   }
-  .post_title {
+  .post_box_content {
     @include span-columns(3 of 7);
+    @include shift(-1);
+    padding-left: 20px;
+    margin-right: 80px;
   }
-  .post_icons {
+  .post_box_icons {
     @include span-columns(2 of 7);
   }
 }

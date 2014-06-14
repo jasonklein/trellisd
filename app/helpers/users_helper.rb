@@ -4,12 +4,12 @@ module UsersHelper
       connection_id = post.user_id
       connections_hash = @user.all_connections
       if connections_hash[:primary].include? connection_id
-        post.user.name
+        simple_format "#{post.user.name}\n"
       else
         if connections_hash[:secondary].include? connection_id
-          simple_format "#{post.user.try(:short_name)}\n(2°)"
+          simple_format "#{post.user.try(:short_name)} (2°)\n"
         else
-          simple_format "#{post.user.try(:short_name)}\n(3°)"
+          simple_format "#{post.user.try(:short_name)} (3°)\n"
         end
       end
     else
