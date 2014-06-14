@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :birthday, :image, :city, :postcode, :bio, :role
 
+  mount_uploader :image, UserImageUploader
+
   has_many :posts
 
   has_many :made_connections, class_name: "Connection", foreign_key: "connecter_id"

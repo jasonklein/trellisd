@@ -10,6 +10,9 @@ gem 'pg'
 gem 'devise'
 gem 'cancan'
 
+gem 'carrierwave', '0.9.0'
+gem 'rmagick'
+
 gem 'normalize-rails'
 gem 'bourbon'
 gem 'neat'
