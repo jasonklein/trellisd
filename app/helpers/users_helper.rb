@@ -6,11 +6,10 @@ module UsersHelper
       if connections_hash[:primary].include? connection_id
         post.user.name
       else
-        display = post.user.short_name
         if connections_hash[:secondary].include? connection_id
-          display << " (secondary)"
+          simple_format "#{post.user.try(:short_name)}\n(2°)"
         else
-          display << " (tertiary)"
+          simple_format "#{post.user.try(:short_name)}\n(3°)"
         end
       end
     else
@@ -42,6 +41,10 @@ module UsersHelper
     else
       nil
     end
+  end
+
+  def display_attachment_icon(post)
+    render partial: "icon_partials/paperclip", locals: {size: "60px"} if post.files
   end
 
 

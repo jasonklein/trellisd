@@ -2,9 +2,9 @@
   .post_image
     / = image_tag(post.user.try(:image))
     / %br
-    = post_user_name(post)
+    = link_to post_user_name(post), user_path(post.user_id)
   .post_title
-    = post.title
+    = link_to post.title, user_post_path(post.user_id, post)
   .post_icons
     = display_category_icon(post)
-    / = display_attachment_icon
+    / = display_attachment_icon(post)
