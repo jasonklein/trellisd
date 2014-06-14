@@ -3,4 +3,12 @@ svg {
     fill: $trellisd_fill;
     stroke: $trellisd_stroke;
   }
+  &.category_icon {
+    .icon_background {
+      fill: $category_background_fill;
+    }
+    .icon_foreground {
+      fill: $category_foreground_fill;
+    }
+  }
 }

@@ -3,4 +3,14 @@
   background-color: $post_box_background_color;
   margin: 10px 0;
   padding: 10px;
+  @include clearfix;
+  .post_image {
+    @include span-columns(1 of 7);
+  }
+  .post_title {
+    @include span-columns(4 of 7);
+  }
+  .post_icons {
+    @include span-columns(1 of 7);
+  }
 }

@@ -1,7 +1,7 @@
 .post_box
   .post_image
     / = image_tag(post.user.try(:image))
-    %br
+    / %br
     = post_user_name(post)
   .post_title
     = post.title

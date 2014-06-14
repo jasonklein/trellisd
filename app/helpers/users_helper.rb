@@ -22,23 +22,23 @@ module UsersHelper
     category_id = post.category_id
     case category_id
     when 1
-      render partial: "icon_partials/activity", locals: {size: "100px"}
+      render partial: "icon_partials/activity", locals: {size: "60px"}
     when 2
-      render partial: "icon_partials/collab", locals: {size: "100px"}
+      render partial: "icon_partials/collab", locals: {size: "60px"}
     when 3
-      render partial: "icon_partials/housing", locals: {size: "100px"}
+      render partial: "icon_partials/housing", locals: {size: "60px"}
     when 4
-      render partial: "icon_partials/knowledge", locals: {size: "100px"}
+      render partial: "icon_partials/knowledge", locals: {size: "60px"}
     when 5
-      render partial: "icon_partials/pdq", locals: {size: "100px"}
+      render partial: "icon_partials/pdq", locals: {size: "60px"}
     when 6
-      render partial: "icon_partials/romance", locals: {size: "100px"}
+      render partial: "icon_partials/romance", locals: {size: "60px"}
     when 7
-      render partial: "icon_partials/stuff", locals: {size: "100px"}
+      render partial: "icon_partials/stuff", locals: {size: "60px"}
     when 8
-      render partial: "icon_partials/travel", locals: {size: "100px"}
+      render partial: "icon_partials/travel", locals: {size: "60px"}
     when 9
-      render partial: "icon_partials/work", locals: {size: "100px"}
+      render partial: "icon_partials/work", locals: {size: "60px"}
     else
       nil
     end

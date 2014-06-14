@@ -1,2 +1,3 @@
 %h2 Posts
-= render @posts
+- @posts.each do |post|
+  = render partial: 'users/post_box', locals: {post: post}
