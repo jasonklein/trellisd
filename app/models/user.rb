@@ -36,12 +36,11 @@ class User < ActiveRecord::Base
   def primary_connections
     if !@primary_connections_hash
       connections_ids = []
-      self.made_connections.each do |connection|
+      self.connections.each do |connection|
         connections_ids << connection.connectee_id
-      end
-      self.received_connections.each do |connection|
         connections_ids << connection.connecter_id
       end
+      connections_ids = connections_ids.reject { |id| id == self.id }
       @primary_connections_hash = {primary: connections_ids.uniq}
     end
     @primary_connections_hash || {}
@@ -58,7 +57,7 @@ class User < ActiveRecord::Base
         connection = User.find(connection_id)
         secondary_connections_ids += connection.primary_connections[:primary]
       end
-      secondary_connections_ids -= primary_connections[:primary]
+      secondary_connections_ids -= (primary_connections[:primary] + [self.id])
       @secondary_connections_hash = {secondary: secondary_connections_ids.uniq}
     end
     @secondary_connections_hash || {}
@@ -79,7 +78,7 @@ class User < ActiveRecord::Base
         connection = User.find(connection_id)
         tertiary_connections_ids += connection.primary_connections[:primary]
       end
-      tertiary_connections_ids -= primary_and_secondary_connections_ids
+      tertiary_connections_ids -= (primary_and_secondary_connections_ids + [self.id])
       @tertiary_connections_hash = {tertiary: tertiary_connections_ids.uniq}
     end
     @tertiary_connections_hash || {}
