@@ -78,8 +78,16 @@ $trellisd_stroke: $background_color;
 $category_background_fill: lighten($rich_blue, 30%);
 $category_foreground_fill: $rich_blue;
 
-// Post Boxes
-$post_box_background_color: lighten($yellow, 20%);
+// Display Boxes
+$display_box_background_color: lighten($yellow, 20%);
+$display_box_border_radius: 20px;
+$display_box_margin: 10px 0;
+$display_box_padding: 10px;
+$inner_box_border_radius: 10px;
+$table_border_arguments: 2px solid $trellisd_fill;
+
+// Images
+$thumb_img_border_radius: $inner_box_border_radius;
 
 
 

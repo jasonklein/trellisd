@@ -1,12 +1,12 @@
 Trellisd::Application.routes.draw do
   
-
   devise_for :users
 
   root to: "users#home"
 
   resources :users do
     resources :posts
+    resources :connections, only: [:index]
   end
 
   # The priority is based upon order of creation:

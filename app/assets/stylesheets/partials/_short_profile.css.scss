@@ -1,0 +1,23 @@
+#short_profile {
+  border-radius: $display_box_border_radius;
+  background-color: $display_box_background_color;
+  margin: $display_box_margin;
+  padding: $display_box_padding;
+  #short_profile_content {
+    @include row(table);
+    #user_image {
+      @include span-columns(1 of 3);
+      img {
+      border-radius: $thumb_img_border_radius;
+      }
+    }
+    #user_name {
+      @include span-columns(2 of 3);
+      padding-left: 10px;
+      vertical-align: top;
+    }
+  }
+  #short_profile_stats {
+    @include row(table);
+  }
+}

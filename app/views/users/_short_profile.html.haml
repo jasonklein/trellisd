@@ -1,28 +1,35 @@
-#short_profile
-  #short_profile_content
-    #user_image
-      = image_tag @user.image.url(:thumb)
-    #user_name
+#short_profile_content
+  #user_image
+    = image_tag @user.image.url(:thumb)
+  #user_name
+    %h4
       = @user.first_name
-  #short_profile_stats
-    #posts_count
-      Posts
-      = link_to @user.posts.count, user_posts_path(@user)
-    #connections_stats
-      Connections
-      %table
-        %thead
-          %tr
-            %th 1&deg;
-            %th 2&deg;
-            %th 3&deg;
-        %tbody
-          %tr
-            %td
-              = @all_connections[:primary].count
-            %td
-              = @all_connections[:secondary].count
-            %td
-              = @all_connections[:tertiary].count
+#short_profile_stats
+  %table
+    %thead
+      %tr
+        %th{colspan: "1"}
+          %h5
+            = link_to "Posts", user_posts_path(@user)
+        %th{colspan: "3"}
+          %h5 Connections
+      %tr
+        %th.sub_header
+          = @user.posts.count
+        %th.sub_header.top_border
+          1&deg;
+        %th.sub_header.top_border
+          2&deg;
+        %th.sub_header.top_border
+          3&deg;
+    %tbody
+      %tr
+        %td
+        %td
+          = @all_connections[:primary].count
+        %td
+          = @all_connections[:secondary].count
+        %td
+          = @all_connections[:tertiary].count
 
 
