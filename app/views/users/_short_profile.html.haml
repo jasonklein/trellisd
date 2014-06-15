@@ -1,1 +1,28 @@
-Short profile!
+#short_profile
+  #short_profile_content
+    #user_image
+      = image_tag @user.image.url(:thumb)
+    #user_name
+      = @user.first_name
+  #short_profile_stats
+    #posts_count
+      Posts
+      = link_to @user.posts.count, user_posts_path(@user)
+    #connections_stats
+      Connections
+      %table
+        %thead
+          %tr
+            %th 1&deg;
+            %th 2&deg;
+            %th 3&deg;
+        %tbody
+          %tr
+            %td
+              = @all_connections[:primary].count
+            %td
+              = @all_connections[:secondary].count
+            %td
+              = @all_connections[:tertiary].count
+
+

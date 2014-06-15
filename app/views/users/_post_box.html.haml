@@ -1,6 +1,6 @@
 .post_box
   .post_box_image
-    = image_tag(post.user.image.url(:thumb))
+    = image_tag post.user.image.url(:thumb)
   .post_box_content
     = link_to post_user_name(post), user_path(post.user_id)
     = link_to post.title, user_post_path(post.user_id, post)

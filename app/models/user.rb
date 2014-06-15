@@ -86,10 +86,13 @@ class User < ActiveRecord::Base
   end
 
   def all_connections
-    connections_hash = {}
-    connections_hash.merge! primary_connections
-    connections_hash.merge! secondary_connections
-    connections_hash.merge! tertiary_connections
+    if !@connections_hash
+      @connections_hash = {}
+      @connections_hash.merge! primary_connections
+      @connections_hash.merge! secondary_connections
+      @connections_hash.merge! tertiary_connections
+    end
+    @connections_hash
   end
 
   def all_connections_ids
@@ -100,8 +103,8 @@ class User < ActiveRecord::Base
     connections_ids
   end
 
-  def posts_of_all_connections  
-    Post.where(user_id: all_connections_ids)
+  def posts_of_all_connections(ids)  
+    Post.where(user_id: ids)
   end
 
   def posts_of_connections_for_a_category(category_id)
