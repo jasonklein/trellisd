@@ -26,6 +26,10 @@ $light-green: #E6EFC2;
 $brown: #663300;
 $pink_red: #CF0563;
 $pale_blue: #E6FFFF;
+$green: #00B233;
+$orange: #FF6F00;
+$yellow: #FFDE07;
+$rich_blue: #008BC6;
 
 // Body Color
 $base-body-color: white;
@@ -36,12 +40,12 @@ $background_color: $pale_blue;
 
 // Footer Background Color
 
-$footer-background-color: $brown;
+$footer-background-color: $green;
 
 //  Font Colors
 $base-font-color: $dark-gray;
 $base-accent-color: $blue;
-$top_header_color: #008BC6;
+$top_header_color: $yellow;
 
 //  Text Link Colors
 $base-link-color: $base-accent-color;
@@ -69,13 +73,13 @@ $form-font-family: $base-font-family;
 $button-style: simple;
 
 // SVG Icon Colors
-$trellisd_fill: $pink_red;
+$trellisd_fill: $orange;
 $trellisd_stroke: $background_color;
-$category_background_fill: lighten($top_header_color, 30%);
-$category_foreground_fill: $top_header_color;
+$category_background_fill: lighten($rich_blue, 30%);
+$category_foreground_fill: $rich_blue;
 
 // Post Boxes
-$post_box_background_color: lighten($trellisd_fill, 43%);
+$post_box_background_color: lighten($yellow, 20%);
 
 
 
