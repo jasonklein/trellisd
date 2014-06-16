@@ -27,3 +27,19 @@
     text-align: right;
   }
 }
+
+.profile_post_box {
+  .profile_post_box_content {
+    @include span-columns(4);
+  }
+  .profile_post_box_icons {
+    @include span-columns(2);
+  }
+  .profile_post_box_buttons{
+    @include span-columns(1);
+    button_to {
+      text-align: right;
+      margin: 5px 0;
+    }
+  }
+}

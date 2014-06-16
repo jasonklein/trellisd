@@ -1,2 +1,6 @@
 %h2
   = show_user_name(@user)
+= image_tag @user.image.url(:normal)
+= @user.bio
+= @user.city
+= render @posts
