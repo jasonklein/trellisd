@@ -2,7 +2,7 @@ module UsersHelper
   def post_user_name(post)
     if post.user != current_user
       connection_id = post.user_id
-      connections_hash = @user.all_connections
+      connections_hash = current_user.all_connections
       if connections_hash[:primary].include? connection_id
         simple_format "#{post.user.name}\n"
       else
