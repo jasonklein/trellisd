@@ -6,12 +6,14 @@
 }
 
 .settings {
-  vertical-align: middle;
   @include span-columns (6 of 7);
   .settings_row {
+    @extend h5;
     @include row(table);
     margin-bottom: 10px;
+    padding: 5px 0;
     .left, .right {
+      vertical-align: middle;
       @include span-columns(3 of 6);
       @include media($mobile) {
         @include row(table);
@@ -23,6 +25,10 @@
         @include shift();
       }
     }
+    border-bottom: 2px solid $background_color;
+    &:last-child {
+      border-bottom: none;
+    }
   } 
   .user_profile {
     @extend .alternative_display_box;
@@ -30,9 +36,6 @@
       img {
         border-radius: $normal_img_border_radius;
       }
-      /*@include media($mobile){
-        @include row(table);
-      }*/
     }
     .user_info {
       vertical-align: top;
@@ -45,5 +48,6 @@
 
   .edit_account {
     @extend .alternative_display_box;
+    padding: 10px;
   }
 }

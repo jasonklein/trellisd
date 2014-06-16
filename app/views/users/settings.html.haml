@@ -1,42 +1,44 @@
 %h2 Settings
 .settings
-  %h5
-    .user_profile
-      .user_name.settings_row
-        .left
-          Name:
-        .right
-          = show_user_name(@user)
-      .user_image.settings_row
-        .left
-          Photo:
-        .right
-          = image_tag @user.image.url(:normal)
-      .user_email.settings_row
-        .left
-          Email:
-        .right
-          = @user.email
-      .user_bio.settings_row
-        .left
-          Bio:
-        .right
-          = @user.try(:bio)
-      .user_city.settings_row
-        .left
-          City:
-        .right
-          = @user.try(:city)
-      .user_postcode.settings_row
-        .left
-          Postcode:
-        .right
-          = @user.try(:postcode)
-  %h6
-    .edit_account.settings_row
+  .user_profile
+    .user_name.settings_row
       .left
-        %em
-          Click to edit email or password or to cancel your account.
+        Name:
       .right
-        = button_to "Edit Account", edit_user_registration_path, method: :get
-        
+        = show_user_name(@user)
+    .user_image.settings_row
+      .left
+        Photo:
+      .right
+        = image_tag @user.image.url(:normal)
+    .user_email.settings_row
+      .left
+        Email:
+      .right
+        = @user.email
+    .user_bio.settings_row
+      .left
+        Bio:
+      .right
+        = @user.try(:bio)
+    .user_city.settings_row
+      .left
+        City:
+      .right
+        = @user.try(:city)
+    .user_postcode.settings_row
+      .left
+        Postcode:
+      .right
+        = @user.try(:postcode)
+    .edit_settings.settings_row
+      .left
+        %em Click to edit settings.
+      .right
+        = button_to "Edit Settings", edit_user_path(current_user), method: :get
+  .edit_account.settings_row
+    .left
+      %em Click to edit email or password or to cancel your account.
+    .right
+      = button_to "Edit Account", edit_user_registration_path, method: :get
+      

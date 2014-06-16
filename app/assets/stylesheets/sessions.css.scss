@@ -5,14 +5,39 @@
     span {
       float: right;
     }
+    @include media($mobile) {
+      display: none;
+    }
   }
   #session_control_content {
     @include span-columns(8);
+    @include media($mobile) {
+      @include span-columns(12);
+    }
     #left_column {
       @include span-columns(4 of 8);
+      @include media($mobile) {
+        display: none;
+      }
     }
     #right_column {
       @include span-columns(4 of 8);
+      @include media($medium-screen) {
+        img {
+          display: none;
+        }
+      }
+      @include media($mobile) {
+        @include span-columns(10);
+        @include shift(1);
+        img {
+          display: inline;
+        }
+        h1 {
+          font-size: $base-font-size * 4;
+          display: inline;
+        }
+      }
     }
   }
 }
