@@ -38,7 +38,9 @@ class ApplicationController < ActionController::Base
 
   private
   def get_all_connections_for_current_user
-    @all_connections = current_user.all_connections
+    if current_user
+      @all_connections = current_user.all_connections
+    end
   end
 
 end
