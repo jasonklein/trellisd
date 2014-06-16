@@ -6,13 +6,16 @@
     @include outer-container;
     aside {
       @include span-columns(4);
-      @include media(max-width $medium-screen) {
+      @include media($mobile) {
         display: none;
       }
     }
     #main {
       @include span-columns(7);
       @include shift(1);
+      @include media($mobile) {
+        @include span-columns(10);
+      }
     }
   }
 }
