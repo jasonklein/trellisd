@@ -1,6 +1,11 @@
 .post_box {
   border-radius: $display_box_border_radius;
-  background-color: $display_box_background_color;
+  &.normal {
+    background-color: $display_box_normal_background_color;
+  }
+  &.matching_post {
+    background-color: $display_box_matching_background_color;
+  }
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;

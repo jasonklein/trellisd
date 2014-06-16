@@ -47,5 +47,16 @@ module UsersHelper
     render partial: "icon_partials/paperclip", locals: {size: "60px"} if post.files
   end
 
+  def classname_for_post_box(post)
+    matching_ids = current_user.matching_ids_for_all_posts
+    matching_ids.include?(post.id) ? "matching_post" : "normal"
+  end
+
+  # def display_keyword_coverage_if_matching_post(classname, post, matching_id)
+  #   if classname == "matching_post"
+  #     render partial: "users/keyword_coverage_icon", locals: {post_id: post.id, matching_id: matching_id}
+  #   end
+  # end
+
 
 end

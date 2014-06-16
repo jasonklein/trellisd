@@ -79,7 +79,8 @@ $category_background_fill: lighten($rich_blue, 30%);
 $category_foreground_fill: $rich_blue;
 
 // Display Boxes
-$display_box_background_color: lighten($yellow, 20%);
+$display_box_normal_background_color: lighten($yellow, 20%);
+$display_box_matching_background_color: lighten($yellow, 5%);
 $display_box_border_radius: 20px;
 $display_box_margin: 10px 0;
 $display_box_padding: 10px;

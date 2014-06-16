@@ -112,4 +112,18 @@ class User < ActiveRecord::Base
   def posts_of_connections_for_a_category(ids, category_id)
     posts_of_all_connections(ids).where(category_id: category_id)
   end
+
+  def matching_ids_for_all_posts
+    if !@matching_ids
+      @matching_ids = []
+      posts.each do |post|
+        post.matches.each do |match|
+          matching_ids << match.matching_id
+        end
+      end
+    end
+    @matching_ids = @matching_ids.compact.uniq
+    @matching_ids
+  end
+
 end
