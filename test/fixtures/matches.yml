@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  post: 
+  matching: 
+  keyword_coverage: 1
+
+two:
+  post: 
+  matching: 
+  keyword_coverage: 1

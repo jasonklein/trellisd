@@ -102,11 +102,14 @@ class User < ActiveRecord::Base
     connections_ids
   end
 
-  def posts_of_all_connections(ids)  
-    Post.where(user_id: ids)
+  def posts_of_all_connections(ids)
+    if !@connections_posts  
+      @connections_posts = Post.where(user_id: ids)
+    end
+    @connections_posts
   end
 
-  def posts_of_connections_for_a_category(category_id)
-    posts_of_connections.where(category_id: category_id)
+  def posts_of_connections_for_a_category(ids, category_id)
+    posts_of_all_connections(ids).where(category_id: category_id)
   end
 end
