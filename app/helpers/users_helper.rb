@@ -58,5 +58,19 @@ module UsersHelper
   #   end
   # end
 
+  def show_user_name(user)
+    if user!= current_user
+      connections_hash = current_user.all_connections
+      if connections_hash[:primary].include? user.id
+        user.name
+      else
+        user.short_name
+      end
+    else
+      user.name
+    end
+  end
+
+
 
 end
