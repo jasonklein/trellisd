@@ -1,21 +1,14 @@
 #application_main {
-  @include outer-container;
-  #session_control_links {
-    @include row();
-    span {
-      float: right;
-    }
-  }
   #application_content {
-    @include span-columns(12);
+    @include outer-container;
     #left_column {
-      @include span-columns(2 of 12);
+      @include span-columns(2);
     }
     #middle_column {
-      @include span-columns(7 of 12);
+      @include span-columns(7);
     }
     #right_column {
-      @include span-columns(3 of 12);
+      @include span-columns(3);
     }
   }
 }

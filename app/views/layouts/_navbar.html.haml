@@ -1,1 +1,22 @@
-Navbar!
+%header.navigation
+  .menu-wrapper
+    = link_to image_tag("trellisd_small_logo.png"), root_path, class: "logo"
+    %p.navigation-menu-button#js-mobile-menu MENU
+    .nav
+      %ul#navigation-menu
+        %li.nav-link
+          = link_to "Profile", user_path(current_user)
+        %li.nav-link
+          = link_to "Connections", user_connections_path(current_user)
+        %li.nav-link
+          = link_to "MessagesSETPATH", root_path
+        %li.nav-link
+          = link_to "SettingsSETPATH", root_path
+    .navigation-tools
+      .search-bar
+        .search-and-submit
+          %input{type: "search", placeholder: "Search users"}
+          %button{type: "submit"}
+            = image_tag("search-icon.png")
+      .sign-up
+        = display_session_control_links

@@ -9,12 +9,10 @@
   %body
     .wrapper-for-content-outside-of-footer
       #application_main
-        #session_control_links
-          %span
-            = display_session_control_links
+        = render "layouts/navbar"
         #application_content
           #left_column
-            = render "layouts/navbar"
+            %nav
           #middle_column
             %p.notice
               = notice
