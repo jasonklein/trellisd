@@ -1,14 +1,18 @@
 #application_main {
+  .push_header {
+    height: 4em
+  }
   #application_content {
     @include outer-container;
-    #left_column {
-      @include span-columns(2);
+    aside {
+      @include span-columns(4);
+      @include media(max-width $medium-screen) {
+        display: none;
+      }
     }
-    #middle_column {
+    #main {
       @include span-columns(7);
-    }
-    #right_column {
-      @include span-columns(3);
+      @include shift(1);
     }
   }
 }

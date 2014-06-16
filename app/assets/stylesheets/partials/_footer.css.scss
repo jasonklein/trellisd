@@ -10,7 +10,7 @@ html, body {
 }
 
 .footer-2, .push {
-  height: 17em;
+  height: 10em;
 
   @include media($large-screen) {
     height: 4em;
@@ -18,7 +18,7 @@ html, body {
 }
 
 .footer-2 {
-  $footer-background: $footer-background-color;
+  $footer-background: $links-bar-background-color;
   $footer-color: white;
   $footer-link-color: transparentize($footer-color, .6);
   $footer-disclaimer-color: transparentize($footer-color, .6);

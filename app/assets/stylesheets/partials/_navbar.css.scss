@@ -1,6 +1,6 @@
 header.navigation {
   $navigation-padding: 1em;
-  $navigation-background: $dark-gray;
+  $navigation-background: darken($links-bar-background-color, 10%);
   $navigation-color: transparentize(white, 0.3);
   $navigation-color-hover: white;
   $navigation-height: 60px;
@@ -197,7 +197,7 @@ header.navigation {
     }
   }
 
-  a.sign-up {
+  a.session_control {
     margin-top: 13px;
     float: right;
     @include transition (all 0.2s ease-in-out);
@@ -220,7 +220,7 @@ header.navigation {
   }
 
   .search-bar {
-    $search-bar-border-color: $base-border-color;
+    $search-bar-border-color: #000;
     $search-bar-border: 1px solid $search-bar-border-color;
     $search-bar-background: lighten($search-bar-border-color, 10);
 
