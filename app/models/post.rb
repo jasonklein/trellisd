@@ -11,9 +11,12 @@ class Post < ActiveRecord::Base
   default_scope order('created_at DESC')
 
   def get_keyword_ids
-    keyword_ids = []
-    self.keywords.each { |keyword| keyword_ids << keyword.id }
-    keyword_ids.uniq
+    if !@keyword_ids
+      @keyword_ids = []
+      self.keywords.each { |keyword| @keyword_ids << keyword.id }
+      @keyword_ids = @keyword_ids.uniq
+    end
+    @keyword_ids
   end
 
   def get_posts_and_ids
@@ -39,22 +42,34 @@ class Post < ActiveRecord::Base
     keyword_coverage
   end
 
-  def make_matches
+  def find_matches
     posts_to_compare = get_posts_and_ids
     keyword_ids_to_match = get_keyword_ids
     posts_with_matching_keywords = {}
+
     posts_to_compare.each do |post_id, keyword_ids|
       matching_keyword_ids = keyword_ids.select { |id| keyword_ids_to_match.include?(id) }
       posts_with_matching_keywords[post_id] = matching_keyword_ids.uniq
     end
-    matches = posts_with_matching_keywords.reject { |post_id, keyword_ids| keyword_ids.length < 3 }
-    matches.each do |matching_id, keyword_ids|
-      keyword_coverage = calculate_keyword_coverage(keyword_ids_to_match, keyword_ids)
-      Match.create(
-        post_id: self.id,
-        matching_id: matching_id,
-        keyword_coverage: keyword_coverage
-        )
+
+    matches = posts_with_matching_keywords.select { |post_id, matching_keyword_ids| matching_keyword_ids.length >= 3 }
+    matches
+  end
+
+  def make_matches
+    matches = find_matches
+    matches.each do |matching_id, matching_keyword_ids|
+      keyword_coverage = calculate_keyword_coverage(get_keyword_ids, matching_keyword_ids)
+      duplicates = Match.where(post_id: self.id, matching_id: matching_id)
+      if duplicates.any?
+        duplicates.first.update_attributes(keyword_coverage: keyword_coverage)
+      else
+        Match.create(
+          post_id: self.id,
+          matching_id: matching_id,
+          keyword_coverage: keyword_coverage
+          )
+      end
     end
   end
 

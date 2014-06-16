@@ -5,7 +5,7 @@ namespace :db do
   task :populate => [:environment, :drop, :create, :migrate, :seed] do
     require 'faker'
 
-    [Post, KeywordsPosts, Connection].each(&:delete_all)
+    [Post, KeywordsPosts, Connection, Match].each(&:delete_all)
 
     # Create Users
 
