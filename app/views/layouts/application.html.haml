@@ -14,10 +14,7 @@
             = display_session_control_links
         #application_content
           #left_column
-            #short_profile
-              = render "users/short_profile"
-            #notifications
-              = render "users/notifications"
+            = render "layouts/navbar"
           #middle_column
             %p.notice
               = notice
@@ -25,6 +22,9 @@
               = alert
             = yield
           #right_column
-            = render "layouts/navbar"
+            #short_profile
+              = render "users/short_profile"
+            #notifications
+              = render "users/notifications"
       .push
     = render "layouts/footer"

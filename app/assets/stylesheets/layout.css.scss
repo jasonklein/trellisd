@@ -9,13 +9,13 @@
   #application_content {
     @include span-columns(12);
     #left_column {
-      @include span-columns(3 of 12);
+      @include span-columns(2 of 12);
     }
     #middle_column {
       @include span-columns(7 of 12);
     }
     #right_column {
-      @include span-columns(2 of 12);
+      @include span-columns(3 of 12);
     }
   }
 }
