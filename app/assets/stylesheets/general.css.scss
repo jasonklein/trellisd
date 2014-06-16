@@ -1,3 +1,10 @@
 body {
   background-color: $background-color;
+  .text_highlight {
+    color: $rich_blue;
+  }
+  .name_highlight {
+    color: white;
+  }
 }
+

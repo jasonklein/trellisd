@@ -19,6 +19,15 @@ class Post < ActiveRecord::Base
     @keyword_ids
   end
 
+  def list_keyword_titles
+    titles = []
+    keywords.each do |keyword|
+      titles << keyword.try(:title)
+    end
+    titles = titles.sort.uniq.compact
+    titles.join(" | ")
+  end
+
   def get_posts_and_ids
     user = self.user
     connections_ids = user.all_connections_ids

@@ -1,6 +1,11 @@
-%h2
-  = show_user_name(@user)
-= image_tag @user.image.url(:normal)
-= @user.bio
-= @user.city
+.user_profile
+  .user_image
+    = image_tag @user.image.url(:normal)
+  .user_info
+    %h2.name_highlight
+      = show_user_name(@user)
+    %h4.text_highlight
+      = @user.try(:city)
+    %h5.text_highlight
+      = @user.try(:bio)
 = render @posts

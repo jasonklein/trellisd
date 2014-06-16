@@ -1,13 +1,18 @@
 - classname = classname_for_post_box(post)
 %div{class: "profile_post_box #{classname}"}
   .profile_post_box_content
-    = post.title
+    %h4
+      = post.title
     %br
-    = post.keywords.join(", ")
+    %h6.text_highlight
+      = post.list_keyword_titles
   .profile_post_box_icons
     = display_category_icon(post)
     / = display_attachment_icon(post)
   .profile_post_box_buttons
-    = button_to "View", user_post_path(@user, post), method: :get
-    = button_to "Edit", edit_user_post_path(@user, post), method: :get
-    = button_to "Delete", destroy_post_path(@user, post), method: :delete
+    .not_delete_buttons
+      = button_to "View", user_post_path(@user, post), method: :get
+      - if @user == current_user
+        = button_to "Edit", edit_user_post_path(@user, post), method: :get
+        .delete_button
+          = button_to "Delete", destroy_post_path(@user, post), method: :delete

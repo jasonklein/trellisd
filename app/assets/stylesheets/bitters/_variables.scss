@@ -81,6 +81,7 @@ $category_foreground_fill: $rich_blue;
 // Display Boxes
 $display_box_normal_background_color: lighten($yellow, 20%);
 $display_box_matching_background_color: lighten($yellow, 5%);
+$display_box_profile_background_color: lighten($trellisd_fill, 20%);
 $display_box_border_radius: 20px;
 $display_box_margin: 10px 0;
 $display_box_padding: 10px;
@@ -89,6 +90,7 @@ $table_border_arguments: 2px solid $trellisd_fill;
 
 // Images
 $thumb_img_border_radius: $inner_box_border_radius;
+$normal_img_border_radius: $display_box_border_radius;
 
 
 

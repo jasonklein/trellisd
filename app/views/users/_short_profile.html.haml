@@ -3,7 +3,7 @@
     = image_tag current_user.image.url(:thumb)
   #user_name
     %h4
-      = current_user.first_name
+      = link_to current_user.first_name, user_path(current_user)
 #short_profile_stats
   %table
     %thead

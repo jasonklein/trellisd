@@ -29,17 +29,48 @@
 }
 
 .profile_post_box {
+  border-radius: $display_box_border_radius;
+  &.normal {
+    background-color: $display_box_normal_background_color;
+  }
+  &.matching_post {
+    background-color: $display_box_matching_background_color;
+  }
+  margin: $display_box_margin;
+  padding: $display_box_padding;
+  @include clearfix;
   .profile_post_box_content {
-    @include span-columns(4);
+    @include span-columns(5);
+    vertical-align: top;
+    @include media($mobile) {
+      @include row(table);
+      margin-bottom: 10px;
+    }
   }
   .profile_post_box_icons {
-    @include span-columns(2);
+    @include span-columns(1);
+    padding-left: 5px;
+    @include media($mobile) {
+      @include row(table);
+    }
   }
   .profile_post_box_buttons{
+    vertical-align: top;
     @include span-columns(1);
-    button_to {
-      text-align: right;
+    form {
       margin: 5px 0;
+    }
+    @include media($mobile) {
+      .not_delete_buttons {
+        @include row(table);
+      }
+      .delete_buttons {
+        @include row(table);
+      }
+      form {
+        display: inline-block;
+        margin: 5px;
+      }
     }
   }
 }
