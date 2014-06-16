@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :get_all_connections_for_current_user
+
   # Set the layout for the Devise Sessions Controller
 
   layout :layout_by_resource
@@ -32,6 +34,11 @@ class ApplicationController < ActionController::Base
   protected
   def after_sign_in_path_for(resource)
     root_path
+  end
+
+  private
+  def get_all_connections_for_current_user
+    @all_connections = current_user.all_connections
   end
 
 end
