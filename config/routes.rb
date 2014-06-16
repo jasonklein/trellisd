@@ -10,6 +10,7 @@ Trellisd::Application.routes.draw do
   end
 
   post 'users/:user_id/posts/:id', to: 'posts#destroy', as: 'destroy_post'
+  get 'users/:id/settings', to: 'users#settings', as: 'user_settings'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,49 @@
+.alternative_display_box {
+  border-radius: $display_box_border_radius;
+  background-color: $display_box_profile_background_color;
+  margin: $display_box_margin;
+  padding: $display_box_padding;
+}
+
+.settings {
+  vertical-align: middle;
+  @include span-columns (6 of 7);
+  .settings_row {
+    @include row(table);
+    margin-bottom: 10px;
+    .left, .right {
+      @include span-columns(3 of 6);
+      @include media($mobile) {
+        @include row(table);
+      }
+    }
+    .right {
+      @include shift(1);
+      @include media($mobile) {
+        @include shift();
+      }
+    }
+  } 
+  .user_profile {
+    @extend .alternative_display_box;
+    .user_image {
+      img {
+        border-radius: $normal_img_border_radius;
+      }
+      /*@include media($mobile){
+        @include row(table);
+      }*/
+    }
+    .user_info {
+      vertical-align: top;
+      @include span-columns(4 of 6);
+      h2 {
+        color: white;
+      }
+    }
+  }
+
+  .edit_account {
+    @extend .alternative_display_box;
+  }
+}

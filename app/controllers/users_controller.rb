@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     @posts = @user.posts
   end
 
+  def settings
+    @user = current_user
+  end
+
   def edit
   end
 
