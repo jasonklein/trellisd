@@ -22,6 +22,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update_attributes(params[:user])
+      redirect_to user_settings_path @user, notice: "Successfully updated!"
+    else
+      render 'edit'
+    end
   end
 
   def destroy

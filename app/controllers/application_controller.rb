@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
-      redirect_to home_path, notice: 'Sorry, you cannot see this page.'
+      redirect_to root_path, notice: 'Sorry, you cannot see this page.'
     else
       redirect_to new_user_session_path
     end
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound do |exception|
     if current_user
-      redirect_to home_path, notice: 'Whoops, that record does not seem to exist!'
+      redirect_to root_path, notice: 'Whoops, that record does not seem to exist!'
     else
       redirect_to new_user_session_path, notice: 'You must be signed in to access this.'
     end

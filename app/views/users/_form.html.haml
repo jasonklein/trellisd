@@ -1,13 +1,12 @@
 = form_for @user do |f|
   - if @user.errors.any?
-    #error_explanation
-      %h3
-        = @assignment.errors.full_messages.join(", ").downcase.capitalize
+    .errors
+      = @user.errors.full_messages.join(', ').downcase.capitalize
   = f.label :first_name
   = f.text_field :first_name
   = f.label :last_name
   = f.text_field :last_name
-  = f.label :image
+  = f.label 'Image (jpg, jpeg, gif or png)'
   = f.file_field(:image, accept: 'image/jpg, image/jpeg image/gif, image/png')
   = f.label :bio
   %em
@@ -23,4 +22,6 @@
   = f.label :postcode
   = f.text_field :postcode
   = f.submit
+%br
+= button_to 'Cancel', :back, method: :get
 %br

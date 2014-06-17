@@ -9,10 +9,14 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, UserImageUploader
 
+  validates :first_name, :last_name, presence: true
+  validates :bio, length: { maximum: 300, too_long: '%{count} characters is the maximum allowed' }, allow_blank: true
+  validates :first_name, :last_name, length: { minimum: 2 }
+
   has_many :posts
 
-  has_many :made_connections, class_name: "Connection", foreign_key: "connecter_id"
-  has_many :received_connections, class_name: "Connection", foreign_key: "connectee_id"
+  has_many :made_connections, class_name: 'Connection', foreign_key: 'connecter_id'
+  has_many :received_connections, class_name: 'Connection', foreign_key: 'connectee_id'
 
   def role?(role)
     self.role.to_s == role.to_s
