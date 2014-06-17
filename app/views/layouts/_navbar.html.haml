@@ -1,6 +1,6 @@
 %header.navigation
   .menu-wrapper
-    = link_to image_tag("trellisd_small_logo.png"), root_path, class: "logo"
+    = link_to image_tag("trellisd_small_logo.png"), user_home_path(current_user), class: "logo"
     %p.navigation-menu-button#js-mobile-menu MENU
     .nav
       %ul#navigation-menu
@@ -9,9 +9,9 @@
         %li.nav-link
           = link_to "Connections", user_connections_path(current_user)
         %li.nav-link
-          = link_to "NotificationsPATH", root_path
+          = link_to "NotificationsPATH", user_home_path(current_user)
         %li.nav-link
-          = link_to "MessagesPATH", root_path
+          = link_to "MessagesPATH", user_home_path(current_user)
         %li.nav-link
           = link_to "Settings", user_settings_path(current_user)
     .navigation-tools

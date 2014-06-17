@@ -22,7 +22,7 @@ namespace :db do
         postcode: Faker::Address.postcode,
         password: 'jimmies!',
         password_confirmation: 'jimmies!',
-        role: 'basic'
+        role: :basic
       )
     end
 

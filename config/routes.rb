@@ -1,14 +1,18 @@
 Trellisd::Application.routes.draw do
   
+
   devise_for :users
 
-  root to: 'users#home'
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
 
   resources :users do
     resources :posts
     resources :connections, only: [:index]
   end
 
+  get 'users/:id/home', to: 'users#home', as: 'user_home'
   post 'users/:user_id/posts/:id', to: 'posts#destroy', as: 'destroy_post'
   get 'users/:id/settings', to: 'users#settings', as: 'user_settings'
 

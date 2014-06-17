@@ -4,7 +4,7 @@ module ApplicationHelper
     current_uri = request.env['PATH_INFO']
     if current_user
       link_to "Sign Out", destroy_user_session_path, method: :delete, class: "session_control"
-    elsif current_uri == new_user_session_path
+    elsif current_uri == new_user_session_path || current_uri == root_path
       link_to "Sign Up", new_user_registration_path, class: "session_control"
     else
       link_to "Sign In", new_user_session_path, class: "session_control"

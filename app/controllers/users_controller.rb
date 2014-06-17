@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
 
+  before_filter :authenticate_user!
   load_and_authorize_resource
   
   def home
-    @posts = current_user.posts_of_all_connections(current_user.all_connections_ids).limit(10)
+    @user = current_user
+    @posts = @user.posts_of_all_connections(@user.all_connections_ids).limit(10)
   end
 
   def index

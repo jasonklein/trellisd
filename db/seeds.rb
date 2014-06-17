@@ -20,7 +20,7 @@ User.create(
   postcode: "E8",
   password: 'jimmies!',
   password_confirmation: 'jimmies!',
-  role: 'admin'
+  role: :admin
   )
 
 categories = Category.create([

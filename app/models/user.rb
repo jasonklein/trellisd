@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
       @matching_ids = []
       posts.each do |post|
         post.matches.each do |match|
-          matching_ids << match.matching_id
+          @matching_ids << match.matching_id
         end
       end
     end
