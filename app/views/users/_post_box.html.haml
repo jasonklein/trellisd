@@ -6,5 +6,5 @@
     = link_to post_user_name(post), user_path(post.user_id)
     = link_to truncate(post.title, length: 45, separator: ' '), user_post_path(post.user_id, post)
   .post_box_icons
-    = display_category_icon(post)
+    = display_category_icon(post, '60px')
     / = display_attachment_icon(post)

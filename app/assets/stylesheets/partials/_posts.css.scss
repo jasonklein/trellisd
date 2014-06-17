@@ -1,4 +1,4 @@
-.post_box {
+.general_post_display_style {
   border-radius: $display_box_border_radius;
   &.normal {
     background-color: $display_box_normal_background_color;
@@ -9,6 +9,10 @@
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;
+}
+
+.post_box {
+  @extend .general_post_display_style;
   .post_box_image {
     @include span-columns(1);
     img {
@@ -29,16 +33,7 @@
 }
 
 .profile_post_box {
-  border-radius: $display_box_border_radius;
-  &.normal {
-    background-color: $display_box_normal_background_color;
-  }
-  &.matching_post {
-    background-color: $display_box_matching_background_color;
-  }
-  margin: $display_box_margin;
-  padding: $display_box_padding;
-  @include clearfix;
+  @extend .general_post_display_style;
   .profile_post_box_content {
     @include span-columns(5);
     vertical-align: top;
@@ -74,3 +69,31 @@
     }
   }
 }
+
+.show_post {
+  @extend .general_post_display_style;
+  .show_post_headline {
+/*    @include row(table);
+*/    margin-bottom: 10px;
+    .show_post_category {
+      @include span-columns(1 of 7);
+      @include media($mobile) {
+        @include row(table);
+      }
+    }
+    .show_post_title {
+      @include span-columns(6 of 7);
+      padding-left: 20px;
+      vertical-align: middle;
+      @include media($mobile) {
+        @include row(table);
+        padding-left: 0px;
+        color: $rich_blue;
+      }
+    }
+  }
+  .show_post_content, .show_post_keywords {
+    margin-bottom: 10px;
+  }
+}
+

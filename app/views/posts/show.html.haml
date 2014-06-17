@@ -1,0 +1,17 @@
+.show_post.normal
+  .show_post_headline
+    .show_post_category
+      = display_category_icon(@post, '100px')
+    .show_post_title
+      %h2
+        = @post.title
+  .show_post_content
+    %h5
+      = @post.content
+  .show_post_keywords
+    %h6.text_highlight
+      = @post.list_keyword_titles
+  - if @user == current_user
+    .show_post_buttons
+      = button_to "Edit", edit_user_post_path(@user, @post), method: :get
+      = button_to "Delete", destroy_post_path(@user, @post), method: :delete
