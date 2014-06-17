@@ -8,14 +8,9 @@
         = show_user_name(@user)
     .user_image.settings_row
       .left
-        Photo:
+        Image:
       .right
         = image_tag @user.image.url(:normal)
-    .user_email.settings_row
-      .left
-        Email:
-      .right
-        = @user.email
     .user_bio.settings_row
       .left
         Bio:
