@@ -18,8 +18,7 @@ module UsersHelper
   end
 
   def display_category_icon(post, size)
-    category_id = post.category_id
-    case category_id
+    case post.category_id
     when 1
       render partial: "icon_partials/activity", locals: {size: size}
     when 2

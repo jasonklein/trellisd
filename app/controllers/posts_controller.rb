@@ -8,10 +8,15 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = @post.user
+    @user = current_user
   end
 
   def create
+    if @post.save
+      redirect_to user_post_path(@post.user, @post)
+    else
+      render 'new'
+    end
   end
 
   def show
