@@ -1,9 +1,11 @@
 class Post < ActiveRecord::Base
-  attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id
+  attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id, :type
 
   belongs_to :user
   belongs_to :category
   has_and_belongs_to_many :keywords
+
+  validates :title, :content, :expiration, :category_id, :user_id, :type, presence: true
 
   has_many :matches, class_name: "Match", foreign_key: "post_id"
   has_many :inverse_matches, class_name: "Match", foreign_key: "matching_id"

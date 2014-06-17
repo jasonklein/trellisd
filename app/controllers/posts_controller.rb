@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @user = @post.user
   end
 
   def create
@@ -18,6 +19,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @user = @post.user
   end
 
   def update

@@ -1,0 +1,20 @@
+= form_for [@user, @post] do |f|
+  - if @post.errors.any?
+    .errors
+      = @post.errors.full_messages.join(', ').downcase.capitalize
+  = f.label :category
+  = f.collection_select :category_id, Category.all, :id, :title
+  = f.label :type
+  = f.select :type, [:seeking, :offering]
+  = f.label 'Expiration (max 3 months)'
+  = f.text_field :expiration
+  = f.label :title
+  = f.text_field :title
+  = f.label :content
+  = f.text_area :content, rows: '10'
+  / = f.label 'Image (jpg, jpeg, gif or png)'
+  / = f.file_field(:image, accept: 'image/jpg, image/jpeg image/gif, image/png')
+  = f.submit
+%br
+= button_to 'Cancel', :back, method: :get
+%br

@@ -73,8 +73,7 @@
 .show_post {
   @extend .general_post_display_style;
   .show_post_headline {
-/*    @include row(table);
-*/    margin-bottom: 10px;
+    margin-bottom: 10px;
     .show_post_category {
       @include span-columns(1 of 7);
       @include media($mobile) {
@@ -92,7 +91,7 @@
       }
     }
   }
-  .show_post_content, .show_post_keywords {
+  .show_post_user, .show_post_content, .show_post_keywords {
     margin-bottom: 10px;
   }
 }

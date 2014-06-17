@@ -14,10 +14,16 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(document).ready(function() {
+var TrellisdApp = TrellisdApp || {};
+
+TrellisdApp.setup = function() {
+  TrellisdApp.mobileMenuSlider();
+  TrellisdApp.expirationDatepicker();
+}
+
+TrellisdApp.mobileMenuSlider = function() {
   var menu = $('#navigation-menu');
   var menuToggle = $('#js-mobile-menu');
-  // var signUp = $('.sign-up');
 
   $(menuToggle).on('click', function(e) {
     e.preventDefault();
@@ -29,12 +35,22 @@ $(document).ready(function() {
   });
 
   // underline under the active nav item
-  $(".nav .nav-link").click(function() {
-    $(".nav .nav-link").each(function() {
-      $(this).removeClass("active-nav-item");
+  $('.nav .nav-link').click(function() {
+    $('.nav .nav-link').each(function() {
+      $(this).removeClass('active-nav-item');
     });
-    $(this).addClass("active-nav-item");
-    $(".nav .more").removeClass("active-nav-item");
+    $(this).addClass('active-nav-item');
+    $('.nav .more').removeClass('active-nav-item');
   });
-});
+};
 
+TrellisdApp.expirationDatepicker = function() {
+  $('#post_expiration').datepicker({
+    numberOfMonths: 1,
+    showButtonPanel: true,
+    firstDay: 1,
+    dateFormat: "yy-mm-dd"
+  });
+};
+
+$(TrellisdApp.setup);
