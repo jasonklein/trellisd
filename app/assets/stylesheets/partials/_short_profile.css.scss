@@ -16,6 +16,9 @@ aside {
         @include span-columns(2 of 3);
         padding-left: 10px;
         vertical-align: top;
+        h4 {
+          margin-bottom: 5px;
+        }
       }
     }
     #short_profile_stats {
