@@ -62,5 +62,14 @@ module Trellisd
     # For Devise with Heroku
     config.assets.initialize_on_precompile = false
 
+    # For Devise layouts
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "devise" }
+      # Devise::ConfirmationsController.layout "devise"
+      # Devise::UnlocksController.layout "devise"            
+      Devise::PasswordsController.layout proc{ |controller| user_signed_in? ? "application" : "devise" }        
+    end
+
   end
 end

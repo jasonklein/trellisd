@@ -3,18 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :get_all_connections_for_current_user
 
-  # Set the layout for the Devise Sessions Controller
-
-  layout :layout_by_resource
-
-  def layout_by_resource
-    if devise_controller? && resource_name == :user && action_name == 'new'
-      'layout_for_sessions_controller'
-    else
-      'application'
-    end
-  end
-
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
       redirect_to user_home_path, notice: 'Sorry, you cannot see this page.'
