@@ -10,6 +10,8 @@ gem 'pg'
 gem 'devise'
 gem 'cancan'
 
+gem 'validates_timeliness', '~> 3.0'
+
 gem 'carrierwave', '0.9.0'
 gem 'fog', '~> 1.3.1'
 gem 'rmagick'

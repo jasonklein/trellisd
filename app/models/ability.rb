@@ -11,6 +11,7 @@ class Ability
         can :manage, :all
       elsif user.role? :basic
         can :manage, User, id: user.id
+        can :manage, Post, user_id: user.id
         can :read, :all
       else
         can :read, :all

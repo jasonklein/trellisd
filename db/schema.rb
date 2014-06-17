@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140617195933) do
+ActiveRecord::Schema.define(:version => 20140617214345) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(:version => 20140617195933) do
     t.date     "expiration"
     t.string   "range"
     t.boolean  "alert"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "directionality"
   end
 
   create_table "users", :force => true do |t|

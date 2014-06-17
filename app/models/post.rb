@@ -1,11 +1,20 @@
 class Post < ActiveRecord::Base
-  attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id, :type
+  attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id, :directionality
 
   belongs_to :user
   belongs_to :category
   has_and_belongs_to_many :keywords
 
-  validates :title, :content, :expiration, :category_id, :user_id, :type, presence: true
+  validates :title, :content, :expiration, :category_id, :user_id, :directionality, presence: true
+
+  max_start_date = lambda { Date.today }
+  max_end_date = lambda { Date.today + 3.months}
+  validates_date :expiration,
+    on_or_after: max_start_date,
+    on_or_after_message: "must be on or after today",
+    on_or_before: max_end_date,
+    on_or_before_message: "must be on or before 3 months from today"
+
 
   has_many :matches, class_name: "Match", foreign_key: "post_id"
   has_many :inverse_matches, class_name: "Match", foreign_key: "matching_id"

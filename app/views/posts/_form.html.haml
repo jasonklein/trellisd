@@ -4,8 +4,8 @@
       = @post.errors.full_messages.join(', ').downcase.capitalize
   = f.label :category
   = f.collection_select :category_id, Category.all, :id, :title
-  = f.label :type
-  = f.select :type, [:seeking, :offering]
+  = f.label :directionality
+  = f.select :directionality, [:seeking, :offering]
   = f.label 'Expiration (max 3 months)'
   = f.text_field :expiration
   = f.label :title
