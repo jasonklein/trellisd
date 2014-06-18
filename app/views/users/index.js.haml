@@ -1,0 +1,6 @@
+- if @users.any?
+  var usersHtml = "#{escape_javascript(render @users)}";
+- else
+  var usersHtml = "No users match your query.";
+
+$('#users').html(usersHtml);

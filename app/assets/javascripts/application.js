@@ -16,11 +16,6 @@
 
 var TrellisdApp = TrellisdApp || {};
 
-TrellisdApp.setup = function() {
-  TrellisdApp.mobileMenuSlider();
-  TrellisdApp.expirationDatepicker();
-}
-
 TrellisdApp.mobileMenuSlider = function() {
   var menu = $('#navigation-menu');
   var menuToggle = $('#js-mobile-menu');
@@ -52,5 +47,24 @@ TrellisdApp.expirationDatepicker = function() {
     dateFormat: "yy-mm-dd"
   });
 };
+
+TrellisdApp.usersSearch = function() {
+  $('#q_first_name_or_last_name_or_full_name_cont').on('keyup', function() {
+    $('#user_search').submit();
+  });
+};
+
+TrellisdApp.postsSearch = function() {
+  $('#search').on('keyup', function() {
+    $('#user_search').submit();
+  });
+};
+
+TrellisdApp.setup = function() {
+  TrellisdApp.mobileMenuSlider();
+  TrellisdApp.expirationDatepicker();
+  TrellisdApp.usersSearch();
+  TrellisdApp.postsSearch();
+}
 
 $(TrellisdApp.setup);

@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     else
       @users = []
     end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def show
