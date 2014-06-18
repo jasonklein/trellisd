@@ -27,10 +27,13 @@
 
 #users {
   .display_user_box {
-    width: 300px;
+    max-width: 300px;
     height: 100px;
     display: inline-block;
     margin: 0 5px;
+    @include media($mobile) {
+      @inlcude span-columns(10);
+    }
     @extend .user_display_general;
     .user_image {
       @include span-columns(1 of 2);

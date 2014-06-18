@@ -1,6 +1,7 @@
 %h2 Users
 = search_form_for @q, remote: true do |f|
-  = f.search_field :first_name_or_last_name_or_full_name_cont, placeholder: "Search by first name, last name or full name"
+  = f.label :first_name_or_last_name_or_full_name_cont
+  = f.search_field :first_name_or_last_name_or_full_name_cont
   = f.submit
 %br
 #users

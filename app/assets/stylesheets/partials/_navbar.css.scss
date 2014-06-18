@@ -1,6 +1,6 @@
 header.navigation {
   $navigation-padding: 1em;
-  $navigation-background: darken($links-bar-background-color, 10%);
+  $navigation-background: darken($links-bar-background-color, 5%);
   $navigation-color: transparentize(white, 0.3);
   $navigation-color-hover: white;
   $navigation-height: 60px;
@@ -188,7 +188,8 @@ header.navigation {
     padding-right: $navigation-padding;
     padding-left: $navigation-padding/2;
     clear: both;
-    background: #505050;
+    background: $display_box_normal_background_color;
+    padding-bottom: $navigation-padding/2;
 
     @include media($large-screen) {
       background: transparent;
@@ -219,7 +220,7 @@ header.navigation {
     }
   }
 
-  .search-bar {
+  /*.search-bar {
     $search-bar-border-color: #000;
     $search-bar-border: 1px solid $search-bar-border-color;
     $search-bar-background: lighten($search-bar-border-color, 10);
@@ -267,5 +268,5 @@ header.navigation {
         display: block;
       }
     }
-  }
+  }*/
 }
