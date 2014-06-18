@@ -20,42 +20,44 @@ module UsersHelper
   def display_category_icon(post, size)
     case post.category_id
     when 1
-      render partial: "icon_partials/activity", locals: {size: size}
+      render partial: 'icon_partials/activity', locals: {size: size}
     when 2
-      render partial: "icon_partials/collab", locals: {size: size}
+      render partial: 'icon_partials/collab', locals: {size: size}
     when 3
-      render partial: "icon_partials/housing", locals: {size: size}
+      render partial: 'icon_partials/housing', locals: {size: size}
     when 4
-      render partial: "icon_partials/knowledge", locals: {size: size}
+      render partial: 'icon_partials/knowledge', locals: {size: size}
     when 5
-      render partial: "icon_partials/pdq", locals: {size: size}
+      render partial: 'icon_partials/pdq', locals: {size: size}
     when 6
-      render partial: "icon_partials/romance", locals: {size: size}
+      render partial: 'icon_partials/romance', locals: {size: size}
     when 7
-      render partial: "icon_partials/stuff", locals: {size: size}
+      render partial: 'icon_partials/stuff', locals: {size: size}
     when 8
-      render partial: "icon_partials/travel", locals: {size: size}
+      render partial: 'icon_partials/travel', locals: {size: size}
     when 9
-      render partial: "icon_partials/work", locals: {size: size}
+      render partial: 'icon_partials/work', locals: {size: size}
     else
       nil
     end
   end
 
   def display_attachment_icon(post)
-    render partial: "icon_partials/paperclip", locals: {size: "60px"} if post.files
+    render partial: 'icon_partials/paperclip', locals: {size: '60px'} if post.files
   end
 
   def classname_for_post_box(post)
     matching_ids = current_user.matching_ids_for_all_posts
-    matching_ids.include?(post.id) ? "matching_post" : "normal"
+    matching_ids.include?(post.id) ? 'matching_post' : 'normal'
   end
 
-  # def display_keyword_coverage_if_matching_post(classname, post, matching_id)
-  #   if classname == "matching_post"
-  #     render partial: "users/keyword_coverage_icon", locals: {post_id: post.id, matching_id: matching_id}
-  #   end
-  # end
+  def displaying_in_posts_controller?
+    params[:controller] == 'posts' ? true : false
+  end
+
+  def display_keyword_coverage_if_a_match(match)
+    render partial: 'posts/keyword_coverage_icon', locals: {keyword_coverage: match.keyword_coverage}
+  end
 
   def show_user_name(user)
     if user!= current_user

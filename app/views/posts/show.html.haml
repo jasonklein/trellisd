@@ -9,6 +9,8 @@
     %h5
       Posted by: 
       = link_to @user.name, user_path(@user)
+      %br
+      = display_matches_count_if_current_user_post(@post)
   .show_post_content
     %h5
       = @post.content
@@ -20,3 +22,6 @@
       = button_to "Edit", edit_user_post_path(@user, @post), method: :get
       %br
       = button_to "Delete", destroy_post_path(@user, @post), method: :delete
+- if current_user_and_matches?(@post)
+  - @post.matches.each do |match|
+    = display_match(match)

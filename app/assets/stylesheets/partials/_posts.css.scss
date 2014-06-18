@@ -29,6 +29,7 @@
   .post_box_icons {
     @include span-columns(2);
     text-align: right;
+    vertical-align: middle;
   }
 }
 
@@ -95,4 +96,6 @@
     margin-bottom: 10px;
   }
 }
+
+
 

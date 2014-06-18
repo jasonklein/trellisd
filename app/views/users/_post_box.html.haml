@@ -8,3 +8,5 @@
   .post_box_icons
     = display_category_icon(post, '60px')
     / = display_attachment_icon(post)
+    - if displaying_in_posts_controller?
+      = display_keyword_coverage_if_a_match(match)
