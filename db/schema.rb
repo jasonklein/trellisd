@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140617214345) do
+ActiveRecord::Schema.define(:version => 20140618111354) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -36,10 +36,8 @@ ActiveRecord::Schema.define(:version => 20140617214345) do
   end
 
   create_table "keywords_posts", :force => true do |t|
-    t.integer  "keyword_id"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "keyword_id"
+    t.integer "post_id"
   end
 
   add_index "keywords_posts", ["keyword_id"], :name => "index_keywords_posts_on_keyword_id"

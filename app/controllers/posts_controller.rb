@@ -12,12 +12,19 @@ class PostsController < ApplicationController
   end
 
   def create
+    post_keywords = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
+    post_keywords.each do |post_keyword|
+      keyword = Keyword.where(title: post_keyword).first_or_create
+      @post.keywords << keyword
+    end
+
     if @post.save
       @post.make_matches
       redirect_to user_post_path(@post.user, @post)
     else
       render 'new'
     end
+
   end
 
   def show
@@ -29,6 +36,14 @@ class PostsController < ApplicationController
   end
 
   def update
+    post_keywords = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
+    post_keywords.each do |post_keyword|
+      keyword = Keyword.where(title: post_keyword).first_or_create
+      @post.keywords << keyword
+    end
+
+    @post.keywords = @post.keywords.uniq
+
     if @post.update_attributes(params[:post])
       @post.make_matches
       redirect_to user_post_path(@post.user, @post)

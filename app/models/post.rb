@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :keywords
 
   validates :title, :content, :expiration, :category_id, :user_id, :directionality, presence: true
+  validates_length_of :keywords, minimum: 3, message: "field must have at least 3 keywords"
+  validates_length_of :keywords, maximum: 10, message: "field cannot have more than 10 keywords"
 
   max_start_date = lambda { Date.today }
   max_end_date = lambda { Date.today + 3.months}

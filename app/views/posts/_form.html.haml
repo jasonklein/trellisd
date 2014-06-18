@@ -14,6 +14,10 @@
   = f.text_area :content, rows: '10'
   / = f.label 'Image (jpg, jpeg, gif or png)'
   / = f.file_field(:image, accept: 'image/jpg, image/jpeg image/gif, image/png')
+  = label_tag 'keywords'
+  %em
+    Enter a minimum of 3, a maximum of 10, separated by commas.
+  = text_field_tag 'keywords', nil, placeholder: 'E.g., ruby on rails, agile, web developer, barcelona, brobdingnagian'
   = f.submit
 %br
 = button_to 'Cancel', :back, method: :get
