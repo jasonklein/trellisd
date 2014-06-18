@@ -6,6 +6,9 @@
       %h2
         = @post.title
   .show_post_user
+    %h6
+      %em
+        = display_directionality_if_work_post(@post)
     %h5
       Posted by: 
       = link_to @user.name, user_path(@user)
