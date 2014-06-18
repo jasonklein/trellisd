@@ -8,7 +8,7 @@
   .show_post_user
     %h6
       %em
-        = display_directionality_if_work_post(@post)
+        = display_directionality_if_directionality_cateogry(@post)
     %h5
       Posted by: 
       = link_to @user.name, user_path(@user)

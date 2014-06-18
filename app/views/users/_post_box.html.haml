@@ -5,7 +5,7 @@
   .post_box_content
     = link_to post_user_name(post), user_path(post.user_id)
     %em
-      = display_directionality_if_work_post(post)
+      = display_directionality_if_directionality_cateogry(post)
     %br
     = link_to truncate(post.title, length: 45, separator: ' '), user_post_path(post.user_id, post)
   .post_box_icons
