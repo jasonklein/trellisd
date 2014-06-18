@@ -24,7 +24,7 @@
     .show_post_buttons
       = button_to "Edit", edit_user_post_path(@user, @post), method: :get
       %br
-      = button_to "Delete", destroy_post_path(@user, @post), method: :delete
+      = button_to "Delete", destroy_post_path(@user, @post), method: :post
 - if current_user_and_matches?(@post)
   - @post.matches.each do |match|
     = display_match(match)

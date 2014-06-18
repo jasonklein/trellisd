@@ -53,5 +53,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    post = Post.find(params[:id])
+    post_id = post.id
+
+    post.destroy_keywords_posts
+    Post.destroy(post)
+    
+    redirect_to user_path(current_user), notice: "Post deleted."
   end
+  
+
 end

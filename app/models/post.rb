@@ -18,8 +18,8 @@ class Post < ActiveRecord::Base
     on_or_before_message: "must be on or before 3 months from today"
 
 
-  has_many :matches, class_name: "Match", foreign_key: "post_id"
-  has_many :inverse_matches, class_name: "Match", foreign_key: "matching_id"
+  has_many :matches, class_name: "Match", foreign_key: "post_id", dependent: :destroy
+  has_many :inverse_matches, class_name: "Match", foreign_key: "matching_id", dependent: :destroy
 
   default_scope order('created_at DESC')
 
@@ -112,6 +112,13 @@ class Post < ActiveRecord::Base
             )
         end
       end
+    end
+  end
+
+  def destroy_keywords_posts
+    keywords_posts = KeywordsPosts.where(post_id: self.id)
+    keywords_posts.each do |kp|
+      KeywordsPosts.destroy(kp)
     end
   end
 
