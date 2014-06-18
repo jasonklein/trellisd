@@ -9,7 +9,7 @@ namespace :db do
 
     # Create Users
 
-    19.times do
+    39.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       User.create(
@@ -50,16 +50,20 @@ namespace :db do
     # Create Connections
 
     i = 1
-    while i <= 20 do
+    while i <= 40 do
 
-      # Make array of all of the id's but the one that will be assigned to the connecter.
+      # Make arrays of all of the id's but the one that
+      # will be assigned to the connecter. Two arrays to
+      # increase likelihood of tertiary connections
+      # (a person C who is connected to B and not A)
       
-      connectee_ids = (1..20).to_a.reject { |n| n == i }
-      
+      connectee_ids_a = (1..25).to_a.reject { |n| n == i }
+      connectee_ids_b = (16..40).to_a.reject { |n| n == i }
+
       # Shuffle the array and assign the index to the connectee_id as the index increments
       # This is to avoid the connecter having multiple connections with the same connectee
 
-      connectee_ids = connectee_ids.shuffle!
+      connectee_ids = [connectee_ids_a, connectee_ids_b].sample.shuffle!
       for x in (0..5)
         Connection.create(
           connecter_id: i,
