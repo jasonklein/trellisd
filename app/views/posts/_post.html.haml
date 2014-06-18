@@ -1,6 +1,9 @@
 - classname = classname_for_post_box(post)
 %div{class: "profile_post_box #{classname}"}
   .profile_post_box_content
+    %h6
+      %em
+        = display_directionality_if_work_post(post)
     %h4
       = post.title
     %br

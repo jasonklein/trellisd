@@ -39,17 +39,33 @@ class Post < ActiveRecord::Base
     titles.join(" | ")
   end
 
+  def filter_by_directionality(applicable_posts)
+    if self.directionality == 'seeking'
+      applicable_posts = applicable_posts.where(directionality: 'offering')
+    else
+      applicable_posts = applicable_posts.where(directionality: 'seeking')
+    end
+    applicable_posts
+  end
+
   def get_posts_and_ids
     user = self.user
     connections_ids = user.all_connections_ids
-    connections_posts_in_same_category = user.posts_of_connections_for_a_category(connections_ids, self.category_id)
+    @applicable_posts = user.posts_of_connections_for_a_category(connections_ids, self.category_id)
+    
+    if @applicable_posts.any? && self.category_id == Category.where(title: 'Work').first.id
+      @applicable_posts = filter_by_directionality(@applicable_posts)
+    end
+
     posts_and_ids = {}
-    connections_posts_in_same_category.each do |post|
-      posts_ids = []
-      post.keywords.each do |keyword|
-        posts_ids << keyword.id
+    if @applicable_posts.any?
+      @applicable_posts.each do |post|
+        posts_ids = []
+        post.keywords.each do |keyword|
+          posts_ids << keyword.id
+        end
+        posts_and_ids[post.id] = posts_ids
       end
-      posts_and_ids[post.id] = posts_ids
     end
     posts_and_ids
   end
@@ -67,9 +83,11 @@ class Post < ActiveRecord::Base
     keyword_ids_to_match = get_keyword_ids
     posts_with_matching_keywords = {}
 
-    posts_to_compare.each do |post_id, keyword_ids|
-      matching_keyword_ids = keyword_ids.select { |id| keyword_ids_to_match.include?(id) }
-      posts_with_matching_keywords[post_id] = matching_keyword_ids.uniq
+    if posts_to_compare.any?
+      posts_to_compare.each do |post_id, keyword_ids|
+        matching_keyword_ids = keyword_ids.select { |id| keyword_ids_to_match.include?(id) }
+        posts_with_matching_keywords[post_id] = matching_keyword_ids.uniq
+      end
     end
 
     matches = posts_with_matching_keywords.select { |post_id, matching_keyword_ids| matching_keyword_ids.length >= 3 }
@@ -78,17 +96,19 @@ class Post < ActiveRecord::Base
 
   def make_matches
     matches = find_matches
-    matches.each do |matching_id, matching_keyword_ids|
-      keyword_coverage = calculate_keyword_coverage(get_keyword_ids, matching_keyword_ids)
-      duplicates = Match.where(post_id: self.id, matching_id: matching_id)
-      if duplicates.any?
-        duplicates.first.update_attributes(keyword_coverage: keyword_coverage)
-      else
-        Match.create(
-          post_id: self.id,
-          matching_id: matching_id,
-          keyword_coverage: keyword_coverage
-          )
+    if matches.any?
+      matches.each do |matching_id, matching_keyword_ids|
+        keyword_coverage = calculate_keyword_coverage(get_keyword_ids, matching_keyword_ids)
+        duplicates = Match.where(post_id: self.id, matching_id: matching_id)
+        if duplicates.any?
+          duplicates.first.update_attributes(keyword_coverage: keyword_coverage)
+        else
+          Match.create(
+            post_id: self.id,
+            matching_id: matching_id,
+            keyword_coverage: keyword_coverage
+            )
+        end
       end
     end
   end

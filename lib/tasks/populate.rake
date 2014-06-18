@@ -28,13 +28,14 @@ namespace :db do
 
     # Create posts in the "Work" category.
 
-    50.times do
+    100.times do
       Post.create(
         category_id: Category.where(title: 'Work').first.id,
         title: Faker::Lorem.sentence,
         content: Faker::Lorem.paragraph,
         user_id: (1..20).to_a.sample,
-        expiration: Date.today + 7.weeks
+        expiration: Date.today + 7.weeks,
+        directionality: [:seeking, :offering].sample
         )
     end
 
@@ -60,7 +61,7 @@ namespace :db do
       # This is to avoid the connecter having multiple connections with the same connectee
 
       connectee_ids = connectee_ids.shuffle!
-      for x in (0..4)
+      for x in (0..5)
         Connection.create(
           connecter_id: i,
           connectee_id: connectee_ids[x]

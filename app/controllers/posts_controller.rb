@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def create
     if @post.save
+      @post.make_matches
       redirect_to user_post_path(@post.user, @post)
     else
       render 'new'
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update_attributes(params[:post])
+      @post.make_matches
       redirect_to user_post_path(@post.user, @post)
     else
       render 'edit'

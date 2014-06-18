@@ -72,6 +72,12 @@ module UsersHelper
     end
   end
 
+  def display_directionality_if_work_post(post)
+    if post.category_id == Category.where(title: 'Work').first.id
+      post.directionality.capitalize
+    end
+  end
+
 
 
 end
