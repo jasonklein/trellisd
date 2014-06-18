@@ -67,7 +67,8 @@ namespace :db do
       for x in (0..5)
         Connection.create(
           connecter_id: i,
-          connectee_id: connectee_ids[x]
+          connectee_id: connectee_ids[x],
+          state: :accepted
           )
       end
       i += 1

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140618111354) do
+ActiveRecord::Schema.define(:version => 20140618171347) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20140618111354) do
   create_table "connections", :force => true do |t|
     t.integer  "connecter_id"
     t.integer  "connectee_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "state",        :default => "pending"
   end
 
   add_index "connections", ["connectee_id"], :name => "index_connections_on_connectee_id"
