@@ -12,11 +12,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    post_keywords = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
-    post_keywords.each do |post_keyword|
-      keyword = Keyword.where(title: post_keyword).first_or_create
-      @post.keywords << keyword
-    end
+    keyword_titles = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
+    
+    @post.add_keywords(keyword_titles)
 
     if @post.save
       @post.make_matches
@@ -36,11 +34,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    post_keywords = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
-    post_keywords.each do |post_keyword|
-      keyword = Keyword.where(title: post_keyword).first_or_create
-      @post.keywords << keyword
-    end
+    keyword_titles = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
+
+    @post.add_keywords(keyword_titles)
 
     @post.keywords = @post.keywords.uniq
 

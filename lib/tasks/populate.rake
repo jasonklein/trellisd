@@ -26,26 +26,25 @@ namespace :db do
       )
     end
 
-    # Create posts in the "Work" category.
+    # Create posts and add keywords.
 
-    100.times do
-      Post.create(
-        category_id: Category.where(title: 'Work').first.id,
+    category_ids = Category.all.map { |category| category.id }
+    potential_keyword_titles = Keyword.all.map { |keyword| keyword.title }
+
+    300.times do
+      post = Post.new(
+        category_id: category_ids.sample,
         title: Faker::Lorem.sentence,
         content: Faker::Lorem.paragraph,
         user_id: (1..20).to_a.sample,
         expiration: Date.today + 7.weeks,
         directionality: [:seeking, :offering].sample
         )
-    end
+      keywords_amount = rand(3..7)
+      keyword_titles = potential_keyword_titles.shuffle.slice(0..keywords_amount)
+      post.add_keywords(keyword_titles)
 
-    # Create KeywordsPosts's
-
-    200.times do
-      KeywordsPosts.create(
-        keyword_id: (1..20).to_a.sample,
-        post_id: (1..50).to_a.sample
-        )
+      post.save
     end
 
     # Create Connections

@@ -50,12 +50,22 @@ class Post < ActiveRecord::Base
     applicable_posts
   end
 
+  def directionality_category?
+    directionality_categories = Category.where(title: ["Work", "Housing"])
+    directionality_category_ids = directionality_categories.map { |dc| dc.id }
+    if directionality_category_ids.include?(self.category_id)
+      true
+    else
+      false
+    end
+  end
+
   def get_posts_and_ids
     user = self.user
     connections_ids = user.all_connections_ids
     @applicable_posts = user.posts_of_connections_for_a_category(connections_ids, self.category_id)
-    
-    if @applicable_posts.any? && self.category_id == Category.where(title: 'Work').first.id
+  
+    if @applicable_posts.any? && directionality_category?
       @applicable_posts = filter_by_directionality(@applicable_posts)
     end
 
@@ -115,12 +125,18 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def add_keywords(keyword_titles)
+    keyword_titles.each do |keyword_title|
+      keyword = Keyword.where(title: keyword_title).first_or_create
+      self.keywords << keyword
+    end
+  end
+
   def destroy_keywords_posts
     keywords_posts = KeywordsPosts.where(post_id: self.id)
     keywords_posts.each do |kp|
       KeywordsPosts.destroy(kp)
     end
   end
-
 
 end
