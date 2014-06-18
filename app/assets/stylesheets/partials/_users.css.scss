@@ -1,0 +1,57 @@
+.user_display_general {
+  border-radius: $display_box_border_radius;
+  background-color: $display_box_profile_background_color;
+  margin: $display_box_margin;
+  padding: $display_box_padding;
+}
+
+.profile.user_profile {
+  @extend .user_display_general;
+  .user_image {
+    @include span-columns(2 of 7);
+    img {
+      border-radius: $normal_img_border_radius;
+    }
+    @include media($mobile){
+      @include row(table);
+    }
+  }
+  .user_info {
+    vertical-align: top;
+    @include span-columns(4 of 7);
+    h2 {
+      color: white;
+    }
+  }
+}
+
+#users_index_wrapper {
+  /*@include span-columns (7);
+  li.block {
+    @include span-columns(2 of 7);
+    @include omega(4n);*/
+  .display_user_box {
+    width: 300px;
+    height: 100px;
+    display: inline-block;
+    margin: 0 5px;
+    @extend .user_display_general;
+    .user_image {
+      @include span-columns(1 of 2);
+      img {
+        border-radius: $thumb_img_border_radius;
+      }
+    }
+    .user_info {
+      @include span-columns(1 of 2);
+      vertical-align: top;
+      .user_name {
+        @include row(table);
+        margin-bottom: 2px;
+      }
+      .connect_button {
+        @include row(table);
+      }
+    }
+  }
+}

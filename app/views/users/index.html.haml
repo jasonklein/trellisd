@@ -1,9 +1,10 @@
-%h1 Users#index
-%ul
-  - @users.each do |user|
-    %li
-      = user.name
-      &nbsp;&nbsp;&nbsp;
-      = user.email
-      = user.all_connections[:tertiary].count
-
+%h2 Users
+= search_form_for @q do |f|
+  / = f.label :first_name_or_last_name_or_full_name_cont
+  = f.search_field :first_name_or_last_name_or_full_name_cont, placeholder: "Search by first name, last name or full name"
+  / = f.label :articles_title_start
+  / = f.search_field :articles_title_start
+  = f.submit
+%br
+#users_index_wrapper
+  = render @users

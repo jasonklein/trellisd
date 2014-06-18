@@ -9,7 +9,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.includes(:posts)
+    @q = User.search(params[:q])
+    if params[:q] && !params[:q][:first_name_or_last_name_or_full_name_cont].blank?
+      @users = @q.result(distinct: true)
+    else
+      @users = []
+    end
   end
 
   def show

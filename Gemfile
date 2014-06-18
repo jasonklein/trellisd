@@ -9,6 +9,7 @@ gem 'pg'
 
 gem 'devise'
 gem 'cancan'
+gem 'ransack'
 
 gem 'validates_timeliness', '~> 3.0'
 

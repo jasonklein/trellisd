@@ -7,6 +7,10 @@
         %li.nav-link
           = link_to "Profile", user_path(current_user)
         %li.nav-link
+          = link_to "Users", users_path
+        %li.nav-link
+          = link_to "Posts", user_path(current_user)
+        %li.nav-link
           = link_to "Connections", user_connections_path(current_user)
         %li.nav-link
           = link_to "NotificationsPATH", user_home_path(current_user)
@@ -15,9 +19,9 @@
         %li.nav-link
           = link_to "Settings", user_settings_path(current_user)
     .navigation-tools
-      .search-bar
-        .search-and-submit
-          %input{type: "search", placeholder: "Search users"}
-          %button{type: "submit"}
-            = image_tag("search-icon.png")
+      / .search-bar
+      /   .search-and-submit
+      /     %input{type: "search", placeholder: "Search users"}
+      /     %button{type: "submit"}
+      /       = image_tag("search-icon.png")
       = display_session_control_links

@@ -130,4 +130,20 @@ class User < ActiveRecord::Base
     @matching_ids
   end
 
+  ransacker :full_name do |parent|
+    Arel::Nodes::InfixOperation.new('||',
+      parent.table[:first_name], parent.table[:last_name])
+  end
+
+  ransacker :full_name do |parent|
+    Arel::Nodes::NamedFunction.new('concat_ws',
+      [' ', parent.table[:first_name], parent.table[:last_name]])
+  end
+
+  ransacker :full_name, formatter: proc { |v| v.mb_chars.downcase.to_s } do |parent|
+    Arel::Nodes::NamedFunction.new('LOWER',
+      [Arel::Nodes::NamedFunction.new('concat_ws',
+        [' ', parent.table[:first_name], parent.table[:last_name]])])
+  end
+
 end
