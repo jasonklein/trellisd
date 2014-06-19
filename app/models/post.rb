@@ -125,11 +125,17 @@ class Post < ActiveRecord::Base
     end
   end
 
+  ### Unsure how to pass the keywords back to the form
+  ### in the edit view, the method below resets the posts
+  ### keywords to the new keywords 
+
   def add_keywords(keyword_titles)
+    keywords = []
     keyword_titles.each do |keyword_title|
       keyword = Keyword.where(title: keyword_title).first_or_create
-      self.keywords << keyword
+      keywords << keyword
     end
+    self.keywords = keywords
   end
 
   def destroy_keywords_posts
