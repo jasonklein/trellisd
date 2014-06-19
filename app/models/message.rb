@@ -1,12 +1,12 @@
 class Message < ActiveRecord::Base
   belongs_to :sender
   belongs_to :recipient
-  attr_accessible :content, :recipient_readability, :sender_readability, :viewed, :sender_id, :recipient_id
+  attr_accessible :content, :recipient_readability, :sender_readability, :viewed, :sender_id, :recipient_id, :subject
 
   belongs_to :sender, class_name: "User"
   belongs_to :recipient, class_name: "User"
 
-  validates :content, :sender_id, :recipient_id, presence: true
+  validates :subject, :content, :sender_id, :recipient_id, presence: true
 
   default_scope order('created_at DESC')
   scope :unviewed, where(viewed: false)

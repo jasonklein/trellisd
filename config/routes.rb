@@ -14,7 +14,11 @@ Trellisd::Application.routes.draw do
     resources :posts
   end
 
-  resources :messages, only: [:index, :create, :destroy]
+  resources :messages, only: [:index, :create, :destroy] do
+    member do
+      get :reply
+    end
+  end
 
   get 'users/:id/home', to: 'users#home', as: 'user_home'
   post 'users/:user_id/posts/:id', to: 'posts#destroy', as: 'destroy_post'
@@ -24,7 +28,9 @@ Trellisd::Application.routes.draw do
   put 'connections/:connecter_id/:connectee_id', to: 'connections#accept', as: 'accept_connection'
   post 'connections/:connecter_id/:connectee_id', to: 'connections#destroy', as: 'destroy_connection'
   post 'messages/:id', to: 'messages#destroy', as: 'delete_message'
-  get 'messages/:sender_id/:recipient_id', to: 'messages#new', as: 'new_message'
+  get 'messages/:sender_id/:recipient_id/:post_id', to: 'messages#new', as: 'new_message'
+  # get 'messages/:sender_id/:recipient_id/:message_id', to: 'messages#reply', as: 'reply_message'
+  put 'messages/:id', to: 'messages#create_reply'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

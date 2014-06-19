@@ -1,14 +1,3 @@
 %h2 New Message
 %br
-%h5
-  To: 
-  = display_recipient_name(@recipient_id)
-%br
-.message-box
-  = form_for @message do |f|
-    = f.text_area :content, rows: '10'
-    %br
-    = f.hidden_field :sender_id, value: @sender_id
-    = f.hidden_field :recipient_id, value: @recipient_id
-    = f.submit "Send"
-.push
+= render 'form'

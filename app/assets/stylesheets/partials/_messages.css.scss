@@ -9,9 +9,12 @@
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;
-  .message_box_content {
+  .message_box_subject_and_content {
     @include span-columns(4);
     vertical-align: top;
+    .message_field_header {
+      margin: 10px 0;
+    }
   }
   .message_box_actions {
     @include span-columns(2);

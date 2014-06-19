@@ -100,9 +100,9 @@ module UsersHelper
     end
   end
 
-  def display_message_button_if_user_not_current_user(user)
+  def display_message_button_if_user_not_current_user(user, post)
     if user != current_user
-      button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: user.id), method: :get
+      button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: user.id, post_id: post.id), method: :get
     else
       nil
     end

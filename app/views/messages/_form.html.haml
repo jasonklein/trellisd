@@ -1,0 +1,17 @@
+%h5
+  To: 
+  = display_recipient_name(@recipient_id)
+%br
+.message-box
+  = form_for @message do |f|
+    = f.label :subject
+    = f.text_field :subject, value: @subject
+    = display_original_content_label
+    = display_original_content
+    = f.label :content
+    = f.text_area :content, value: "", rows: '10'
+    %br
+    = f.hidden_field :sender_id, value: @sender_id
+    = f.hidden_field :recipient_id, value: @recipient_id
+    = f.submit "Send", method: :post
+.push
