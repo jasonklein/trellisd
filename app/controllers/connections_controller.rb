@@ -2,7 +2,6 @@ class ConnectionsController < ApplicationController
   
   before_filter :authenticate_user!
   load_and_authorize_resource
-  # load_and_authorize_resource :user
 
   def index
     user_ids = current_user.get_user_ids_from_connections_across_states
@@ -26,6 +25,7 @@ class ConnectionsController < ApplicationController
   end
 
   def destroy
-    raise
+    Connection.destroy(params[:id])
+    redirect_to connections_path, notice: "Disconnected."
   end
 end
