@@ -1,0 +1,6 @@
+- if @messages.any?
+  var messagesHtml = "#{escape_javascript(render @messages)}";
+- else
+  var messagesHtml = "No messages match your query.";
+
+$('#messages').html(messagesHtml);

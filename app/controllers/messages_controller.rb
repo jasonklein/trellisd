@@ -6,7 +6,12 @@ class MessagesController < ApplicationController
     current_user.mark_unviewed_messages_viewed
 
     @q = current_user.messages.search(params[:q])
-    @messages = @q.result(distinct: true)
+    @messages = @q.result(distinct: true).includes(:sender, :recipient)
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def new

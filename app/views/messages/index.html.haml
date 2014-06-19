@@ -1,9 +1,10 @@
 %h2 Messages
 = search_form_for @q, remote: true do |f|
-  = f.search_field :content_cont, placeholder: "Search for messages by content"
+  = f.search_field :subject_or_content_or_sender_full_name_or_recipient_full_name_cont, placeholder: "Search for messages by subject, content or sender/recipient name"
   = f.submit
 %br
-= render @messages
+#messages
+  = render @messages
 
 
 

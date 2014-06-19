@@ -29,7 +29,6 @@ Trellisd::Application.routes.draw do
   post 'connections/:connecter_id/:connectee_id', to: 'connections#destroy', as: 'destroy_connection'
   post 'messages/:id', to: 'messages#destroy', as: 'delete_message'
   get 'messages/:sender_id/:recipient_id/:post_id', to: 'messages#new', as: 'new_message'
-  # get 'messages/:sender_id/:recipient_id/:message_id', to: 'messages#reply', as: 'reply_message'
   put 'messages/:id', to: 'messages#create_reply'
 
   # The priority is based upon order of creation:
