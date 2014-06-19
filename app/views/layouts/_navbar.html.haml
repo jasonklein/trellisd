@@ -19,9 +19,4 @@
         %li.nav-link
           = link_to "Settings", user_settings_path(current_user)
     .navigation-tools
-      / .search-bar
-      /   .search-and-submit
-      /     %input{type: "search", placeholder: "Search users"}
-      /     %button{type: "submit"}
-      /       = image_tag("search-icon.png")
       = display_session_control_links

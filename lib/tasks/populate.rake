@@ -36,8 +36,8 @@ namespace :db do
         category_id: category_ids.sample,
         title: Faker::Lorem.sentence,
         content: Faker::Lorem.paragraph,
-        user_id: (1..20).to_a.sample,
-        expiration: Date.today + 7.weeks,
+        user_id: (1..40).to_a.sample,
+        expiration: Date.today + 3.weeks,
         directionality: [:seeking, :offering].sample
         )
       keywords_amount = rand(3..7)
