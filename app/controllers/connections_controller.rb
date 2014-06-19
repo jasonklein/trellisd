@@ -25,7 +25,12 @@ class ConnectionsController < ApplicationController
   end
 
   def destroy
+    connection = Connection.find(params[:id])
     Connection.destroy(params[:id])
-    redirect_to connections_path, notice: "Disconnected."
+    if connection.state == :pending
+      redirect_to connections_path, notice: "Connection request deleted."
+    else
+      redirect_to connections_path, notice: "Disconnected."
+    end
   end
 end
