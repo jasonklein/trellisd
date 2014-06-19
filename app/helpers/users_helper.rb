@@ -83,20 +83,28 @@ module UsersHelper
     connection = Connection.where(connecter_id: ids, connectee_id: ids).first
     if connection
       if connection.state == 'accepted'
-        render partial: 'users/disconnect_button', locals: {user: user, label: "Disconnect", connection: connection}
+        render partial: 'connections/disconnect_button', locals: {user: user, label: "Disconnect", connection: connection}
       else
         if connection.connecter_id == current_user.id
-          render partial: 'users/disconnect_button', locals: {user: user, label: "Delete Request", connection: connection}
+          render partial: 'connections/disconnect_button', locals: {user: user, label: "Delete Request", connection: connection}
         else
-          render partial: 'users/accept_reject_buttons', locals: {user: user, label: "Reject", connection: connection}
+          render partial: 'connections/accept_reject_buttons', locals: {user: user, label: "Reject", connection: connection}
         end
       end
     else
       if user.id == current_user.id
         nil
       else
-        render partial: 'users/connect_button', locals: {user: user}
+        render partial: 'connections/connect_button', locals: {user: user}
       end
+    end
+  end
+
+  def display_message_button_if_user_not_current_user(user)
+    if user != current_user
+      button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: user.id), method: :get
+    else
+      nil
     end
   end
 

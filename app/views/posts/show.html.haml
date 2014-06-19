@@ -16,8 +16,7 @@
       = display_matches_count_if_current_user_post(@post)
     %h6
       %br
-      - if @user != current_user
-        = button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: @user.id), method: :get
+      = display_message_button_if_user_not_current_user(@user)
   .show_post_content
     %h5
       = @post.content
