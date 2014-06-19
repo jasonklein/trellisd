@@ -3,14 +3,17 @@
   .message_box_names
     %h5
       From: 
-        = message.sender
+      = message.sender.name
+      %br
       To: 
-        = message.recipient
+      = message.recipient.name
+    %br
   .message_box_content
     %h6
       = message.content
   .message_box_actions
-    %button    
-      = link_to "Delete", delete_message_path(message), method: :delete
-    %button    
-      = link_to "Delete", delete_message_path(message), method: :delete
+    - if message.sender == current_user
+      = button_to "Reply", new_message_path(sender_id: current_user.id, recipient_id: message.recipient_id), method: :get
+    - else
+      = button_to "Reply", new_message_path(sender_id: current_user.id, recipient_id: message.sender_id), method: :get
+    = button_to "Delete", delete_message_path(message), method: :post

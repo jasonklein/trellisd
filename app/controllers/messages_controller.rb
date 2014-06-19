@@ -10,12 +10,25 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @message = Message.new
+    @sender_id = params[:sender_id]
+    @recipient_id = params[:recipient_id]
   end
 
   def create
+    if @message.save
+      redirect_to messages_path, notice: "Message sent."
+    else
+      render 'new'
+    end
   end
 
   def destroy
+    @message = Message.find(params[:id])
+
+    @message.toggle_readability_or_destroy(current_user)
+
+    redirect_to messages_path, notice: "Message deleted."
   end
 
 end

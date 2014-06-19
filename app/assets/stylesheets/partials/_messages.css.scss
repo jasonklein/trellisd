@@ -1,18 +1,10 @@
-// Place all the styles related to the messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-.new_message {
-  background-color: $unviewed_message_background_color;
-}
-
 .message_box {
   border-radius: $display_box_border_radius;
   &.not_new_messsage {
     background-color: $display_box_normal_background_color;
   }
   &.new_message {
-    background-color: $display_box_matching_background_color;
+    background-color: $unviewed_message_background_color;
   }
   margin: $display_box_margin;
   padding: $display_box_padding;
@@ -24,6 +16,9 @@
   .message_box_actions {
     @include span-columns(2);
     text-align: right;
-    vertical-align: middle;
+    vertical-align: top;
+    form {
+      margin: 5px 0;
+    }
   }
 }
