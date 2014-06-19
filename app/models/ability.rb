@@ -8,13 +8,20 @@ class Ability
     #
       user ||= User.new # guest user (not logged in)
       if user.role? :admin
-        can :manage, :all
+        can :read, :all
+        can :manage, User, id: user.id
+        can :destroy, User
+        can :flag, User
+        can :manage, Connection, connecter_id: user.id
+        can :manage, Connection, connectee_id: user.id   
       elsif user.role? :basic
         can :manage, User, id: user.id
+        can :read, User
+        can :flag, User
         can :manage, Post, user_id: user.id
-        can :read, :all
-      else
-        can :read, :all
+        can :read, Post
+        can :manage, Connection, connecter_id: user.id
+        can :manage, Connection, connectee_id: user.id
       end
     #
     # The first argument to `can` is the action you are giving the user 

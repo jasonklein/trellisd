@@ -26,30 +26,41 @@
 }
 
 #users {
+  @include media($mobile) {
+    @inlcude span-columns(10 of 12);
+  }
   .display_user_box {
-    max-width: 300px;
-    height: 100px;
+    max-width: 270px;
+    height: 150px;
     display: inline-block;
-    margin: 0 5px;
-    @include media($mobile) {
-      @inlcude span-columns(10);
-    }
     @extend .user_display_general;
-    .user_image {
-      @include span-columns(1 of 2);
-      img {
-        border-radius: $thumb_img_border_radius;
-      }
+    margin: 5px 20px; // to override the user_display_general
+    @include media($mobile) {
+      max-width: auto;
+      font-size: $base-font-size;
+      min-height: 150px;
     }
     .user_info {
-      @include span-columns(1 of 2);
-      vertical-align: top;
-      .user_name {
-        @include row(table);
-        margin-bottom: 2px;
+      @include row(table);
+      .user_image {
+        @include span-columns(1 of 2);
+        img {
+          border-radius: $thumb_img_border_radius;
+        }
       }
-      .connect_button {
-        @include row(table);
+      .user_name {
+        @include span-columns(1 of 2);
+        vertical-align: top;
+      }
+    }
+    .connections_buttons {
+      vertical-align: top;
+      text-align: right;
+      form {
+        display: inline-block;
+        @include media($mobile) {
+          @include row(table);
+        }
       }
     }
   }

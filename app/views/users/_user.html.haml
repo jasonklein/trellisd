@@ -1,9 +1,11 @@
 .display_user_box
-  .user_image
-    = image_tag user.image.url(:thumb)
   .user_info
+    .user_image
+      = image_tag user.image.url(:thumb)
     .user_name
       %h5
-        = link_to user.name, user_path(user)
-    .connect_button
-      = button_to "Connect", user_home_path(current_user), method: :get
+        = link_to user.first_name, user_path(user)
+        %br
+        = link_to user.last_name, user_path(user)
+  .connections_buttons
+    = display_connection_buttons(user)

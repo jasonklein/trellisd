@@ -78,6 +78,28 @@ module UsersHelper
     end
   end
 
+  def display_connection_buttons(user)
+    ids = [current_user.id, user.id]
+    connection = Connection.where(connecter_id: ids, connectee_id: ids).first
+    if connection
+      if connection.state == 'accepted'
+        render partial: 'users/disconnect_button', locals: {user: user, label: "Disconnect", connection: connection}
+      else
+        if connection.connecter_id == current_user.id
+          render partial: 'users/disconnect_button', locals: {user: user, label: "Delete Request", connection: connection}
+        else
+          render partial: 'users/accept_reject_buttons', locals: {user: user, label: "Reject", connection: connection}
+        end
+      end
+    else
+      if user.id == current_user.id
+        nil
+      else
+        render partial: 'users/connect_button', locals: {user: user}
+      end
+    end
+  end
+
 
 
 end

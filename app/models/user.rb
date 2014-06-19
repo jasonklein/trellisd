@@ -30,8 +30,22 @@ class User < ActiveRecord::Base
     self.first_name + ' ' + self.last_name[0] + '.'
   end
 
-  def connections
+  def accepted_connections
+    self.made_connections.where(state: :accepted) + self.received_connections.where(state: :accepted)
+  end
+
+  def connections_across_states
     self.made_connections + self.received_connections
+  end
+
+  def get_user_ids_from_connections_across_states
+    connections = connections_across_states
+    user_ids = []
+    connections.each do |connection|
+      user_ids << connection.connectee_id
+      user_ids << connection.connecter_id
+    end
+    user_ids = user_ids.uniq.reject { |user_id| user_id == self.id }
   end
 
   # Fill array with ids of users to whom a particular user
@@ -40,11 +54,11 @@ class User < ActiveRecord::Base
   def primary_connections
     if !@primary_connections_hash
       connections_ids = []
-      self.connections.each do |connection|
+      self.accepted_connections.each do |connection|
         connections_ids << connection.connectee_id
         connections_ids << connection.connecter_id
       end
-      connections_ids = connections_ids.reject { |id| id == self.id }
+      connections_ids = connections_ids.reject { |connetion_id| connetion_id == self.id }
       @primary_connections_hash = {primary: connections_ids.uniq}
     end
     @primary_connections_hash || {}
@@ -88,6 +102,8 @@ class User < ActiveRecord::Base
     @tertiary_connections_hash || {}
   end
 
+  ### N.B.: below is only all accepted connections
+
   def all_connections
     if !@connections_hash
       @connections_hash = {}
@@ -98,6 +114,18 @@ class User < ActiveRecord::Base
     @connections_hash
   end
 
+  def connections_ids(connections)
+    connections_ids = []
+    connections.each do |key, ids|
+      connections_ids += ids
+    end
+    connections_ids
+  end
+
+  ### TODO: eliminate below method in favor of above method to DRY code
+
+  ### N.B.: below is only all accepted connections
+
   def all_connections_ids
     connections_ids = []
     all_connections.each do |key, ids|
@@ -106,12 +134,16 @@ class User < ActiveRecord::Base
     connections_ids
   end
 
+  ### N.B.: below is only w/r/t all accepted connections
+
   def posts_of_all_connections(ids)
     if !@connections_posts  
       @connections_posts = Post.where(user_id: ids)
     end
     @connections_posts
   end
+
+  ### N.B.: below is only w/r/t all accepted connections
 
   def posts_of_connections_for_a_category(ids, category_id)
     posts_of_all_connections(ids).where(category_id: category_id)

@@ -8,12 +8,15 @@ Trellisd::Application.routes.draw do
 
   resources :users do
     resources :posts
-    resources :connections, only: [:index]
   end
 
   get 'users/:id/home', to: 'users#home', as: 'user_home'
   post 'users/:user_id/posts/:id', to: 'posts#destroy', as: 'destroy_post'
   get 'users/:id/settings', to: 'users#settings', as: 'user_settings'
+  get 'connections', to: 'connections#index', as: 'connections'
+  post 'connections', to: 'connections#connect', as: 'create_connection'
+  put 'connections/:id', to: 'connections#accept', as: 'accept_connection'
+  post 'connections/:id', to: 'connections#destroy', as: 'destroy_connection'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
