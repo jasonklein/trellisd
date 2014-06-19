@@ -25,6 +25,10 @@
   .post_box_content {
     @include span-columns(4);
     vertical-align: top;
+    .impending_expiration {
+      font-weight: bold;
+      color: $impending_expiration_color;
+    }
   }
   .post_box_icons {
     @include span-columns(2);

@@ -8,6 +8,10 @@
       = display_directionality_if_directionality_cateogry(post)
     %br
     = link_to truncate(post.title, length: 45, separator: ' '), user_post_path(post.user_id, post)
+    - expiration_class = expiration_class_for_post_box(post)
+    %em
+      %div{class: expiration_class}
+        = "Expires in #{post.distance_of_time_in_words_to_now(post.expiration)}."
   .post_box_icons
     = display_category_icon(post, '60px')
     / = display_attachment_icon(post)

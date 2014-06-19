@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
-      redirect_to user_home_path, notice: 'Sorry, you cannot see this page.'
+      redirect_to user_home_path(current_user), notice: 'Sorry, you cannot see this page.'
     else
       redirect_to new_user_session_path
     end

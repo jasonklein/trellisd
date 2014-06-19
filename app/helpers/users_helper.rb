@@ -108,6 +108,15 @@ module UsersHelper
     end
   end
 
+  def expiration_class_for_post_box(post)
+    days_left = post.expiration - Date.today
+    if days_left < 7
+      'impending_expiration'
+    else
+      nil
+    end
+  end
+
 
 
 end

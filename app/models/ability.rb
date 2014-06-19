@@ -12,6 +12,8 @@ class Ability
         can :manage, User, id: user.id
         can :destroy, User
         can :flag, User
+        can :manage, Post, user_id: user.id
+        can :read, Post
         can :manage, Connection, connecter_id: user.id
         can :manage, Connection, connectee_id: user.id   
         can :manage, Message, sender_id: user.id

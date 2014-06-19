@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+  require 'action_view'
+
+  include ActionView::Helpers::DateHelper
+
   attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id, :directionality
 
   belongs_to :user
@@ -144,5 +148,7 @@ class Post < ActiveRecord::Base
       KeywordsPosts.destroy(kp)
     end
   end
+
+  
 
 end
