@@ -8,6 +8,10 @@
         %br
         To: 
         = message.recipient.name
+      %h6
+        %br
+        Date:
+        = message.created_at.to_date
     .message_box_actions
       - if message.sender == current_user
         = button_to "Reply", reply_message_path(message), method: :get

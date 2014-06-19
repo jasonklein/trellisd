@@ -37,7 +37,7 @@
     margin: 5px 20px; // to override the user_display_general
     @include media($mobile) {
       max-width: auto;
-      font-size: $base-font-size;
+      font-size: 12px;
       min-height: 150px;
     }
     .user_info {
@@ -61,6 +61,9 @@
         @include media($mobile) {
           @include row(table);
         }
+      }
+      @include media($mobile) {
+        font-size: 12px;
       }
     }
   }
