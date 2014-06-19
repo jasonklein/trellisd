@@ -1,5 +1,9 @@
 Trellisd::Application.routes.draw do
   
+  get "messages/index"
+
+  get "messages/new"
+
   devise_for :users, :controllers => { :registrations => 'registrations' }
 
   devise_scope :user do

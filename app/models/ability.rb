@@ -14,6 +14,8 @@ class Ability
         can :flag, User
         can :manage, Connection, connecter_id: user.id
         can :manage, Connection, connectee_id: user.id   
+        can :manage, Message, sender_id: user.id
+        can :manage, Message, recipient_id: user.id   
       elsif user.role? :basic
         can :manage, User, id: user.id
         can :read, User
@@ -22,6 +24,8 @@ class Ability
         can :read, Post
         can :manage, Connection, connecter_id: user.id
         can :manage, Connection, connectee_id: user.id
+        can :manage, Message, sender_id: user.id
+        can :manage, Message, recipient_id: user.id   
       end
     #
     # The first argument to `can` is the action you are giving the user 
