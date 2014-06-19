@@ -8,6 +8,10 @@
       = post.title
     %h6
       = display_matches_count_if_current_user_post(post)
+      - expiration_class = expiration_class_for_post_box(post)
+      %em
+        %div{class: expiration_class}
+          = "Expires in #{post.distance_of_time_in_words_to_now(post.expiration)}."
     %br
     %h6.text_highlight
       = post.list_keyword_titles

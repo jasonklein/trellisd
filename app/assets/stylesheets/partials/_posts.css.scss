@@ -11,6 +11,11 @@
   @include clearfix;
 }
 
+.general_impending_expiration {
+  font-weight: bold;
+  color: $impending_expiration_color;
+}
+
 .post_box {
   @extend .general_post_display_style;
   .post_box_image {
@@ -26,8 +31,7 @@
     @include span-columns(4);
     vertical-align: top;
     .impending_expiration {
-      font-weight: bold;
-      color: $impending_expiration_color;
+      @extend .general_impending_expiration;
     }
   }
   .post_box_icons {
@@ -42,6 +46,9 @@
   .profile_post_box_content {
     @include span-columns(5);
     vertical-align: top;
+    .impending_expiration {
+      @extend .general_impending_expiration;
+    }
     @include media($mobile) {
       @include row(table);
       margin-bottom: 10px;
@@ -85,15 +92,20 @@
         @include row(table);
       }
     }
-    .show_post_title {
-      @include span-columns(6 of 7);
-      padding-left: 20px;
-      vertical-align: middle;
-      @include media($mobile) {
-        @include row(table);
-        padding-left: 0px;
-        color: $rich_blue;
-      }
+  }
+  .show_post_user {
+    .impending_expiration {
+      @extend .general_impending_expiration;
+    }
+  }
+  .show_post_title {
+    @include span-columns(6 of 7);
+    padding-left: 20px;
+    vertical-align: middle;
+    @include media($mobile) {
+      @include row(table);
+      padding-left: 0px;
+      color: $rich_blue;
     }
   }
   .show_post_user, .show_post_content, .show_post_keywords {
