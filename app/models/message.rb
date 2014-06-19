@@ -27,7 +27,11 @@ class Message < ActiveRecord::Base
     if recipient_is_current_user?(user) && self.new_since_last_login?(user)
       'new_message'
     else
-      'normal_message'
+      if self.sender == user
+        'sent_message'
+      else
+        'received_message'
+      end
     end
   end
 

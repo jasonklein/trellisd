@@ -1,6 +1,9 @@
 .message_box {
-  &.normal_message {
+  &.received_message {
     background-color: $normal_message_background_color;
+  }
+  &.sent_message {
+    background-color: white;
   }
   &.new_message {
     background-color: $unviewed_message_background_color;
@@ -9,19 +12,33 @@
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;
+  .message_box_names_and_actions {
+    @include row(table);
+    .message_box_names {
+      @include span-columns(5 of 7);
+      @include media($mobile) {
+        @include span-columns(8);
+        font-size: 12px;
+      }
+    }
+    .message_box_actions {
+      @include span-columns(2 of 7);
+      text-align: right;
+      vertical-align: top;
+      form {
+        margin-top: 5px;
+      }
+      @include media($mobile) {
+        font-size: 12px;
+        @include span-columns(1);
+      }
+    }
+  }
   .message_box_subject_and_content {
     @include span-columns(4);
     vertical-align: top;
     .message_field_header {
       margin: 10px 0;
     }
-  }
-  .message_box_actions {
-    @include span-columns(2);
-    text-align: right;
-    vertical-align: top;
-    form {
-      margin: 5px 0;
-    }
-  }
+  } 
 }
