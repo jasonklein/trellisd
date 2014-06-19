@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
   has_many :made_connections, class_name: 'Connection', foreign_key: 'connecter_id'
   has_many :received_connections, class_name: 'Connection', foreign_key: 'connectee_id'
 
+  has_many :sent_messages, class_name: 'Message', foreign_key: "sender_id"
+  has_many :received_messages, class_name: 'Message', foreign_key: "recipient_id"
+
+  accepts_nested_attributes_for :sent_messages
+  accepts_nested_attributes_for :received_messages
+
   def role?(role)
     self.role.to_s == role.to_s
   end
@@ -176,6 +182,20 @@ class User < ActiveRecord::Base
     Arel::Nodes::NamedFunction.new('LOWER',
       [Arel::Nodes::NamedFunction.new('concat_ws',
         [' ', parent.table[:first_name], parent.table[:last_name]])])
+  end
+
+  def messages
+    self.sent_messages + self.received_messages
+  end
+
+  def unviewed_messages
+    self.received_messages.unviewed
+  end
+
+  def mark_unviewed_messages_viewed
+    self.unviewed_messages.each do |message|
+      message.update_attributes(viewed: true)
+    end
   end
 
 end

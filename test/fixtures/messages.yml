@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sender: 
+  recipient: 
+  content: MyText
+  sender_readability: false
+  recipient_readability: false
+  viewed: false
+
+two:
+  sender: 
+  recipient: 
+  content: MyText
+  sender_readability: false
+  recipient_readability: false
+  viewed: false
