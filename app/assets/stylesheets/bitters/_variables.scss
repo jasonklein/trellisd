@@ -88,6 +88,10 @@ $display_box_padding: 10px;
 $inner_box_border_radius: 10px;
 $table_border_arguments: 2px solid $trellisd_fill;
 
+// Message Display
+
+$unviewed_message_background_color: $display_box_matching_background_color;
+
 // Images
 $thumb_img_border_radius: $inner_box_border_radius;
 $normal_img_border_radius: $display_box_border_radius;

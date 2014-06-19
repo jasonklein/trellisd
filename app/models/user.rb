@@ -185,7 +185,10 @@ class User < ActiveRecord::Base
   end
 
   def messages
-    self.sent_messages + self.received_messages
+    sent_ids = Message.where(sender_id: self.id, sender_readability: true)
+    received_ids = Message.where(recipient_id: self.id, recipient_readability: true)
+    ids = sent_ids + received_ids
+    Message.where(id: ids)
   end
 
   def unviewed_messages

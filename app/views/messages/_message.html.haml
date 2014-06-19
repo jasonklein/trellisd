@@ -1,0 +1,16 @@
+- classname = message.classname_for_user(current_user)
+%div{class: "message_box #{classname}", id: "message_#{message.id}"}
+  .message_box_names
+    %h5
+      From: 
+        = message.sender
+      To: 
+        = message.recipient
+  .message_box_content
+    %h6
+      = message.content
+  .message_box_actions
+    %button    
+      = link_to "Delete", delete_message_path(message), method: :delete
+    %button    
+      = link_to "Delete", delete_message_path(message), method: :delete

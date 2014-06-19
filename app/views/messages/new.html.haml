@@ -1,2 +1,6 @@
-%h1 Messages#new
-%p Find me in app/views/messages/new.html.haml
+%h2 New Message
+.message-box
+  = form_for @message do |f|
+    = f.text_area :content, rows: '10'
+    %br
+    = f.submit "Send"
