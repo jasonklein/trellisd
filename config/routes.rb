@@ -25,7 +25,7 @@ Trellisd::Application.routes.draw do
   get 'users/:id/settings', to: 'users#settings', as: 'user_settings'
   get 'connections', to: 'connections#index', as: 'connections'
   post 'connections', to: 'connections#connect', as: 'create_connection'
-  put 'connections/:connecter_id/:connectee_id', to: 'connections#accept', as: 'accept_connection'
+  put 'connections/:id', to: 'connections#accept', as: 'accept_connection'
   post 'connections/:id', to: 'connections#destroy', as: 'destroy_connection'
   post 'messages/:id', to: 'messages#destroy', as: 'delete_message'
   get 'messages/:sender_id/:recipient_id/:post_id', to: 'messages#new', as: 'new_message'

@@ -21,7 +21,12 @@ class ConnectionsController < ApplicationController
   end
 
   def accept
-    raise
+    connection = Connection.find(params[:id])
+    if connection.update_attributes(state: :accepted)
+      redirect_to connections_path, notice: "Connection accepted."
+    else
+      redirect_to connections_path, notice: "Something went wrong. Please try again later."
+    end
   end
 
   def destroy
