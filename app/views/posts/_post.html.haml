@@ -6,6 +6,8 @@
         = display_directionality_if_directionality_cateogry(post)
     %h4
       = post.title
+    %h6
+      = display_matches_count_if_current_user_post(post)
     %br
     %h6.text_highlight
       = post.list_keyword_titles

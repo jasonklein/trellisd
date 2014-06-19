@@ -60,9 +60,11 @@
         display: inline-block;
         @include media($mobile) {
           @include row(table);
+          margin-bottom: 5px;
         }
       }
       @include media($mobile) {
+        margin-top: -20px;
         font-size: 12px;
       }
     }
