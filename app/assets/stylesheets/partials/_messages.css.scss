@@ -1,11 +1,11 @@
 .message_box {
-  border-radius: $display_box_border_radius;
-  &.not_new_messsage {
-    background-color: $display_box_normal_background_color;
+  &.normal_message {
+    background-color: $normal_message_background_color;
   }
   &.new_message {
     background-color: $unviewed_message_background_color;
   }
+  border-radius: $display_box_border_radius;
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;

@@ -24,8 +24,10 @@ class Message < ActiveRecord::Base
   end
 
   def classname_for_user(user)
-    if recipient_is_current_user?(user)
-      self.new_since_last_login?(user) ? 'new_message' : 'not_new_message'
+    if recipient_is_current_user?(user) && self.new_since_last_login?(user)
+      'new_message'
+    else
+      'normal_message'
     end
   end
 
