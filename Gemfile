@@ -66,3 +66,9 @@ group :development, :test do
   gem 'better_errors'
 
 end
+
+# For Heroku
+
+gem 'rails_12factor', group: :production
+
+ruby '2.0.0'
