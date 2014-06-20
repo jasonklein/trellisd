@@ -63,7 +63,7 @@ namespace :db do
 
       
       connectee_ids_a = other_user_ids[0..((count/2) - 7)].reject { |n| n == i }
-      connectee_ids_b = other_user_ids[0..(count/2)].reject { |n| n == i }
+      connectee_ids_b = other_user_ids[(count/2)..-1].reject { |n| n == i }
 
       # Shuffle the array and assign the index to the connectee_id as the index increments
       # This is to avoid the connecter having multiple connections with the same connectee
