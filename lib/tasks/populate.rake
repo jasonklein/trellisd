@@ -51,7 +51,7 @@ namespace :db do
     # Create Connections
 
     other_user_ids = User.all.map(&:id)
-    count = user_ids.count
+    count = other_user_ids.count
     i = 0 
     while i <= count do
 
