@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140619165413) do
+ActiveRecord::Schema.define(:version => 20140620090322) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20140619165413) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "directionality"
+    t.datetime "last_matched"
   end
 
   create_table "users", :force => true do |t|

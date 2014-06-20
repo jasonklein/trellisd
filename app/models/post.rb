@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
 
-  attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id, :directionality
+  attr_accessible :alert, :content, :expiration, :range, :title, :category_id, :user_id, :directionality, :last_matched
 
   belongs_to :user
   belongs_to :category
@@ -111,6 +111,7 @@ class Post < ActiveRecord::Base
   end
 
   def make_matches
+    self.update_attributes(last_matched: Time.now)
     matches = find_matches
     if matches.any?
       matches.each do |matching_id, matching_keyword_ids|
