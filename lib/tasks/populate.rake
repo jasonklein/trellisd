@@ -25,6 +25,7 @@ namespace :db do
         role: :basic
       )
     end
+    users = User.all
 
     # Create posts and add keywords.
 
@@ -36,7 +37,7 @@ namespace :db do
         category_id: category_ids.sample,
         title: Faker::Lorem.sentence,
         content: Faker::Lorem.paragraph,
-        user_id: (1..40).to_a.sample,
+        user_id: users.sample.id,
         expiration: Date.today + 3.weeks,
         directionality: [:seeking, :offering].sample
         )
@@ -49,16 +50,20 @@ namespace :db do
 
     # Create Connections
 
-    i = 1
-    while i <= 40 do
+    other_user_ids = User.all.map(&:id).reject
+    count = user_ids.count
+    i = 0 
+    while i <= count do
 
       # Make arrays of all of the id's but the one that
       # will be assigned to the connecter. Two arrays to
       # increase likelihood of tertiary connections
       # (a person C who is connected to B and not A)
+
+
       
-      connectee_ids_a = (1..25).to_a.reject { |n| n == i }
-      connectee_ids_b = (16..40).to_a.reject { |n| n == i }
+      connectee_ids_a = other_user_ids[0..((count/2) - 7)].reject { |n| n == i }
+      connectee_ids_b = other_user_ids[0..(count/2)].reject { |n| n == i }
 
       # Shuffle the array and assign the index to the connectee_id as the index increments
       # This is to avoid the connecter having multiple connections with the same connectee
