@@ -24,7 +24,7 @@ gem 'bitters'
 
 gem 'haml-rails'
 
-group :development do
+group :development, :production do
   gem 'faker'
 end
 
