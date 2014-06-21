@@ -6,10 +6,10 @@
   = f.collection_select :category_id, Category.all, :id, :title
   = f.label :directionality
   = f.select :directionality, [:seeking, :offering]
-  = f.label 'Expiration (max 3 months)'
-  = f.text_field :expiration
   = f.label :title
   = f.text_field :title
+  = f.label 'Expiration (max 3 months)'
+  = f.text_field :expiration
   = f.label :content
   = f.text_area :content, rows: '10'
   / = f.label 'Image (jpg, jpeg, gif or png)'

@@ -1,6 +1,9 @@
 #application_main {
   .push_header {
-    height: 4em
+    height: 4em;
+    @include media($mobile) {
+      height: 6em;
+    }
   }
   #application_content {
     @include outer-container;
