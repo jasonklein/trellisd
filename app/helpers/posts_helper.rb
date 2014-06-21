@@ -16,7 +16,9 @@ module PostsHelper
 
   def expiration_message(post)
     if post.expiration <= Date.today
-      "Expiring today."
+      "Expires today."
+    elsif post.expiration == Date.tomorrow
+      "Expires tomorrow."
     else
       "Expires in #{post.distance_of_time_in_words_to_now(post.expiration)}."
     end

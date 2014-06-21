@@ -1,5 +1,4 @@
-- classname = classname_for_post_box(post)
-%div{class: "post_box #{classname}"}
+%div{class: "post_box #{classname_for_post_box(post)}"}
   .post_box_image
     = image_tag post.user.image.url(:thumb)
   .post_box_content
@@ -8,10 +7,9 @@
       = display_directionality_if_directionality_cateogry(post)
     %br
     = link_to truncate(post.title, length: 45, separator: ' '), user_post_path(post.user_id, post)
-    - expiration_class = expiration_class_for_post_box(post)
     %em
-      %div{class: expiration_class}
-        = "Expires in #{post.distance_of_time_in_words_to_now(post.expiration)}."
+      %div{class: expiration_class_for_post_box(post)}
+        = expiration_message(post)
   .post_box_icons
     = display_category_icon(post, '60px')
     / = display_attachment_icon(post)
