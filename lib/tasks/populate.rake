@@ -57,8 +57,8 @@ namespace :db do
     # the connecter. Two arrays to increase likelihood of tertiary connections
     # (a person C who is connected to B and not A)
     
-    connectee_ids_a = user_ids[0..((count/2)+6)].reject { |n| n == i }
-    connectee_ids_b = user_ids[((count/2)-7)..-1].reject { |n| n == i }
+    connectee_ids_a = user_ids[0..((count/2)+6)]
+    connectee_ids_b = user_ids[((count/2)-7)..-1]
 
     i = 1 
     while i <= count do
