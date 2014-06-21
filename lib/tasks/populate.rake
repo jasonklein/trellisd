@@ -2,7 +2,7 @@ namespace :db do
 
 
   desc "Drop, create, migrate and fill database (including seeds)"
-  task :populate => [:environment, :drop, :create, :migrate, :seed] do
+  task :populate => [:environment, :migrate, :seed] do
     require 'faker'
 
     [Post, KeywordsPosts, Connection, Match].each(&:delete_all)
