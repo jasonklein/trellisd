@@ -50,25 +50,26 @@ namespace :db do
 
     # Create Connections
 
-    other_user_ids = User.all.map(&:id)
-    count = other_user_ids.count
-    i = 0 
+    user_ids = User.pluck('id')
+    count = user_ids.count
+
+    # Make arrays of all of the id's but the one that will be assigned to
+    # the connecter. Two arrays to increase likelihood of tertiary connections
+    # (a person C who is connected to B and not A)
+    
+    connectee_ids_a = user_ids[0..((count/2)+6)].reject { |n| n == i }
+    connectee_ids_b = user_ids[((count/2)-7)..-1].reject { |n| n == i }
+
+    i = 1 
     while i <= count do
 
-      # Make arrays of all of the id's but the one that
-      # will be assigned to the connecter. Two arrays to
-      # increase likelihood of tertiary connections
-      # (a person C who is connected to B and not A)
-
-
-      
-      connectee_ids_a = other_user_ids[0..((count/2) - 7)].reject { |n| n == i }
-      connectee_ids_b = other_user_ids[(count/2)..-1].reject { |n| n == i }
+      acceptable_connectee_ids_a = connectee_ids_a.reject { |n| n == i }
+      acceptable_connectee_ids_b = connectee_ids_b.reject { |n| n == i }
 
       # Shuffle the array and assign the index to the connectee_id as the index increments
       # This is to avoid the connecter having multiple connections with the same connectee
 
-      connectee_ids = [connectee_ids_a, connectee_ids_b].sample.shuffle!
+      connectee_ids = [acceptable_connectee_ids_a, acceptable_connectee_ids_b].sample.shuffle!
       for x in (0..5)
         Connection.create(
           connecter_id: i,
