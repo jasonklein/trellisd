@@ -14,4 +14,12 @@ module PostsHelper
     render partial: 'users/post_box', locals: {post: match.matching, match: match}
   end
 
+  def expiration_message(post)
+    if post.expiration <= Date.today
+      "Expiring today."
+    else
+      "Expires in #{post.distance_of_time_in_words_to_now(post.expiration)}."
+    end
+  end
+
 end
