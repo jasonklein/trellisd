@@ -3,6 +3,8 @@ class UserFlag < ActiveRecord::Base
   belongs_to :flagged, class_name: 'User'
   attr_accessible :flagger_id, :flagged_id
 
+  validates :flagger_id, :flagged_id, presence: true
+
   validate :flagger_cannot_be_flagged, :flagger_cannot_flag_flagged_more_than_once
 
   def flagger_cannot_be_flagged

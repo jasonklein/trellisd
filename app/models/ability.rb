@@ -12,7 +12,7 @@ class Ability
         can :manage, User, id: user.id
         can :destroy, User
         can :manage, UserFlag
-        # can :manage, PostFlag
+        can :manage, PostFlag
         can :manage, Post, user_id: user.id
         can :read, Post
         can :manage, Connection, connecter_id: user.id
@@ -23,7 +23,7 @@ class Ability
         can :manage, User, id: user.id
         can :read, User
         can :create, UserFlag
-        # can :create, PostFlag
+        can :create, PostFlag
         can :manage, Post, user_id: user.id
         can :read, Post
         can :manage, Connection, connecter_id: user.id
