@@ -24,4 +24,22 @@ module PostsHelper
     end
   end
 
+  def display_edit_if_current_user_post(user, post)
+    if user == current_user
+      button_to "Edit", edit_user_post_path(user, post), method: :get
+    end
+  end
+
+  def display_delete_if_current_user_post(user, post)
+    if user == current_user
+      button_to "Delete", destroy_post_path(user, post)
+    end
+  end
+
+  def display_flag_if_not_current_user_post(user, post)
+    if user != current_user
+      button_to "Flag", create_post_flag_path(current_user, post)
+    end
+  end
+
 end

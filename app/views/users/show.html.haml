@@ -9,5 +9,5 @@
     %h5.text_highlight
       = @user.try(:bio)
     .user_flag_button
-      = button_to "Flag", create_user_flag_path(current_user, @user)
+      = display_if_not_current_user_profile(@user)
 = render @posts

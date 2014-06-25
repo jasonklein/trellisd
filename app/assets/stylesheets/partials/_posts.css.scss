@@ -111,6 +111,11 @@
   .show_post_user, .show_post_content, .show_post_keywords {
     margin-bottom: 10px;
   }
+  .show_post_buttons {
+    input {
+      margin-bottom: 5px;
+    }
+  }
 }
 
 
