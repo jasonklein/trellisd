@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
+  has_many :made_flags, class_name: 'UserFlag', foreign_key: 'flagger_id'
+  has_many :received_flags, class_name: 'UserFlag', foreign_key: 'flagged_id'
+
   has_many :made_connections, class_name: 'Connection', foreign_key: 'connecter_id'
   has_many :received_connections, class_name: 'Connection', foreign_key: 'connectee_id'
 

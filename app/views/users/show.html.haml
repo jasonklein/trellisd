@@ -8,4 +8,6 @@
       = @user.try(:city)
     %h5.text_highlight
       = @user.try(:bio)
+    .user_flag_button
+      = button_to "Flag", user_flag_path(@user), method: :put
 = render @posts

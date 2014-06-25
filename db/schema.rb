@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140620090322) do
+ActiveRecord::Schema.define(:version => 20140625203604) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(:version => 20140620090322) do
     t.string   "directionality"
     t.datetime "last_matched"
   end
+
+  create_table "user_flags", :force => true do |t|
+    t.integer  "flagger_id"
+    t.integer  "flagged_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_flags", ["flagged_id"], :name => "index_user_flags_on_flagged_id"
+  add_index "user_flags", ["flagger_id"], :name => "index_user_flags_on_flagger_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",      :null => false
