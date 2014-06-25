@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140625203604) do
+ActiveRecord::Schema.define(:version => 20140625213051) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(:version => 20140625203604) do
 
   add_index "messages", ["recipient_id"], :name => "index_messages_on_recipient_id"
   add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
+
+  create_table "post_flags", :force => true do |t|
+    t.integer  "flagger_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "post_flags", ["flagger_id"], :name => "index_post_flags_on_flagger_id"
+  add_index "post_flags", ["post_id"], :name => "index_post_flags_on_post_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "category_id"
