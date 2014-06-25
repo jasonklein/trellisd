@@ -11,7 +11,8 @@ class Ability
         can :read, :all
         can :manage, User, id: user.id
         can :destroy, User
-        can :flag, User
+        can :manage, UserFlag
+        # can :manage, PostFlag
         can :manage, Post, user_id: user.id
         can :read, Post
         can :manage, Connection, connecter_id: user.id
@@ -21,7 +22,8 @@ class Ability
       elsif user.role? :basic
         can :manage, User, id: user.id
         can :read, User
-        can :flag, User
+        can :create, UserFlag
+        # can :create, PostFlag
         can :manage, Post, user_id: user.id
         can :read, Post
         can :manage, Connection, connecter_id: user.id

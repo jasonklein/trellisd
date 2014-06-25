@@ -1,5 +1,9 @@
 Trellisd::Application.routes.draw do
   
+  get "user_flags/create"
+
+  get "user_flags/destroy"
+
   get "messages/index"
 
   get "messages/new"
@@ -30,6 +34,8 @@ Trellisd::Application.routes.draw do
   post 'messages/:id', to: 'messages#destroy', as: 'delete_message'
   get 'messages/:sender_id/:recipient_id/:post_id', to: 'messages#new', as: 'new_message'
   put 'messages/:id', to: 'messages#create_reply'
+  post 'user_flags/:flagger_id/:flagged_id', to: 'user_flags#create', as: 'create_user_flag'
+  post 'user_flags/:id', to: 'user_flags#destroy', as: 'destroy_user_flag'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
