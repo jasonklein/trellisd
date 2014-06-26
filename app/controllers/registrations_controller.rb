@@ -1,4 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
+
+  def update
+    raise
+  end
   
   protected
 

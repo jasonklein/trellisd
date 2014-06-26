@@ -1,18 +1,6 @@
 Trellisd::Application.routes.draw do
-  
-  get "post_flags/create"
 
-  get "post_flags/destroy"
-
-  get "user_flags/create"
-
-  get "user_flags/destroy"
-
-  get "messages/index"
-
-  get "messages/new"
-
-  devise_for :users, :controllers => { :registrations => 'registrations' }
+  devise_for :users, :controllers => { :registrations => 'registrations', omniauth_callbacks: "omniauth_callbacks" }
 
   devise_scope :user do
     root to: 'devise/sessions#new'

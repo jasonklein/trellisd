@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :sent_messages, class_name: 'Message', foreign_key: "sender_id"
   has_many :received_messages, class_name: 'Message', foreign_key: "recipient_id"
 
+  has_many :identities
+
   accepts_nested_attributes_for :sent_messages
   accepts_nested_attributes_for :received_messages
 
@@ -203,5 +205,20 @@ class User < ActiveRecord::Base
       message.update_attributes(viewed: true)
     end
   end
+
+  ### For logging in via Facebook with Omniauth
+
+  def self.determined_through_omniauth(data, signed_in_resource = nil)
+    binding.pry
+    identity = Identity.from_omniauth(data)
+    user = signed_in_resource ? signed_in_resource : identity.user
+    binding.pry
+    if identity.user != user
+      identity.update_attributes(user: user)
+    end
+    user
+  end
+
+
 
 end
