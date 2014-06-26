@@ -14,9 +14,11 @@ class ConnectionsController < ApplicationController
     if !Connection.where(connecter_id: connecter_id, connectee_id: connectee_id).any?
       if @connection = Connection.create(connecter_id: connecter_id, connectee_id: connectee_id)
         redirect_to connections_path, notice: 'Connection requested.'
+      else
+        redirect_to connections_path, notice: 'Error in connection request. Please try again later.'
       end
     else
-      redirect_to connections_path, notice: 'Error in connection request. Please try again.'
+      redirect_to connections_path, notice: 'You are already connected to that user.'
     end
   end
 
