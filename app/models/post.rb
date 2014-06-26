@@ -16,6 +16,7 @@ class Post < ActiveRecord::Base
   max_start_date = lambda { Date.today }
   max_end_date = lambda { Date.today + 3.months}
   validates_date :expiration,
+    invalid_date_message: "must be a valid date",
     on_or_after: max_start_date,
     on_or_after_message: "must be on or after today",
     on_or_before: max_end_date,
