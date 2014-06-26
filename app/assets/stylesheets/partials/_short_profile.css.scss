@@ -2,13 +2,13 @@
   #short_profile_content {
     @include row(table);
     #user_image {
-      @include span-columns(1 of 3);
+      @include span-columns(1 of 4);
       img {
       border-radius: $thumb_img_border_radius;
       }
     }
     #user_name {
-      @include span-columns(2 of 3);
+      @include span-columns(3 of 4);
       padding-left: 10px;
       vertical-align: top;
       h4 {

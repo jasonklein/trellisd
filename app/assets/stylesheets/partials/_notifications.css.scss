@@ -9,6 +9,23 @@
   }
   .content {
     padding: ($base-line-height / 2) 10px;
+    .post_listing {
+      @include row(table);
+    }
+    .connection_listing {
+      @include row(table);
+      padding-bottom: 5px;
+      .connecter_name {
+        @include span-columns (2 of 4);
+      }
+      .connection_buttons {
+        @include span-columns (2 of 4);
+        font-size: $base-font-size * .65;
+        form {
+          display: inline-block;
+        }
+      }
+    }
   }
   #new_matches {
     border-bottom: $table_border_arguments;

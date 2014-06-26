@@ -24,10 +24,11 @@
     }
   }
   .user_show_buttons {
+    margin-top: 5px;
     float: left;
-    input {
-      margin-top: 5px;
-      margin-bottom: 5px;
+    form {
+      display: inline-block;
+      margin: 3px;
     }
   }
 }
