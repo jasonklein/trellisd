@@ -16,6 +16,9 @@ class PostFlag < ActiveRecord::Base
     errors.add(:user, "cannot flag own post") if flagger_id == flagged_post_user_id
   end
 
+  ### Defined validation below, rather than a scoped validation_of_uniqueness
+  ### to have the more semantic error message.
+
   def flagger_cannot_flag_post_more_than_once
     post_flags = PostFlag.where(flagger_id: flagger_id, post_id: post_id)
     errors.add(:post, "has already been flagged by you") if post_flags.any?
