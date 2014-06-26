@@ -121,5 +121,17 @@ module UsersHelper
     button_to "Flag", create_user_flag_path(current_user, user) if user != current_user
   end
 
+  def posts_with_recent_matches
+    if current_user.posts.any?
+      posts = current_user.posts
+      posts_to_display = []
+      posts.each do |post|
+        posts_to_display << post if post.matches.where('created_at > ?', post.last_matched)
+        posts_to_display << post if post.matches.where('created_at > ?', post.user.last_sign_in_at)
+      end
+      posts_to_display.uniq
+    end
+  end
+
 
 end

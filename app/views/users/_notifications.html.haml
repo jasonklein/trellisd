@@ -1,1 +1,11 @@
-Notifications!
+#notifications
+  #new_matches
+    .heading
+      %h5 Posts with Recent Matches
+      .content
+        - posts_with_recent_matches.each do |post|
+          = link_to truncate(post.title, length: 35, separator: ' '), user_post_path(post.user_id, post)
+  #new_connections
+    Suggested Connections
+    Requested Connections
+  #new_messages

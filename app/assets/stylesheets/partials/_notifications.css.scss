@@ -1,0 +1,25 @@
+#notifications {
+  @include row(table);
+  background-color: #FFF;
+  border-radius: $inner_box_border_radius;
+  margin-top: 10px;
+  .heading {
+    padding: ($base-line-height / 2) 3px;
+  }
+  .content {
+    padding: ($base-line-height / 2) 10px;
+  }
+  #new_matches {
+    border-bottom: $table_border_arguments;
+    @include row(table);
+    a {
+      @include row(table);
+    }
+  }
+  #new_connections {
+    @include row(table);
+  }
+  #new_messages {
+    @include row(table);
+  }
+}

@@ -24,7 +24,7 @@ th {
 }
 
 td {
-  border-left: 2px solid $trellisd_fill;
+  border-left: $table_border_arguments;
   padding: ($base-line-height / 2) 10px;
   &:first-child {
     border-left: none;

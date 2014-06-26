@@ -1,34 +1,22 @@
-aside {
-  border-radius: $display_box_border_radius;
-  background-color: $display_box_normal_background_color;
-  margin: $display_box_margin;
-  padding: $display_box_padding;
-  #short_profile {
-    #short_profile_content {
-      @include row(table);
-      #user_image {
-        @include span-columns(1 of 3);
-        img {
-        border-radius: $thumb_img_border_radius;
-        }
-      }
-      #user_name {
-        @include span-columns(2 of 3);
-        padding-left: 10px;
-        vertical-align: top;
-        h4 {
-          margin-bottom: 5px;
-        }
+#short_profile {
+  #short_profile_content {
+    @include row(table);
+    #user_image {
+      @include span-columns(1 of 3);
+      img {
+      border-radius: $thumb_img_border_radius;
       }
     }
-    #short_profile_stats {
-      @include row(table);
+    #user_name {
+      @include span-columns(2 of 3);
+      padding-left: 10px;
+      vertical-align: top;
+      h4 {
+        margin-bottom: 5px;
+      }
     }
   }
-  #notifications {
+  #short_profile_stats {
     @include row(table);
-    background-color: #FFF;
-    border-radius: $inner_box_border_radius;
-    margin-top: 10px;
   }
 }
