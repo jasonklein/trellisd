@@ -206,19 +206,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  # ### For logging in via Facebook with Omniauth
-
-  # def self.determined_through_omniauth(data, signed_in_resource = nil)
-  #   binding.pry
-  #   identity = Identity.from_omniauth(data)
-  #   user = signed_in_resource ? signed_in_resource : identity.user
-  #   binding.pry
-  #   if identity.user != user
-  #     identity.update_attributes(user: user)
-  #   end
-  #   user
-  # end
-
-
-
 end
