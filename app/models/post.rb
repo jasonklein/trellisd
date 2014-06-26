@@ -135,12 +135,12 @@ class Post < ActiveRecord::Base
   ### keywords to the new keywords 
 
   def add_keywords(keyword_titles)
-    keywords = []
+    self.keywords = []
     keyword_titles.each do |keyword_title|
       keyword = Keyword.where(title: keyword_title).first_or_create
-      keywords << keyword
+      self.keywords << keyword
     end
-    self.keywords = keywords
+    self.keywords = self.keywords.uniq
   end
 
   def destroy_keywords_posts

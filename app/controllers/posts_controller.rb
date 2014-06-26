@@ -38,8 +38,6 @@ class PostsController < ApplicationController
 
     @post.add_keywords(keyword_titles)
 
-    @post.keywords = @post.keywords.uniq
-
     if @post.update_attributes(params[:post])
       @post.make_matches
       redirect_to user_post_path(@post.user, @post)

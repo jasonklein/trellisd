@@ -42,4 +42,17 @@ module PostsHelper
     end
   end
 
+  def display_text_field_with_keywords_if_any(post)
+    if post.keywords.any?
+      keywords_for_field = []
+      post.keywords.each do |keyword|
+        keywords_for_field << keyword.title
+      end
+      keywords_for_field = keywords_for_field.join(', ')
+      text_field_tag 'keywords', nil, value: keywords_for_field
+    else
+      text_field_tag 'keywords', nil, placeholder: 'E.g., ruby on rails, agile, web developer, barcelona, brobdingnagian'
+    end
+  end
+
 end

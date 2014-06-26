@@ -17,7 +17,7 @@
   = label_tag 'keywords'
   %em
     Enter a minimum of 3, a maximum of 10, separated by commas.
-  = text_field_tag 'keywords', nil, placeholder: 'E.g., ruby on rails, agile, web developer, barcelona, brobdingnagian'
+  = display_text_field_with_keywords_if_any(@post)
   = f.submit
 %br
 = button_to 'Cancel', :back, method: :get
