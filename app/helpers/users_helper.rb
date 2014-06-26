@@ -117,7 +117,7 @@ module UsersHelper
     end
   end
 
-  def display_if_not_current_user_profile(user)
+  def display_flag_button(user)
     button_to "Flag", create_user_flag_path(current_user, user) if user != current_user
   end
 

@@ -23,8 +23,12 @@
       color: white;
     }
   }
-  .user_flag_button {
-    float: right;
+  .user_show_buttons {
+    float: left;
+    input {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
   }
 }
 

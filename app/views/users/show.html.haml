@@ -8,6 +8,7 @@
       = @user.try(:city)
     %h5.text_highlight
       = @user.try(:bio)
-    .user_flag_button
-      = display_if_not_current_user_profile(@user)
+    .user_show_buttons
+      = display_connection_buttons(@user)
+      = display_flag_button(@user)
 = render @posts
