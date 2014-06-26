@@ -1,11 +1,15 @@
-#notifications
-  #new_matches
-    .heading
-      %h5 Posts with Recent Matches
-      .content
-        - posts_with_recent_matches.each do |post|
-          = link_to truncate(post.title, length: 35, separator: ' '), user_post_path(post.user_id, post)
-  #new_connections
-    Suggested Connections
-    Requested Connections
-  #new_messages
+#new_matches
+  .heading
+    %h5 Posts with Recent Matches
+  .content
+    - posts_with_recent_matches.each do |post|
+      = link_to truncate(post.title, length: 35, separator: ' '), user_post_path(post.user_id, post)
+      %br
+#new_connections
+  .heading
+    %h5 Requested Connections
+  .content
+    - current_user.pending_received_connections.each do |connection|
+      = link_to connection.connecter.name, user_path(connection.connecter)
+      %br
+#new_messages

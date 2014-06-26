@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     self.first_name + ' ' + self.last_name[0] + '.'
   end
 
+  def pending_received_connections
+    self.received_connections.where(state: :pending)
+  end
+
   def accepted_connections
     self.made_connections.where(state: :accepted) + self.received_connections.where(state: :accepted)
   end

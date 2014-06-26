@@ -5,6 +5,7 @@
   margin-top: 10px;
   .heading {
     padding: ($base-line-height / 2) 3px;
+    margin-bottom: -20px;
   }
   .content {
     padding: ($base-line-height / 2) 10px;
@@ -12,9 +13,6 @@
   #new_matches {
     border-bottom: $table_border_arguments;
     @include row(table);
-    a {
-      @include row(table);
-    }
   }
   #new_connections {
     @include row(table);
