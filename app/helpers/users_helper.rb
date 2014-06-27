@@ -121,14 +121,17 @@ module UsersHelper
     button_to "Flag", create_user_flag_path(current_user, user) if user != current_user
   end
 
-  def posts_with_recent_matches
-    posts = current_user.posts
-    posts_to_display = []
+  def posts_with_recent_matches(posts)
+    qualifying_posts = []
     posts.each do |post|
-      posts_to_display << post if post.matches.where('created_at > ?', post.last_matched)
-      posts_to_display << post if post.matches.where('created_at > ?', post.user.last_sign_in_at)
+      qualifying_posts << post if post.has_recent_matches?
     end
-    render partial: 'users/notifications_post_listings', locals: {posts: posts_to_display.uniq}
+    qualifying_posts.uniq
+  end
+
+  def display_posts_with_recent_matches
+    posts = posts_with_recent_matches(current_user.posts)
+    render partial: 'users/notifications_post_listings', locals: {posts: posts}
   end
 
   def display_pending_received_connections

@@ -3,10 +3,10 @@
     .message_box_names
       %h5
         From: 
-        = message.sender.name
+        = link_to message.sender.name, user_path(message.sender)
         %br
         To: 
-        = message.recipient.name
+        = link_to message.recipient.name, user_path(message.recipient)
       %h6
         %br
         Date:
