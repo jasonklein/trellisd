@@ -2,16 +2,15 @@
   .heading
     %h5 Posts with Recent Matches
   .content
-    - posts_with_recent_matches.each do |post|
-      = render partial: 'notifications_post_listing', locals: {post: post}
+    / - posts_with_recent_matches.each do |post|
+    /   = render partial: 'notifications_post_listing', locals: {post: post}
+    = posts_with_recent_matches
 #new_connections.notifications_subset
   .heading
     %h5 Requested Connections
   .content
-    - current_user.pending_received_connections.each do |connection|
-      = render partial: 'notifications_connection_listing', locals: {connection: connection}
+    = display_pending_received_connections
 #new_messages.notifications_subset
   .heading
     %h5 Latest Unread Messages
   .content
-    -

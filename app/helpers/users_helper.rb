@@ -129,11 +129,18 @@ module UsersHelper
         posts_to_display << post if post.matches.where('created_at > ?', post.last_matched)
         posts_to_display << post if post.matches.where('created_at > ?', post.user.last_sign_in_at)
       end
-      posts_to_display.uniq
+      render partial: 'notifications_post_listings', locals: {posts: posts_to_display.uniq}
+    else
+      nil
     end
   end
 
-  
+  def display_pending_received_connections
+    connections = current_user.pending_received_connections
+    render partial: 'notifications_connection_listings', locals: {connections: connections}
+  end
+
+
 
 
 
