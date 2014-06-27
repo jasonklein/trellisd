@@ -28,7 +28,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect user
       
     else
-      flash.notice = "Please sign in with your email or register an account."
+      flash.notice = "Please sign in with your email or register an account before signing in with Facebook."
       redirect_to new_user_session_path
     end    
   end
