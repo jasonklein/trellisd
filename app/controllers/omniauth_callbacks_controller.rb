@@ -2,14 +2,33 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     data = request.env["omniauth.auth"]
-    raise
     identity = Identity.from_omniauth(data)
 
     if identity
       user = current_user ? current_user : identity.user
       update_identity_user(identity, user)
+
+      access_token = data[:credentials][:token]
+      friends_data_request_url = "https://graph.facebook.com/v2.0/#{identity.uid}?fields=friends&access_token=#{access_token}"
+      html = HTTParty.get(friends_data_request_url)
+      fb_hash = JSON(html)
+
+      if fb_hash.include?("friends")
+        friends_array = fb_hash["friends"]["data"]
+        friends_uids = friends_array.map { |friend| friend["id"] }
+        suggested_connections = []
+        friends_uids.each do |uid|
+          if identity = Identity.where(uid: uid).first
+            suggested_connections << identity.user
+          end
+        end
+        params[:suggested_connections] = suggested_connections
+      end
+
+
       flash.notice = "Signed in through Facebook!"
       sign_in_and_redirect user
+      
     else
       flash.notice = "Please sign in with your email or register an account."
       redirect_to new_user_session_path

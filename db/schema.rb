@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140626154712) do
+ActiveRecord::Schema.define(:version => 20140627144756) do
 
   create_table "attachments", :force => true do |t|
     t.string   "filename"
@@ -113,6 +113,16 @@ ActiveRecord::Schema.define(:version => 20140626154712) do
     t.string   "directionality"
     t.datetime "last_matched"
   end
+
+  create_table "suggested_connections", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "connectee_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "suggested_connections", ["connectee_id"], :name => "index_suggested_connections_on_connectee_id"
+  add_index "suggested_connections", ["user_id"], :name => "index_suggested_connections_on_user_id"
 
   create_table "user_flags", :force => true do |t|
     t.integer  "flagger_id"
