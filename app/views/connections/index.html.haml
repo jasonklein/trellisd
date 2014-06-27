@@ -1,3 +1,5 @@
-%h2 Connections
-#users
-  = render @users
+#total_connections
+  #suggested_connections_index
+    = display_suggested_connections_index(@suggested_connections)
+  #connections_index
+    = display_connections_index(@users)

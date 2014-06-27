@@ -6,6 +6,7 @@ class ConnectionsController < ApplicationController
   def index
     user_ids = current_user.get_user_ids_from_connections_across_states
     @users = User.where(id: user_ids)
+    @suggested_connections = current_user.suggested_connections
   end
 
   def connect

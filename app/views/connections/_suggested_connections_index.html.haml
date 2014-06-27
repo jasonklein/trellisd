@@ -1,0 +1,4 @@
+%h2 Suggested Connections
+.users_collection
+  - suggested_connections.each do |suggested_connection|
+    = render partial: 'users/user', locals: {user: suggested_connection.connectee}
