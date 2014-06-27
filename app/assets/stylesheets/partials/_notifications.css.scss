@@ -21,7 +21,7 @@
     .connection_listing {
       @include row(table);
       padding-bottom: 5px;
-      .connecter_name {
+      .connection_user_name {
         @include span-columns (2 of 4);
       }
       .connection_buttons {

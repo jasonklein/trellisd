@@ -136,13 +136,20 @@ module UsersHelper
 
   def display_pending_received_connections
     connections = current_user.pending_received_connections
-    render partial: 'users/notifications_connection_listings', locals: {connections: connections}
+    render partial: 'users/notifications_received_connection_listings', locals: {connections: connections}
+  end
+
+  def display_suggested_connections
+    suggested_connections = current_user.suggested_connections
+    render partial: 'users/notifications_suggested_connection_listings', locals: {suggested_connections: suggested_connections}
   end
 
   def display_latest_unviewed_messages
     messages = current_user.unviewed_messages.limit(5)
     render partial: 'users/notifications_message_listings', locals: {messages: messages}
   end
+
+
 
 
 
