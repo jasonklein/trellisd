@@ -4,4 +4,4 @@
   .content
     - posts.each do |post|
       .post_listing
-        = link_to truncate(post.title, length: 35, separator: ' '), user_post_path(post.user_id, post)
+        = link_to truncate(post.title, length: 35, separator: ' '), post_path(post)

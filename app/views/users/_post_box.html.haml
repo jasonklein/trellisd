@@ -6,7 +6,7 @@
     %em
       = display_directionality_if_directionality_cateogry(post)
     %br
-    = link_to truncate(post.title, length: 45, separator: ' '), user_post_path(post.user_id, post)
+    = link_to truncate(post.title, length: 45, separator: ' '), post_path(post)
     %em
       %div{class: expiration_class_for_post_box(post)}
         = expiration_message(post)

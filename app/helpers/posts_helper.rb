@@ -26,13 +26,13 @@ module PostsHelper
 
   def display_edit_if_current_user_post(user, post)
     if user == current_user
-      button_to "Edit", edit_user_post_path(user, post), method: :get
+      button_to "Edit", edit_post_path(post), method: :get
     end
   end
 
   def display_delete_if_current_user_post(user, post)
     if user == current_user
-      button_to "Delete", destroy_post_path(user, post)
+      button_to "Delete", destroy_post_path(post)
     end
   end
 

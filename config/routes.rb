@@ -6,9 +6,9 @@ Trellisd::Application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  resources :users do
-    resources :posts
-  end
+  resources :users
+
+  resources :posts
 
   resources :messages, only: [:index, :create, :destroy] do
     member do
@@ -17,7 +17,7 @@ Trellisd::Application.routes.draw do
   end
 
   get 'users/:id/home', to: 'users#home', as: 'user_home'
-  post 'users/:user_id/posts/:id', to: 'posts#destroy', as: 'destroy_post'
+  post 'posts/:id', to: 'posts#destroy', as: 'destroy_post'
   get 'users/:id/settings', to: 'users#settings', as: 'user_settings'
   get 'connections', to: 'connections#index', as: 'connections'
   post 'connections', to: 'connections#connect', as: 'create_connection'

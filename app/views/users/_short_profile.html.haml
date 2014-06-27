@@ -4,7 +4,7 @@
   #user_name
     %h4
       = link_to current_user.first_name, user_path(current_user)
-    = button_to "New Post", new_user_post_path(current_user), method: :get
+    = button_to "New Post", new_post_path, method: :get
 #short_profile_stats
   %table
     %thead

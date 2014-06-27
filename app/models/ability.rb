@@ -29,7 +29,9 @@ class Ability
         can :manage, Connection, connecter_id: user.id
         can :manage, Connection, connectee_id: user.id
         can :manage, Message, sender_id: user.id
-        can :manage, Message, recipient_id: user.id   
+        can :manage, Message, recipient_id: user.id
+      else
+        can :read, Post  
       end
     #
     # The first argument to `can` is the action you are giving the user 

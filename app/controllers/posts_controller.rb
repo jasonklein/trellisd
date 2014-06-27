@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   
   before_filter :authenticate_user!
-  load_and_authorize_resource :user
-  load_and_authorize_resource through: :user
+  load_and_authorize_resource
+
+  skip_authorize_resource only: :index
 
   def index
+    render layout: "devise.html.haml"
   end
 
   def new
@@ -12,13 +14,14 @@ class PostsController < ApplicationController
   end
 
   def create
+    raise
     keyword_titles = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
     
     @post.add_keywords(keyword_titles)
 
     if @post.save
       @post.make_matches
-      redirect_to user_post_path(@post.user, @post)
+      redirect_to post_path(@post)
     else
       render 'new'
     end
@@ -40,7 +43,7 @@ class PostsController < ApplicationController
 
     if @post.update_attributes(params[:post])
       @post.make_matches
-      redirect_to user_post_path(@post.user, @post)
+      redirect_to post_path(@post)
     else
       render 'edit'
     end

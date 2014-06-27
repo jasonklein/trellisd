@@ -7,7 +7,6 @@
       = post.title
     %h6
       = display_matches_count_if_current_user_post(post)
-      / - expiration_class = expiration_class_for_post_box(post)
       %em
         %div{class: expiration_class_for_post_box(post)}
           = expiration_message(post)
@@ -19,8 +18,8 @@
     / = display_attachment_icon(post)
   .profile_post_box_buttons
     .not_delete_buttons
-      = button_to "View", user_post_path(@user, post), method: :get
+      = button_to "View", post_path(post), method: :get
       - if @user == current_user
-        = button_to "Edit", edit_user_post_path(@user, post), method: :get
+        = button_to "Edit", edit_post_path(post), method: :get
         .delete_button
-          = button_to "Delete", destroy_post_path(@user, post), method: :delete
+          = button_to "Delete", destroy_post_path(post), method: :delete
