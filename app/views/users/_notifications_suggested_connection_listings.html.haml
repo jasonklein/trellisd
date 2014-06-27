@@ -1,6 +1,10 @@
-- suggested_connections.each do |suggested_connection|
-  .connection_listing
-    .connection_user_name
-      = link_to suggested_connection.connectee.name, user_path(suggested_connection.connectee)
-    .connection_buttons
-      = display_connection_buttons(suggested_connection.connectee)
+#suggested_connections.notifications_subset
+  .heading
+    %h5 Suggested Connections
+  .content
+    - suggested_connections.each do |suggested_connection|
+      .connection_listing
+        .connection_user_name
+          = link_to suggested_connection.connectee.name, user_path(suggested_connection.connectee)
+        .connection_buttons
+          = display_connection_buttons(suggested_connection.connectee)

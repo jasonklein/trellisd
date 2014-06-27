@@ -1,6 +1,10 @@
-- connections.each do |connection|
-  .connection_listing
-    .connection_user_name
-      = link_to connection.connecter.name, user_path(connection.connecter)
-    .connection_buttons
-      = display_connection_buttons(connection.connecter)
+#received_connections.notifications_subset
+  .heading
+    %h5 Requested Connections
+  .content
+    - connections.each do |connection|
+      .connection_listing
+        .connection_user_name
+          = link_to connection.connecter.name, user_path(connection.connecter)
+        .connection_buttons
+          = display_connection_buttons(connection.connecter)

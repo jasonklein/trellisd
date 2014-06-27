@@ -1,6 +1,10 @@
-- messages.each do |message|
-  .message_listing
-    .message_sender
-      = link_to message.sender.short_name, user_path(message.sender)
-    .message_subject
-      = link_to truncate(message.subject, length: 30), messages_path(anchor: "message_#{message.id.to_s}")
+#new_messages.notifications_subset
+  .heading
+    %h5 Latest Unread Messages
+  .content
+    - messages.each do |message|
+      .message_listing
+        .message_sender
+          = link_to message.sender.short_name, user_path(message.sender)
+        .message_subject
+          = link_to truncate(message.subject, length: 30), messages_path(anchor: "message_#{message.id.to_s}")

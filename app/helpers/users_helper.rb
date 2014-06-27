@@ -131,22 +131,30 @@ module UsersHelper
 
   def display_posts_with_recent_matches
     posts = posts_with_recent_matches(current_user.posts)
-    render partial: 'users/notifications_post_listings', locals: {posts: posts}
+    if posts.any?
+      render partial: 'users/notifications_post_listings', locals: {posts: posts}
+    end
   end
 
   def display_pending_received_connections
     connections = current_user.pending_received_connections
-    render partial: 'users/notifications_received_connection_listings', locals: {connections: connections}
+    if connections.any?
+      render partial: 'users/notifications_received_connection_listings', locals: {connections: connections}
+    end
   end
 
   def display_suggested_connections
     suggested_connections = current_user.suggested_connections
-    render partial: 'users/notifications_suggested_connection_listings', locals: {suggested_connections: suggested_connections}
+    if suggested_connections.any?
+      render partial: 'users/notifications_suggested_connection_listings', locals: {suggested_connections: suggested_connections}
+    end
   end
 
   def display_latest_unviewed_messages
     messages = current_user.unviewed_messages.limit(5)
-    render partial: 'users/notifications_message_listings', locals: {messages: messages}
+    if messages.any?
+      render partial: 'users/notifications_message_listings', locals: {messages: messages}
+    end
   end
 
 
