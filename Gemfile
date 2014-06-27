@@ -11,7 +11,6 @@ gem 'devise'
 gem 'cancan'
 gem 'ransack'
 gem 'omniauth-facebook'
-gem 'fb_graph', '~> 2.7.15'
 
 gem 'validates_timeliness', '~> 3.0'
 
