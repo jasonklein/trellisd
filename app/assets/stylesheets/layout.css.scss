@@ -25,4 +25,7 @@
       }
     }
   }
+  #posts_index_content {
+    @include outer-container;
+  }
 }

@@ -12,14 +12,14 @@
       #application_main
         = render 'layouts/navbar'
         .push_header
-        #application_content
+        #posts_index_content
+          %p.notice
+            = notice
+          %p.alert
+            = alert
           #categories_bar
             = render 'posts/categories_bar'
           #posts_index
-            %p.notice
-              = notice
-            %p.alert
-              = alert
             = yield
       .push
     = render 'layouts/footer'
