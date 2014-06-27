@@ -13,6 +13,7 @@ class ConnectionsController < ApplicationController
     connectee_id = params[:connection][:connectee_id]
     if !Connection.where(connecter_id: connecter_id, connectee_id: connectee_id).any?
       if @connection = Connection.create(connecter_id: connecter_id, connectee_id: connectee_id)
+        destroy_suggested_connections(params[:connection])
         redirect_to connections_path, notice: 'Connection requested.'
       else
         redirect_to connections_path, notice: 'Error in connection request. Please try again later.'
@@ -38,6 +39,17 @@ class ConnectionsController < ApplicationController
       redirect_to connections_path, notice: 'Connection request deleted.'
     else
       redirect_to connections_path, notice: 'Disconnected.'
+    end
+  end
+
+  ### Destroy any suggested connections in the system after either party
+  ### initiates a connection.
+
+  def destroy_suggested_connections(connection_hash)
+    connection_ids = connection_hash.map { |key, value| value }
+    suggested_connection_ids = SuggestedConnection.where(user_id: connection_ids, connectee_id: connection_ids).pluck('id')
+    suggested_connection_ids.each do |id|
+      SuggestedConnection.destroy(id)
     end
   end
 end
