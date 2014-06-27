@@ -1,18 +1,17 @@
-#new_matches
+#new_matches.notifications_subset
   .heading
     %h5 Posts with Recent Matches
   .content
     - posts_with_recent_matches.each do |post|
-      .post_listing
-        = link_to truncate(post.title, length: 35, separator: ' '), user_post_path(post.user_id, post)
-#new_connections
+      = render partial: 'notifications_post_listing', locals: {post: post}
+#new_connections.notifications_subset
   .heading
     %h5 Requested Connections
   .content
     - current_user.pending_received_connections.each do |connection|
-      .connection_listing
-        .connecter_name
-          = link_to connection.connecter.name, user_path(connection.connecter)
-        .connection_buttons
-          = display_connection_buttons(connection.connecter)
-#new_messages
+      = render partial: 'notifications_connection_listing', locals: {connection: connection}
+#new_messages.notifications_subset
+  .heading
+    %h5 Latest Unread Messages
+  .content
+    -

@@ -1,0 +1,2 @@
+.post_listing
+  = link_to truncate(post.title, length: 35, separator: ' '), user_post_path(post.user_id, post)

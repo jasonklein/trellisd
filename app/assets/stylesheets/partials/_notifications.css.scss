@@ -3,6 +3,12 @@
   background-color: #FFF;
   border-radius: $inner_box_border_radius;
   margin-top: 10px;
+  .notifications_subset {
+    border-bottom: $table_border_arguments;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
   .heading {
     padding: ($base-line-height / 2) 3px;
     margin-bottom: -20px;
@@ -28,7 +34,6 @@
     }
   }
   #new_matches {
-    border-bottom: $table_border_arguments;
     @include row(table);
   }
   #new_connections {
