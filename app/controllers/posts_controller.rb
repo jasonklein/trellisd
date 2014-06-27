@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   skip_authorize_resource only: :index
 
   def index
-    render layout: "devise.html.haml"
+    render layout: "posts_index.html.haml"
   end
 
   def new
@@ -14,10 +14,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    raise
-    keyword_titles = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq
     
+    keyword_titles = params[:keywords].split(%r{,\s*}).map(&:downcase).uniq 
     @post.add_keywords(keyword_titles)
+
+    @post.user_id = current_user.id
 
     if @post.save
       @post.make_matches
