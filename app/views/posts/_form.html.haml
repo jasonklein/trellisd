@@ -3,7 +3,7 @@
     .errors
       = @post.errors.full_messages.join(', ').downcase.capitalize
   = f.label :category
-  = f.collection_select :category_id, Category.all, :id, :title
+  = f.collection_select :category_id, Category.all.reject { |c| c.title == 'Romance'}, :id, :title
   = f.label :directionality
   = f.select :directionality, [:seeking, :offering]
   = f.label :title
