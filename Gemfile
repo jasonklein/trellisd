@@ -10,7 +10,10 @@ gem 'pg'
 gem 'devise'
 gem 'cancan'
 gem 'ransack'
+
 gem 'omniauth-facebook'
+gem 'httparty'
+gem 'json'
 
 gem 'validates_timeliness', '~> 3.0'
 

@@ -2,6 +2,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     data = request.env["omniauth.auth"]
+    raise
     identity = Identity.from_omniauth(data)
 
     if identity
