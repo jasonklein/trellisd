@@ -122,22 +122,23 @@ module UsersHelper
   end
 
   def posts_with_recent_matches
-    if current_user.posts.any?
-      posts = current_user.posts
-      posts_to_display = []
-      posts.each do |post|
-        posts_to_display << post if post.matches.where('created_at > ?', post.last_matched)
-        posts_to_display << post if post.matches.where('created_at > ?', post.user.last_sign_in_at)
-      end
-      render partial: 'notifications_post_listings', locals: {posts: posts_to_display.uniq}
-    else
-      nil
+    posts = current_user.posts
+    posts_to_display = []
+    posts.each do |post|
+      posts_to_display << post if post.matches.where('created_at > ?', post.last_matched)
+      posts_to_display << post if post.matches.where('created_at > ?', post.user.last_sign_in_at)
     end
+    render partial: 'users/notifications_post_listings', locals: {posts: posts_to_display.uniq}
   end
 
   def display_pending_received_connections
     connections = current_user.pending_received_connections
-    render partial: 'notifications_connection_listings', locals: {connections: connections}
+    render partial: 'users/notifications_connection_listings', locals: {connections: connections}
+  end
+
+  def display_latest_unviewed_messages
+    messages = current_user.unviewed_messages.limit(5)
+    render partial: 'users/notifications_message_listings', locals: {messages: messages}
   end
 
 

@@ -1,5 +1,4 @@
-- classname = message.classname_for_user(current_user)
-%div{class: "message_box #{classname}", id: "message_#{message.id}"}
+%div{class: "message_box #{message.classname_for_message(current_user)}", id: "message_#{message.id}"}
   .message_box_names_and_actions
     .message_box_names
       %h5

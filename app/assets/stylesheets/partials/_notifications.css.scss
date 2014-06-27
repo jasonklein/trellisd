@@ -32,14 +32,17 @@
         }
       }
     }
+    .message_listing {
+      @include row(table);
+      .message_sender {
+        @include span-columns (1 of 4);
+      }
+      .message_subject {
+        @include span-columns (3 of 4);
+      }
+    }
   }
-  #new_matches {
-    @include row(table);
-  }
-  #new_connections {
-    @include row(table);
-  }
-  #new_messages {
+  #new_matches, #new_connections, #new_messages {
     @include row(table);
   }
 }

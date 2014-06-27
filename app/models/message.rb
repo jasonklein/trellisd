@@ -23,7 +23,7 @@ class Message < ActiveRecord::Base
     self.recipient == user
   end
 
-  def classname_for_user(user)
+  def classname_for_message(user)
     if recipient_is_current_user?(user) && self.new_since_last_login?(user)
       'new_message'
     else

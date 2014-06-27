@@ -2,8 +2,6 @@
   .heading
     %h5 Posts with Recent Matches
   .content
-    / - posts_with_recent_matches.each do |post|
-    /   = render partial: 'notifications_post_listing', locals: {post: post}
     = posts_with_recent_matches
 #new_connections.notifications_subset
   .heading
@@ -14,3 +12,4 @@
   .heading
     %h5 Latest Unread Messages
   .content
+    = display_latest_unviewed_messages
