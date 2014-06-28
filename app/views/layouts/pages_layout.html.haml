@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    = favicon_link_tag 'favicon.ico'
+    %title
+      = (yield(:title).empty? ? 'Trellisd' : yield(:title) )
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+  %body
+    .wrapper-for-content-outside-of-footer
+      #session_wrapper
+        #session_control_links
+          %span
+            = display_session_control_links
+        #pages_layout_content
+          #left_column
+            = render partial: 'icon_partials/trellisd_icon', locals: {size: '400px'}
+          #right_column
+            %p.notice
+              = notice
+            %p.alert
+              = alert
+            = yield
+      .push
+    = render "layouts/footer"

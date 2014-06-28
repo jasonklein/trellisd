@@ -40,4 +40,27 @@
       }
     }
   }
+  #pages_layout_content {
+    @include span-columns(12);
+    @include media($mobile) {
+      @include span-columns(12);
+    }
+    #left_column {
+      @include span-columns(4 of 12);
+      @include media($mobile) {
+        display: none;
+      }
+    }
+    #right_column {
+      text-align: justify;
+      @include span-columns(8 of 12);
+      @include media($mobile) {
+        @include span-columns(10);
+        @include shift(1);
+        .push {
+          display: none;
+        }
+      }
+    }
+  }
 }
