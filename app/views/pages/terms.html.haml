@@ -1,7 +1,5 @@
 = content_for :title, 'Terms of Use'
-%h2.text_highlight
-  ADD LINKS FOR HOW IT WORKS AND EMAILS
-  Terms of Use
+%h2.text_highlight Terms of Use
 
 %h3 Introduction
 %p
@@ -27,7 +25,8 @@
   You are solely responsible for all information that you submit to trellisd and any consequences that may result from your post. We reserve the right at our discretion to refuse or delete content that we believe is inappropriate or breaching the above terms. We also reserve the right at our discretion to restrict a user's usage of trellisd either temporarily or permanently, or refuse a user's registration. If we believe that you are breaching these Terms of Use in any way and/or behaving suspiciously on trellisd, we may, at our discretion, inform other trellisd users that have been in contact with you and recommend that they exercise caution.
 %h3 Abusing trellisd
 %p
-  trellisd and the trellisd community work together to keep trellisd working properly and the community safe. Please report problems, offensive content and policy breaches to us at trellisdapp@gmail.com.
+  trellisd and the trellisd community work together to keep trellisd working properly and the community safe. Please report problems, offensive content and policy breaches to us at 
+  = mail_to 'trellisdapp@gmail.com', 'trellisdapp@gmail.com.'
 %p
   Without limiting other remedies, we may issue warnings, limit or terminate our service, remove hosted content and take technical and legal steps to keep users off trellisd if we think that they are creating problems, infringing the rights of third parties or acting inconsistently with the letter or spirit of our policies (including, without limitation, circumventing temporary or permanent suspensions or harassing the trellisd team or other users). However, whether we decide to take any of these steps, remove hosted content or keep a user off trellisd or not, we do not have any obligation to monitor the information transmitted or stored on our sites, services, applications and tools and we do not accept any liability for unauthorized or unlawful content on trellisd or use of trellisd by users.
 %h3 Content
@@ -38,7 +37,8 @@
   You acknowledge that your posts may be deleted from trellisd in case we believe these Terms of Use, are breached, either directly or indirectly.
 %h3 Infringement
 %p
-  Do not post content that infringes the rights of third parties. This includes, but is not limited to, content that infringes on intellectual property rights such as copyright, design and trademark (e.g. offering counterfeit items for sale). A large number of products of all sorts are offered on trellisd by private individuals. Entitled parties, in particular owners of copyright, trademark rights or other rights can report any post which may infringe on their rights, and submit a request for such post to be removed. If a legal representative of the entitled party reports this to us in the correct manner, products infringing on the intellectual property rights will be removed by trellisd.  To report an infringement, if you are the lawful owner or owners of the relevant intellectual property rights, please email us at trellisdapp@gmail.com.
+  Do not post content that infringes the rights of third parties. This includes, but is not limited to, content that infringes on intellectual property rights such as copyright, design and trademark (e.g. offering counterfeit items for sale). A large number of products of all sorts are offered on trellisd by private individuals. Entitled parties, in particular owners of copyright, trademark rights or other rights can report any post which may infringe on their rights, and submit a request for such post to be removed. If a legal representative of the entitled party reports this to us in the correct manner, products infringing on the intellectual property rights will be removed by trellisd.  To report an infringement, if you are the lawful owner or owners of the relevant intellectual property rights, please email us at 
+  = mail_to 'trellisdapp@gmail.com', 'trellisdapp@gmail.com.'
 %h3 Liability
 %p
   Nothing in these terms shall limit our liability for fraudulent misrepresentation, or for death or personal injury resulting from our negligence or the negligence of our agents or employees. You agree not to hold us responsible for things other users post or do.
@@ -58,7 +58,9 @@
   By using trellisd, you agree to the collection, transfer, storage and use of your personal information by trellisd on servers located in Ireland and the United States. You also agree to receive marketing communications from us unless you tell us that you prefer not to receive such communications.
 %h3 Resolution of disputes
 %p
-  If a dispute arises between you and trellisd, we strongly encourage you to first contact us directly to seek a resolution by emailing us at trellisdapp@gmail.com. We will consider reasonable requests to resolve the dispute through alternative dispute resolution procedures, such as mediation or arbitration, as alternatives to litigation.
+  If a dispute arises between you and trellisd, we strongly encourage you to first contact us directly to seek a resolution by emailing us at 
+  = mail_to 'trellisdapp@gmail.com', 'trellisdapp@gmail.com. '
+  We will consider reasonable requests to resolve the dispute through alternative dispute resolution procedures, such as mediation or arbitration, as alternatives to litigation.
 %h3 General
 %p
   These terms and any other policies posted on trellisd constitute the entire agreement between trellisd and you, superseding any prior agreements. No agency, partnership, joint venture, employee-employer or franchiser-franchisee relationship is intended or created by this Agreement.
@@ -69,5 +71,7 @@
 %p
   We may update this agreement at any time, with updates taking effect when you next publish a post or 30 days after we post the updated policy on the trellisd website, whichever is sooner. No other amendment to this agreement will be effective unless made in writing, signed by users and by us.
 %p
-  For any help with using trellisd please see the trellisd “How it Works” page.
+  For any help with using trellisd please see the trellisd 
+  = link_to '"How It Works" ', page_path('how')
+  page.
 .push

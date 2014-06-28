@@ -54,6 +54,8 @@
     #right_column {
       text-align: justify;
       @include span-columns(8 of 12);
+      height: 600px;
+      overflow: scroll;
       @include media($mobile) {
         @include span-columns(10);
         @include shift(1);

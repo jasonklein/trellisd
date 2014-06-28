@@ -1,15 +1,16 @@
 %footer.footer-2
   %ul
     %li
-      = link_to 'About', "#"
+      = link_to 'Home', root_path
     %li
-      = link_to 'Trends', "#"
+      = link_to 'About', page_path('about')
     %li
-      = link_to 'Contact', "#"
+      = link_to 'How It Works', page_path('how')
+    %li
   .footer-secondary-links
     %ul
       %li
-        = link_to 'Terms and Conditions', "#"
+        = link_to 'Terms of Use', page_path('terms')
       %li
         = render 'layouts/privacy_policy'
     
