@@ -11,6 +11,8 @@ gem 'devise'
 gem 'cancan'
 gem 'ransack'
 
+gem 'high_voltage'
+
 gem 'omniauth-facebook'
 gem 'httparty'
 gem 'json'
