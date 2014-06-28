@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   skip_authorize_resource only: :index
 
   def index
-    @posts = Post.limit(50)
+    @posts = Post.limit(3)
     render layout: "posts_index.html.haml"
   end
 

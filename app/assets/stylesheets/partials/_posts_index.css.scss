@@ -2,11 +2,11 @@
   @include row(table);
   li.block {
     @include span-columns(4);
-    @include omega(4n);
-    .posts_index_post_box {
+/*    @include omega(4n);
+*/    .posts_index_post_box {
       @extend .general_post_display_style;
       .posts_index_post_box_content {
-        @include span-columns(4 of 4);
+        @include span-columns(2 of 4);
         vertical-align: top;
         .impending_expiration {
           @extend .general_impending_expiration;
@@ -17,19 +17,13 @@
         }
       }
       .posts_index_extras {
+        @include span-columns(2 of 4);
         .posts_index_post_box_icons {
-          @include span-columns(1);
-          padding-left: 5px;
           @include media($mobile) {
             @include row(table);
           }
         }
         .posts_index_post_box_buttons{
-          vertical-align: top;
-          @include span-columns(1);
-          form {
-            margin: 5px 0;
-          }
         }
       }
     }
