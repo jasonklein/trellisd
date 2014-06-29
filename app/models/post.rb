@@ -56,7 +56,7 @@ class Post < ActiveRecord::Base
   end
 
   def directionality_category?
-    directionality_categories = Category.where(title: ["Work", "Housing", "Stuff"])
+    directionality_categories = Category.where(title: ["work", "housing", "stuff"])
     directionality_category_ids = directionality_categories.map { |dc| dc.id }
     if directionality_category_ids.include?(self.category_id)
       true
