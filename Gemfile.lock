@@ -102,6 +102,9 @@ GEM
     json (1.8.1)
     jwt (0.1.13)
       multi_json (>= 1.5)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -232,6 +235,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   json
+  kaminari
   neat
   normalize-rails
   omniauth-facebook

@@ -11,6 +11,8 @@ gem 'devise'
 gem 'cancan'
 gem 'ransack'
 
+gem 'kaminari'
+
 gem 'high_voltage'
 
 gem 'omniauth-facebook'
