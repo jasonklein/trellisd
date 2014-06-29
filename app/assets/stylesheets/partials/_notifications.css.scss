@@ -42,7 +42,7 @@
       }
     }
   }
-  #new_matches, #receied_connections, #suggested_connections, #new_messages {
+  #new_matches, #received_connections, #suggested_connections, #new_messages {
     @include row(table);
   }
 }
