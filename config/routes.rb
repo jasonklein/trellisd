@@ -30,6 +30,7 @@ Trellisd::Application.routes.draw do
   post 'user_flags/:id', to: 'user_flags#destroy', as: 'destroy_user_flag'
   post 'post_flags/:flagger_id/:post_id', to: 'post_flags#create', as: 'create_post_flag'
   post 'post_flags/:id', to: 'post_flags#destroy', as: 'destroy_post_flag'
+  get 'posts/categories/:title', to: 'posts#category_index', as: 'posts_category'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

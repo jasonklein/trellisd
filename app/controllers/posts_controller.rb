@@ -6,17 +6,25 @@ class PostsController < ApplicationController
   skip_authorize_resource only: :index
 
   def index
-
     @q = Post.search(params[:q])
     @posts = @q.result(distinct: true).includes(:keywords)
 
     respond_to do |format|
-      format.js { render layout: "posts_index"
- }
-      format.html { render layout: "posts_index"
- }
+      format.js { render layout: "posts_index" }
+      format.html { render layout: "posts_index" }
     end
+  end
 
+  def category_index
+    category_id = Category.where(title: params[:title]).first.id
+
+    @q = Post.where(category_id: category_id).search(params[:q])
+    @posts = @q.result(distinct: true).includes(:keywords)
+
+    respond_to do |format|
+      format.js { render layout: "posts_index", template: "posts/index" }
+      format.html { render layout: "posts_index", template: "posts/index" }
+    end
   end
 
   def new
