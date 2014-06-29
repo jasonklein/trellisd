@@ -1,5 +1,6 @@
 #categories_bar {
   @include row(table);
+  text-align: center;
   #all_posts_icon {
     background-color: $category_background_fill;
     width: 95px;

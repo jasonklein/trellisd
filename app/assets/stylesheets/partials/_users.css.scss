@@ -43,7 +43,7 @@
     height: 150px;
     display: inline-block;
     @extend .user_display_general;
-    margin: 5px 20px; // to override the user_display_general
+    margin: 5px 20px; /* to override the user_display_general margin */
     @include media($mobile) {
       max-width: auto;
       font-size: 12px;
@@ -60,6 +60,10 @@
       .user_name {
         @include span-columns(1 of 2);
         vertical-align: top;
+        overflow: scroll;
+        @include media($mobile) {
+          overflow: hidden;
+        }
       }
     }
     .connections_buttons {

@@ -119,38 +119,55 @@
 }
 
 #posts_index {
-  @include row(table);
-  .posts_index_post_box {
+  @include span-columns(12);
+  @include clearfix;
+  @include media($mobile) {
+    @include span-columns(10);
+    @include shift(1);
+  }
+  .posts_index_post_box_container {
+    width: 360px;
+    height: 270px;
     display: inline-block;
-    @extend .general_post_display_style;
-    margin: 200px;
-    @include span-columns(3);
-    .posts_index_post_box_content {
-      @include span-columns(2 of 3);
-      .ebkws {
-        @include row(table);
+    border: 2px solid black;
+    @include media($mobile) {
+      @include row(table);
+      max-width: 300px;
+      min-height: 150px;
+      font-size: 12px;
+      margin: 0 auto;
+    }
+    .posts_index_post_box {
+      @extend .general_post_display_style;
+      margin: 5px auto 0 auto; /* To override .general_post_display_style margins */
+      width: 320px;
+      height: 250px;
+      @include media($mobile) {
+        width: 80%;
+        height: 100%;
+      }
+      .posts_index_post_box_content {
+        @include span-columns(2 of 3);
         vertical-align: top;
         .impending_expiration {
           @extend .general_impending_expiration;
         }
+        .text_highlight {
+          vertical-align: bottom;
+        }
+        @include media($mobile) {
+          @include row(table);
+          margin-bottom: 10px;
+        }
       }
-      .text_highlight {
-        @include row(table);
-        vertical-align: bottom;
-      }
-      @include media($mobile) {
-        @include row(table);
-        margin-bottom: 10px;
-      }
-    }
-    .posts_index_extras {
-      display: none;
-      @include span-columns(1 of 3);
-      .posts_index_post_box_icons {
-        @include row(table);
-      }
-      .posts_index_post_box_buttons{
-        @include row(table);
+      .posts_index_extras {
+        @include span-columns(1 of 3);
+        .posts_index_post_box_icons {
+          @include row(table);
+        }
+        .posts_index_post_box_buttons{
+          @include row(table);
+        }
       }
     }
   }
