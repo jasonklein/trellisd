@@ -19,21 +19,21 @@ module UsersHelper
 
   def display_category_icon(post, size)
     case post.category.title
-    when 'Activity'
+    when 'activity'
       render partial: 'icon_partials/activity', locals: {size: size}
-    when 'Collab'
+    when 'collab'
       render partial: 'icon_partials/collab', locals: {size: size}
-    when 'Housing'
+    when 'housing'
       render partial: 'icon_partials/housing', locals: {size: size}
-    when 'Knowledge and Miscellaneous'
+    when 'knowledge'
       render partial: 'icon_partials/knowledge', locals: {size: size}
-    when 'PDQ'
+    when 'pdq'
       render partial: 'icon_partials/pdq', locals: {size: size}
-    when 'Stuff'
+    when 'stuff'
       render partial: 'icon_partials/stuff', locals: {size: size}
-    when 'Travel'
+    when 'travel'
       render partial: 'icon_partials/travel', locals: {size: size}
-    when 'Work'
+    when 'work'
       render partial: 'icon_partials/work', locals: {size: size}
     else
       nil
