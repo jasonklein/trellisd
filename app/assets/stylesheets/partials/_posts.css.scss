@@ -118,20 +118,20 @@
   }
 }
 
+#posts_search {
+  max-width: 400px;
+  margin: 5px auto;
+  @include media($mobile) {
+    max-width: 300px;
+  }
+}
+
 #posts_index {
   @include span-columns(12);
   @include clearfix;
   @include media($mobile) {
     @include span-columns(10);
     @include shift(1);
-  }
-  #posts_search {
-/*    @include row(table);
-*/    max-width: 400px;
-    margin: 5px auto;
-    @include media($mobile) {
-      max-width: 300px;
-    }
   }
   .posts_index_post_box_container {
     width: 360px;

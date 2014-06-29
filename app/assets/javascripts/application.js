@@ -54,12 +54,6 @@ TrellisdApp.usersSearch = function() {
   });
 };
 
-TrellisdApp.postsSearch = function() {
-  $('#search').on('keyup', function() {
-    $('#user_search').submit();
-  });
-};
-
 TrellisdApp.setup = function() {
   TrellisdApp.mobileMenuSlider();
   TrellisdApp.expirationDatepicker();
