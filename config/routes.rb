@@ -8,7 +8,10 @@ Trellisd::Application.routes.draw do
 
   resources :users
 
-  resources :posts
+  resources :posts do
+    get 'page/:page', action: :index, on: :collection
+    get 'page/:page', action: :category_index, on: :collection
+  end
 
   resources :messages, only: [:index, :create, :destroy] do
     member do

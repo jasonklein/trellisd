@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       @q = Post.search(params[:q])
     end
       
-    @posts = @q.result(distinct: true).includes(:keywords)
+    @posts = @q.result(distinct: true).includes(:keywords).page(params[:page])
 
     respond_to do |format|
       format.js { render layout: "posts_index" }
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
       @q = Post.search(params[:q])
     end
 
-    @posts = @q.result(distinct: true).includes(:keywords)
+    @posts = @q.result(distinct: true).includes(:keywords).page(params[:page])
 
     respond_to do |format|
       format.js { render layout: "posts_index", template: "posts/index" }

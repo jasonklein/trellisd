@@ -1,5 +1,5 @@
 - if @posts.any?
-  var postsHtml = "#{escape_javascript(render(partial: 'posts_index_post', locals: {posts: @posts}))}";
+  var postsHtml = "#{escape_javascript(render(partial: 'posts_index_posts', locals: {posts: @posts}))}";
 - else
   var postsHtml = "No posts match your query.";
 
