@@ -10,12 +10,13 @@ class PostsController < ApplicationController
     @q = Post.search(params[:q])
     @posts = @q.result(distinct: true).includes(:keywords)
 
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
+    respond_to do |format|
+      format.js { render layout: "posts_index"
+ }
+      format.html { render layout: "posts_index"
+ }
+    end
 
-    render layout: "posts_index.html.haml"
   end
 
   def new

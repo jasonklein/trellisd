@@ -1,8 +1,7 @@
 #posts_search
-  = search_form_for @q do |f|
+  = search_form_for @q, remote: true do |f|
     = f.search_field :title_or_keywords_title_cont, placeholder: 'Enter a post title or a keyword'
     = f.submit
 %br
 #posts
-  - @posts.each do |post|
-    = render partial: 'posts_index_post', locals: {post: post}
+  = render partial: 'posts_index_post', locals: {posts: @posts}
