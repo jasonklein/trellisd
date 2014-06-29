@@ -6,7 +6,15 @@ class PostsController < ApplicationController
   skip_authorize_resource only: :index
 
   def index
-    @posts = Post.limit(4)
+
+    @q = Post.search(params[:q])
+    @posts = @q.result(distinct: true).limit(10)
+
+    # respond_to do |format|
+    #   format.js
+    #   format.html
+    # end
+
     render layout: "posts_index.html.haml"
   end
 
