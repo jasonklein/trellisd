@@ -31,14 +31,17 @@ class PostsController < ApplicationController
 
   def category_index
     title = params[:title]
-    category_id = Category.where(title: title).first.id
+    if category_id = Category.where(title: title).first.id
+      @q = Post.where(category_id: category_id).search(params[:q])
+    else
+      @q = Post.search(params[:q])
+    end
 
-    @s = Post.where(category_id: category_id).search(params[:s])
-    @posts = @s.result(distinct: true).includes(:keywords)
+    @posts = @q.result(distinct: true).includes(:keywords)
 
     respond_to do |format|
-      format.js { render layout: "posts_index", template: "posts/category_index" }
-      format.html { render layout: "posts_index", template: "posts/category_index" }
+      format.js { render layout: "posts_index", template: "posts/index" }
+      format.html { render layout: "posts_index", template: "posts/index" }
     end
   end
 
