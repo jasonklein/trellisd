@@ -126,8 +126,8 @@
     @include shift(1);
   }
   #posts_search {
-    @include row(table);
-    max-width: 400px;
+/*    @include row(table);
+*/    max-width: 400px;
     margin: 5px auto;
     @include media($mobile) {
       max-width: 300px;

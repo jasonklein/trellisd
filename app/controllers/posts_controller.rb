@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
 
     @q = Post.search(params[:q])
-    @posts = @q.result(distinct: true).limit(10)
+    @posts = @q.result(distinct: true).includes(:keywords)
 
     # respond_to do |format|
     #   format.js
