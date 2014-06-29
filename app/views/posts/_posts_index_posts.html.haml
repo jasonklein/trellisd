@@ -1,6 +1,5 @@
-.pagination
-  = paginate posts, remote: true
-  = page_entries_info posts
+= paginate posts, remote: true
+= page_entries_info posts
 %br
 - posts.each do |post|
   .posts_index_post_box_container
@@ -25,5 +24,4 @@
           / = display_attachment_icon(post)
         .posts_index_post_box_buttons
           = button_to "View", post_path(post), method: :get
-.pagination
-  = paginate posts
+= paginate posts, remote: true

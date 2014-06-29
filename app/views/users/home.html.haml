@@ -1,2 +1,4 @@
-- @posts.each do |post|
-  = render partial: 'users/post_box', locals: {post: post}
+%h2 Latest Posts
+%br
+#posts
+  = render partial: 'users/post_boxes', locals: {posts: @posts}

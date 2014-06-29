@@ -58,7 +58,6 @@ TrellisdApp.setup = function() {
   TrellisdApp.mobileMenuSlider();
   TrellisdApp.expirationDatepicker();
   TrellisdApp.usersSearch();
-  TrellisdApp.postsSearch();
 }
 
 $(TrellisdApp.setup);

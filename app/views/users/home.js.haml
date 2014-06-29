@@ -1,0 +1,6 @@
+- if @posts.any?
+  var postsHtml = "#{escape_javascript(render(partial: 'users/post_boxes', locals: {posts: @posts}))}";
+- else
+  var postsHtml = "There are no posts.";
+
+$('#posts').html(postsHtml);

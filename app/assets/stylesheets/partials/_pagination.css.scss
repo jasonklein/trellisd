@@ -1,0 +1,5 @@
+nav.pagination {
+  @include media($mobile) {
+    margin-left: 5px;
+  }
+}

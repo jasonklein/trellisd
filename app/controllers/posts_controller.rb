@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
     referrer_url = request.env['HTTP_REFERER']
     divider = 'categories/'
-    if referrer_url.include?(divider)
+    if referrer_url && referrer_url.include?(divider)
       referrer_url_parts = referrer_url.split(divider)
       title = referrer_url_parts[1]
       if category_id = Category.where(title: title).first.id

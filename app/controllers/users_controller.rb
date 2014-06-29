@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   
   def home
     @user = current_user
-    @posts = @user.posts_of_all_connections(@user.all_connections_ids).limit(10)
+    @posts = @user.posts_of_all_connections(@user.all_connections_ids).page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def index
