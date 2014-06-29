@@ -14,7 +14,7 @@
               = expiration_message(post)
         %br
         %h6.text_highlight
-          = truncate post.list_keyword_titles, length: 50, separator: '|'
+          = truncate post.list_keyword_titles, length: 80, separator: '|'
       .posts_index_extras
         .posts_index_post_box_icons
           = display_category_icon(post, '60px')

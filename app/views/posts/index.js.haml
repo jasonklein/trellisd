@@ -1,6 +1,1 @@
-- if @posts.any?
-  var postsHtml = "#{escape_javascript(render(partial: 'posts_index_post', locals: {posts: @posts}))}";
-- else
-  var postsHtml = "No posts match your query.";
-
-$('#posts').html(postsHtml);
+= render 'index'

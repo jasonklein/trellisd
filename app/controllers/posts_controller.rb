@@ -6,7 +6,21 @@ class PostsController < ApplicationController
   skip_authorize_resource only: :index
 
   def index
-    @q = Post.search(params[:q])
+
+    referrer_url = request.env['HTTP_REFERER']
+    divider = 'categories/'
+    if referrer_url.include?(divider)
+      referrer_url_parts = referrer_url.split(divider)
+      title = referrer_url_parts[1]
+      if category_id = Category.where(title: title).first.id
+        @q = Post.where(category_id: category_id).search(params[:q])
+      else
+        @q = Post.search(params[:q])
+      end
+    else
+      @q = Post.search(params[:q])
+    end
+      
     @posts = @q.result(distinct: true).includes(:keywords)
 
     respond_to do |format|
@@ -16,19 +30,19 @@ class PostsController < ApplicationController
   end
 
   def category_index
-    category_id = Category.where(title: params[:title]).first.id
+    title = params[:title]
+    category_id = Category.where(title: title).first.id
 
-    @q = Post.where(category_id: category_id).search(params[:q])
-    @posts = @q.result(distinct: true).includes(:keywords)
+    @s = Post.where(category_id: category_id).search(params[:s])
+    @posts = @s.result(distinct: true).includes(:keywords)
 
     respond_to do |format|
-      format.js { render layout: "posts_index", template: "posts/index" }
-      format.html { render layout: "posts_index", template: "posts/index" }
+      format.js { render layout: "posts_index", template: "posts/category_index" }
+      format.html { render layout: "posts_index", template: "posts/category_index" }
     end
   end
 
   def new
-    @user = current_user
   end
 
   def create
