@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140627144756) do
 
-  create_table "attachments", :force => true do |t|
-    t.string   "filename"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "image"
-  end
-
-  add_index "attachments", ["post_id"], :name => "index_attachments_on_post_id"
-
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.datetime "created_at", :null => false

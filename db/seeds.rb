@@ -24,15 +24,14 @@ User.create(
   )
 
 categories = Category.create([
-  {title: 'Activity'},
-  {title: 'Collab'},
-  {title: 'Housing'},
-  {title: 'Knowledge and Miscellaneous'},
-  {title: 'PDQ'},
-  {title: 'Romance'},
-  {title: 'Stuff'},
-  {title: 'Travel'},
-  {title: 'Work'}
+  {title: 'activity'},
+  {title: 'collab'},
+  {title: 'housing'},
+  {title: 'knowledge'},
+  {title: 'pdq'},
+  {title: 'stuff'},
+  {title: 'travel'},
+  {title: 'work'}
   ])
 
 keywords = Keyword.create([
