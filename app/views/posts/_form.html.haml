@@ -5,6 +5,16 @@
   = f.label :category
   = f.collection_select :category_id, Category.all.reject { |c| c.title == 'Romance'}, :id, :title
   = f.label :directionality
+  %em
+    Directionality currently only affects matching for housing, stuff and work posts.
+    %br
+    If posting that you are looking for housing, stuff or work (including freelancing), that is a 
+    %span.text_highlight seeking 
+    post. If posting that you have housing, stuff or work available, that is an 
+    %span.text_highlight offering 
+    post.
+  %br
+  %br
   = f.select :directionality, [:seeking, :offering]
   = f.label :title
   = f.text_field :title
