@@ -21,7 +21,7 @@
     }
     #pages_text {
       @include media($medium-screen) {
-        height: 490px;
+        max-height: 400px;
         overflow: scroll;
       }
     }
