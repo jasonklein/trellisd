@@ -11,7 +11,7 @@ module PostsHelper
   end
 
   def display_match(match)
-    render partial: 'users/post_boxes', locals: {post: match.matching, match: match}
+    render partial: 'users/post_box', locals: {post: match.matching, match: match}
   end
 
   def expiration_message(post)

@@ -1,20 +1,4 @@
-= paginate @posts, remote: true, window: 2
+= paginate posts, remote: true, window: 2
 - posts.each do |post|
-  %div{class: "post_box #{classname_for_post_box(post)}"}
-    .post_box_image
-      = image_tag post.user.image.url(:thumb)
-    .post_box_content
-      = link_to post_user_name(post), user_path(post.user_id)
-      %em
-        = display_directionality_if_directionality_cateogry(post)
-      %br
-      = link_to truncate(post.title, length: 45, separator: ' '), post_path(post)
-      %em
-        %div{class: expiration_class_for_post_box(post)}
-          = expiration_message(post)
-    .post_box_icons
-      = display_category_icon(post, '60px')
-      / = display_attachment_icon(post)
-      - if displaying_in_posts_controller?
-        = display_keyword_coverage_if_a_match(match)
-= paginate @posts, remote: true, window: 2
+  = render partial: 'users/post_box', locals: {post: post}
+= paginate posts, remote: true, window: 2
