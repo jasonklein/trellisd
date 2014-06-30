@@ -133,11 +133,13 @@ class User < ActiveRecord::Base
   end
 
   def connections_ids(connections)
-    connections_ids = []
-    connections.each do |key, ids|
-      connections_ids += ids
+    if !@connections_ids
+      @connections_ids = []
+      connections.each do |key, ids|
+        @connections_ids += ids
+      end
     end
-    connections_ids
+    @connections_ids
   end
 
   ### TODO: eliminate below method in favor of above method to DRY code
@@ -145,11 +147,13 @@ class User < ActiveRecord::Base
   ### N.B.: below is only all accepted connections
 
   def all_connections_ids
-    connections_ids = []
-    all_connections.each do |key, ids|
-      connections_ids += ids
+    if !@all_connections_ids
+      @all_connections_ids = []
+      all_connections.each do |key, ids|
+        @all_connections_ids += ids
+      end
     end
-    connections_ids
+    @all_connections_ids
   end
 
   ### N.B.: below is only w/r/t all accepted connections
