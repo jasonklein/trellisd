@@ -12,10 +12,6 @@
   #right_column {
     text-align: justify;
     @include span-columns(8 of 12);
-    @include media($medium-screen) {
-      height: 600px;
-      overflow: scroll;
-    }
     @include media($mobile) {
       @include span-columns(10);
       @include shift(1);
@@ -23,12 +19,14 @@
         display: none;
       }
     }
+    #pages_text {
+      @include media($medium-screen) {
+        height: 490px;
+        overflow: scroll;
+      }
+    }
   }
   h1 {
-    text-align: center;
-    @include media($medium-screen) {
-      display: none;
-    }
     @include media($mobile) {
       font-size: $base-font-size * 4;
     }

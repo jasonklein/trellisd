@@ -1,12 +1,13 @@
 %footer.footer-2
   %ul
     %li
-      = link_to 'Home', root_path
+      = link_to 'Home', current_user ? user_home_path(current_user) : root_path
     %li
       = link_to 'About', page_path('about')
     %li
       = link_to 'How It Works', page_path('how')
     %li
+      = link_to 'Posts', posts_path
   .footer-secondary-links
     %ul
       %li
