@@ -31,5 +31,8 @@
   @include outer-container;
   h1 {
     text-align: center;
+    @include media($mobile) {
+      font-size: $base-font-size * 4;
+    }
   }
 }

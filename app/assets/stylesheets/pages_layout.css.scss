@@ -1,0 +1,36 @@
+#pages_layout_content {
+  @include span-columns(12);
+  @include media($mobile) {
+    @include span-columns(12);
+  }
+  #left_column {
+    @include span-columns(4 of 12);
+    @include media($mobile) {
+      display: none;
+    }
+  }
+  #right_column {
+    text-align: justify;
+    @include span-columns(8 of 12);
+    @include media($medium-screen) {
+      height: 600px;
+      overflow: scroll;
+    }
+    @include media($mobile) {
+      @include span-columns(10);
+      @include shift(1);
+      .push {
+        display: none;
+      }
+    }
+  }
+  h1 {
+    text-align: center;
+    @include media($medium-screen) {
+      display: none;
+    }
+    @include media($mobile) {
+      font-size: $base-font-size * 4;
+    }
+  }
+}
