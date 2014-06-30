@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   skip_authorize_resource only: :index
 
   def index
-
     referrer_url = request.env['HTTP_REFERER']
     divider = 'categories/'
     if referrer_url && referrer_url.include?(divider)

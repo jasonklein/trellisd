@@ -55,4 +55,42 @@ module PostsHelper
     end
   end
 
+  def active_posts_index_category(category)
+    divider = 'categories/'
+    case category
+    when :all_posts
+      :active_posts_index_category
+    else
+      url = request.original_url
+      if url.include?(divider)
+        url_parts = url.split(divider)
+        title = url_parts[1]
+        if category == title
+          :active_posts_index_category
+        end
+      end
+    end
+  end
+
+  def posts_index_category_indication(category)
+    divider = 'categories/'
+    current_url = request.original_url
+
+    if current_url.include?(divider)
+      current_url_parts = current_url.split(divider)
+      title = current_url_parts[1]
+      if category == title.to_sym
+        :active_posts_index_category
+      else
+        :inactive_posts_index_category
+      end
+    else
+      if category == :all_posts
+        :active_posts_index_category
+      else
+        :inactive_posts_index_category
+      end
+    end
+  end
+
 end

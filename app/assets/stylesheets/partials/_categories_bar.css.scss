@@ -2,7 +2,14 @@
   @include row(table);
   text-align: center;
   #all_posts_icon {
-    background-color: $category_background_base;
+    &.inactive_posts_index_category {
+      background-color: $category_background_base;
+      color: $category_foreground_base;
+    }
+    &.active_posts_index_category {
+      background-color: $category_background_fill;
+      color: $category_foreground_fill;
+    }
     width: 95px;
     height: 95px;
     border-radius: 50px;
@@ -13,13 +20,10 @@
       font-weight: bold;
       padding-top: 17px;
       text-align: center;
-      color: $category_foreground_base;
     }
     &:hover {
       background-color: $category_background_fill;
-      #icon_text {
-        color: $category_foreground_fill;
-      }
+      color: $category_foreground_fill;
     }
   }
 }
