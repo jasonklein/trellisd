@@ -3,7 +3,7 @@
 %br
 - posts.each do |post|
   .posts_index_post_box_container
-    %div{class: "posts_index_post_box #{classname_for_post_box(post)}"}
+    %div{class: "posts_index_post_box #{classname_for_post_box(post)} #{classname_for_post_box_if_connected(post)}"}
       .posts_index_post_box_content
         %h6
           %em

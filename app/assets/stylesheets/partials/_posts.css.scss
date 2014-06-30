@@ -9,6 +9,9 @@
   &.pdq_post {
     background-color: lighten($green, 10%);
   }
+  &.connection_post {
+    border: $table_border_arguments;
+  }
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;

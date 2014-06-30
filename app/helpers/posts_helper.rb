@@ -54,6 +54,12 @@ module PostsHelper
     end
   end
 
+  def classname_for_post_box_if_connected(post)
+    if current_user.all_connections_ids.include?(post.user_id)
+      'connection_post'
+    end
+  end
+
   def displaying_in_posts_controller?
     params[:controller] == 'posts' ? true : false
   end
