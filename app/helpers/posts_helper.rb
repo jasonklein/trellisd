@@ -18,6 +18,14 @@ module PostsHelper
     end
   end
 
+  def display_post_user_name(user)
+    if current_user
+      render partial: 'post_user_name', locals: {user: user}
+    else
+      nil
+    end
+  end
+
   def display_category_icon(post, size)
     case post.category.title
     when 'activity'
@@ -47,18 +55,18 @@ module PostsHelper
 
   def classname_for_post_box(post)
     if post.category.try(:title) == 'pdq'
-      'pdq_post'
+      :pdq_post
+    elsif current_user
+      matching_ids = current_user.matching_ids_for_all_posts
+      matching_ids.include?(post.id) ? :matching_post : :normal_post
     else
-      if current_user
-        matching_ids = current_user.matching_ids_for_all_posts
-        matching_ids.include?(post.id) ? 'matching_post' : 'normal'
-      end
+      :normal_post
     end
   end
 
   def classname_for_post_box_if_connected(post)
     if current_user && current_user.all_connections_ids.include?(post.user_id)
-      'connection_post'
+      :connection_post
     end
   end
 

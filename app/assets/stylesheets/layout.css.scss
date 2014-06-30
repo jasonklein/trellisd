@@ -25,7 +25,11 @@
       }
     }
   }
-  #posts_index_content {
-    @include outer-container;
+}
+
+#posts_index_content {
+  @include outer-container;
+  h1 {
+    text-align: center;
   }
 }

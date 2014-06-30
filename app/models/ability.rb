@@ -6,7 +6,7 @@ class Ability
 
     # Define abilities for the passed in user here. For example:
     #
-      user ||= User.new # guest user (not logged in)
+      user ||= User.new(role: :guest) # guest user (not logged in)
       if user.role? :admin
         can :read, :all
         can :manage, User, id: user.id
@@ -26,12 +26,14 @@ class Ability
         can :create, PostFlag
         can :manage, Post, user_id: user.id
         can :read, Post
+        can :category_index, Post
         can :manage, Connection, connecter_id: user.id
         can :manage, Connection, connectee_id: user.id
         can :manage, Message, sender_id: user.id
         can :manage, Message, recipient_id: user.id
-      else
-        can :read, Post  
+      elsif user.role? :guest
+        can :read, Post
+        can :category_index, Post
       end
     #
     # The first argument to `can` is the action you are giving the user 

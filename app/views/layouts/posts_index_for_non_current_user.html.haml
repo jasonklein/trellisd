@@ -1,0 +1,33 @@
+!!! 5
+%html
+  %head
+    = favicon_link_tag 'favicon.ico'
+    %title
+      = yield(:title).empty? ? 'Trellisd' : yield(:title)
+    = stylesheet_link_tag 'application', :media => 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+  %body
+    .wrapper-for-content-outside-of-footer
+      #session_wrapper
+        #session_control_links
+          %span
+            = display_session_control_links
+        #posts_index_content
+          %p.notice
+            = notice
+          %p.alert
+            = alert
+          %h1 trellisd
+          #categories_bar
+            = render 'posts/categories_bar'
+          #posts_search
+            = search_form_for @q, remote: true do |f|
+              = f.search_field :title_or_keywords_title_cont, placeholder: 'Enter a post title or a keyword'
+              = f.submit
+          %br
+          #posts_index
+            = yield
+      .push
+    = render 'layouts/footer'

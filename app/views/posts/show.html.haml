@@ -10,8 +10,7 @@
       %em
         = display_directionality_if_directionality_cateogry(@post)
     %h5
-      Posted by: 
-      = link_to @user.name, user_path(@user)
+      = display_post_user_name(@user)
       %br
       = display_matches_count_if_current_user_post(@post)
     %h6

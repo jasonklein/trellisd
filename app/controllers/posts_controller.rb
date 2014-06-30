@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index, :category_index, :show]
   load_and_authorize_resource
 
   skip_authorize_resource only: :index
@@ -22,10 +22,11 @@ class PostsController < ApplicationController
       
     @posts = @q.result(distinct: true).includes(:keywords).page(params[:page])
 
-    respond_to do |format|
-      format.js { render layout: "posts_index" }
-      format.html { render layout: "posts_index" }
-    end
+    # respond_to do |format|
+    #   format.js { render layout: "posts_index" }
+    #   format.html { render layout: "posts_index" }
+    # end
+    render_layout_for_post_views
   end
 
   def category_index
@@ -38,10 +39,11 @@ class PostsController < ApplicationController
 
     @posts = @q.result(distinct: true).includes(:keywords).page(params[:page])
 
-    respond_to do |format|
-      format.js { render layout: "posts_index", template: "posts/index" }
-      format.html { render layout: "posts_index", template: "posts/index" }
-    end
+    # respond_to do |format|
+    #   format.js { render layout: "posts_index", template: "posts/index" }
+    #   format.html { render layout: "posts_index", template: "posts/index" }
+    # end
+    render_layout_for_post_views
   end
 
   def new
@@ -65,6 +67,7 @@ class PostsController < ApplicationController
 
   def show
     @user = @post.user
+    render_layout_for_post_views
   end
 
   def edit
@@ -92,6 +95,26 @@ class PostsController < ApplicationController
     Post.destroy(post)
     
     redirect_to user_path(current_user), notice: "Post deleted."
+  end
+
+  def render_layout_for_post_views
+    if !current_user
+      if params[:action] == 'show'
+        render layout: 'pages_layout'
+      elsif params[:action] == 'index' || params[:action] == 'category_index'
+        respond_to do |format|
+          format.js { render layout: "posts_index_for_non_current_user", template: "posts/index" }
+          format.html { render layout: "posts_index_for_non_current_user", template: "posts/index" }
+        end
+      end
+    else
+      if params[:action] == 'index' || params[:action] == 'category_index'
+        respond_to do |format|
+          format.js { render layout: "posts_index", template: "posts/index" }
+          format.html { render layout: "posts_index", template: "posts/index" }
+        end
+      end
+    end
   end
   
 

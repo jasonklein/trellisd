@@ -1,6 +1,6 @@
 .general_post_display_style {
   border-radius: $display_box_border_radius;
-  &.normal {
+  &.normal_post {
     background-color: $display_box_normal_background_color;
   }
   &.matching_post {
