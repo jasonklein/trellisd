@@ -18,6 +18,15 @@
       @include media($mobile) {
         @include row(table);
       }
+      &.narrow {
+        @include span-columns(2 of 6);
+      }
+      &.wide {
+        @include span-columns(4 of 6);
+        @include media($mobile) {
+          overflow: scroll;
+        }
+      }
     }
     .right {
       @include shift(1);

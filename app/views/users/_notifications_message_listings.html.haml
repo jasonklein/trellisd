@@ -1,6 +1,7 @@
 #new_messages.notifications_subset
   .heading
-    %h5 Latest Unread Messages
+    %h5
+      = link_to "Latest Unread Messages", messages_path
   .content
     - messages.each do |message|
       .message_listing

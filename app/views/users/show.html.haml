@@ -10,5 +10,6 @@
       = @user.try(:bio)
     .user_show_buttons
       = display_connection_buttons(@user)
+      = display_message_button_if_user_not_current_user(@user)
       = display_flag_button(@user)
 = render @posts

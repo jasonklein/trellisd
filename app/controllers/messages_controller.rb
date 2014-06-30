@@ -18,8 +18,12 @@ class MessagesController < ApplicationController
     @message = Message.new
     @sender_id = params[:sender_id]
     @recipient_id = params[:recipient_id]
-    @post = Post.find(params[:post_id])
-    @subject = @post.title
+    if params[:post_id].to_i == 0
+      @subject = ''
+    else
+      @post = Post.find(params[:post_id])
+      @subject = @post.title
+    end
   end
 
   def create
@@ -38,13 +42,14 @@ class MessagesController < ApplicationController
       @subject = 'Re: ' + original_message.subject
     end
 
+    @sender_id = current_user.id
+
     if original_message.sender == current_user
-      @sender_id = current_user.id
       @recipient_id = original_message.recipient_id
     else
-      @sender_id = original_message.sender_id
-      @recipient_id = current_user.id
+      @recipient_id = original_message.sender_id
     end
+    
     @original_content = original_message.content
   end
 
