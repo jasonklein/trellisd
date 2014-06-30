@@ -7,7 +7,7 @@
     background-color: $display_box_matching_background_color;
   }
   &.pdq_post {
-    background-color: lighten($green, 10%);
+    background-color: $display_box_pdq_background_color;
   }
   &.connection_post {
     border: $table_border_arguments;

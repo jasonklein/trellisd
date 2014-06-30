@@ -1,2 +1,79 @@
 = content_for :title, 'How it Works'
 %h2.text_highlight How it Works
+%h3 TL;DR
+%p
+  You post that you are seeking or offering something. The system continually checks to see if that post matches any other posts by users within your extended network based on category, directionality, and keywords. You gets what you want. The end.
+%h3 Posts
+%p
+  Users publish posts in one of eight categories: Activity, Collab, Housing, Knowledge and Miscellaneous, PDQ, Stuff, Travel, and Work.
+  - size = '40px'
+  %ul
+    %li
+      = render partial: 'icon_partials/activity', locals: {size: size}
+      Activity: "Hey, I have a spare ticket to the concert of the century, if anyone wants to join me?"
+    %li
+      = render partial: 'icon_partials/collab', locals: {size: size}
+      Collab: "I have a totally whiz-bang idea! Looking for someone to help me implement it."
+    %li
+      = render partial: 'icon_partials/housing', locals: {size: size}
+      Housing: "I'm looking for a room to rent, ensuite preferred."
+    %li
+      = render partial: 'icon_partials/knowledge', locals: {size: size}
+      Knowledge and Miscellaneous: "Hey, what exactly is a T.A.R.D.I.S.?"
+    %li
+      = render partial: 'icon_partials/pdq', locals: {size: size}
+      PDQ: "I need a hammer.  STAT!"
+    %li
+      = render partial: 'icon_partials/stuff', locals: {size: size}
+      Stuff: "I have a lot of stuff. Who can take it off my hands?"
+    %li
+      = render partial: 'icon_partials/travel', locals: {size: size}
+      Travel: "I'm road tripping to Cappadocia.  Anyone have any tips or want to join me?"
+    %li
+      = render partial: 'icon_partials/work', locals: {size: size}
+      Work: "My company is looking to hire a graphic designer for our upcoming project."
+%p
+  In addition to categories, posts must have directionality (e.g., "seeking" or "offering"), expiration, title, content and, most importantly of all, keywords (well, key terms, but "keywords" is in vogue).  A post must have at least 3 keywords and at most 10.
+%h3 Matches
+%p
+  To be matched, posts must be in the same category, be of complementary directionality if a directionality category (Housing, Stuff and Work), and have at least 3 keywords in common.  The matching is very rigid (elasticity is coming), but hopefully up to 10 is enough to overcome that rigidity for the time being.
+%p
+  When a post is created, the system searches for matches and continues to do so throughout the post's life; however, as a post ages, it is matched less and less frequently.
+%p
+  When the post expires, the system will attempt to remove it--expired posts for which matches have been found are not removed until the earlier of the post's user signs on or some time has passed since expiration.
+%h3 The layout of trellisd
+%p
+  The Home page consists of a feed of the latest posts from users within your extended network and a box indicating how many posts you currently have in the system, the number of people to whom you are connected, and notifications, if any: posts that have recent/new matches, suggested connections (i.e., your Facebook friends who also you trellisd but to whom you are not connected on trellisd), requested connections from other users, and any new messages.
+%ul
+  %li
+    Profile shows your profile, your posts, and, for your eyes only, indicates how many matches each of your posts has.
+  %li
+    Posts shows all the posts on trellisd and indicates which ones are from users in your extended network.
+  %li
+    Connections shows suggested connections, along with made and requested connections.
+  %li
+    Users is where you can search for other users.
+  %li
+    Messages is your inbox.
+  %li
+    And Settings is your settings.
+%p
+  Lastly, another note about posts.  With the exception of a post's individual page (where its full contents are shown), everywhere that posts are listed, they will be present in one of three colors:
+%ul.example_colors
+  %li.pdq_color
+    PDQ
+  %li.matching_color
+    Matching
+  %li.normal_color
+    The Rest
+%br
+%p
+  And there you have it.  If any of this is confusing or broken, reach out: 
+  = mail_to 'trellisdapp@gmail.com', 'trellisdapp@gmail.com'
+  \.
+%p
+  And if you want to help make it better/awesome/practically perfect in every way: 
+  = link_to 'trellisd on github', 'https://github.com/jasonklein/trellisd'
+  \.
+
+

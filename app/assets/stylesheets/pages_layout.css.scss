@@ -31,4 +31,29 @@
       font-size: $base-font-size * 4;
     }
   }
+  ul.example_colors {
+    li {
+      border-radius: 5px;
+      height: 35px;
+      width: 100px;
+      margin: 10px 10px 10px 0;
+      padding: 5px;
+      text-align: center;
+      &.normal_color {
+      background-color: $display_box_normal_background_color;
+      }
+      &.matching_color {
+        background-color: $display_box_matching_background_color;
+      }
+      &.pdq_color {
+        background-color: $display_box_pdq_background_color;
+      }
+    }
+  }
 }
+
+
+
+
+
+  
