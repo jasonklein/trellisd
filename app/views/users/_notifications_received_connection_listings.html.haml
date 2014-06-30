@@ -1,6 +1,7 @@
 #received_connections.notifications_subset
   .heading
-    %h5 Requested Connections
+    %h5
+      = link_to "Requested Connections", connections_path(anchor: "connections_index")
   .content
     - connections.each do |connection|
       .connection_listing
