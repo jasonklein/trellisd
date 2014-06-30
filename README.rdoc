@@ -2,14 +2,14 @@
 
 trellisd provides an answer to the question, "Does anybody know anyone who...?" by matching posts from users with complementary posts from others' with users' extended networks.
 
+Built on Rails 3.2.18, using PostgreSQL.
+
 
 == Setup
 
-To get started, there are some rake tasks.
+To get started, there are some rake tasks to run after <tt>rake db:create</tt>.
 
 * To populate the database with users, connections, posts, etc. (using Faker):
-        rake db:reset
-        rake db:create
         rake db:populate
 * To make the initial matches:
         rake match:fresh_posts
@@ -28,7 +28,7 @@ To get started, there are some rake tasks.
 
 * Activate mailer functionality.
 
-Write tests for key functions.
+* Write tests for key functions.
 
 * Add "General Interest" model, which would act like Google alerts--matching with posts without the user having had to have written a specific post.
 
