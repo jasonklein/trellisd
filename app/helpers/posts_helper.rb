@@ -49,13 +49,15 @@ module PostsHelper
     if post.category.try(:title) == 'pdq'
       'pdq_post'
     else
-      matching_ids = current_user.matching_ids_for_all_posts
-      matching_ids.include?(post.id) ? 'matching_post' : 'normal'
+      if current_user
+        matching_ids = current_user.matching_ids_for_all_posts
+        matching_ids.include?(post.id) ? 'matching_post' : 'normal'
+      end
     end
   end
 
   def classname_for_post_box_if_connected(post)
-    if current_user.all_connections_ids.include?(post.user_id)
+    if current_user && current_user.all_connections_ids.include?(post.user_id)
       'connection_post'
     end
   end
@@ -69,15 +71,19 @@ module PostsHelper
   end
 
   def show_user_name(user)
-    if user!= current_user
-      connections_hash = current_user.all_connections
-      if connections_hash[:primary].include? user.id
-        user.name
+    if current_user
+      if user!= current_user
+        connections_hash = current_user.all_connections
+        if connections_hash[:primary].include? user.id
+          user.name
+        else
+          user.short_name
+        end
       else
-        user.short_name
+        user.name
       end
     else
-      user.name
+      nil
     end
   end
 
@@ -88,37 +94,45 @@ module PostsHelper
   end
 
   def display_connection_buttons(user)
-    ids = [current_user.id, user.id]
-    connection = Connection.where(connecter_id: ids, connectee_id: ids).first
-    if connection
-      if connection.state == 'accepted'
-        render partial: 'connections/disconnect_button', locals: {user: user, label: "Disconnect", connection: connection}
-      else
-        if connection.connecter_id == current_user.id
-          render partial: 'connections/disconnect_button', locals: {user: user, label: "Delete Request", connection: connection}
+    if current_user
+      ids = [current_user.id, user.id]
+      connection = Connection.where(connecter_id: ids, connectee_id: ids).first
+      if connection
+        if connection.state == 'accepted'
+          render partial: 'connections/disconnect_button', locals: {user: user, label: "Disconnect", connection: connection}
         else
-          render partial: 'connections/accept_reject_buttons', locals: {user: user, label: "Reject", connection: connection}
+          if connection.connecter_id == current_user.id
+            render partial: 'connections/disconnect_button', locals: {user: user, label: "Delete Request", connection: connection}
+          else
+            render partial: 'connections/accept_reject_buttons', locals: {user: user, label: "Reject", connection: connection}
+          end
+        end
+      else
+        if user.id == current_user.id
+          nil
+        else
+          render partial: 'connections/connect_button', locals: {user: user}
         end
       end
     else
-      if user.id == current_user.id
-        nil
-      else
-        render partial: 'connections/connect_button', locals: {user: user}
-      end
+      nil
     end
   end
 
   def display_message_button_if_user_not_current_user(user, post)
-    if user != current_user
-      button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: user.id, post_id: post.id), method: :get
+    if current_user
+      if user != current_user
+        button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: user.id, post_id: post.id), method: :get
+      else
+        nil
+      end
     else
       nil
     end
   end
 
   def display_flag_button(user)
-    button_to "Flag", create_user_flag_path(current_user, user) if user != current_user
+    button_to "Flag", create_user_flag_path(current_user, user) if current_user && user != current_user
   end
 
   def posts_with_recent_matches(posts)
@@ -130,36 +144,56 @@ module PostsHelper
   end
 
   def display_posts_with_recent_matches
-    posts = posts_with_recent_matches(current_user.posts)
-    if posts.any?
-      render partial: 'users/notifications_post_listings', locals: {posts: posts}
+    if current_user
+      posts = posts_with_recent_matches(current_user.posts)
+      if posts.any?
+        render partial: 'users/notifications_post_listings', locals: {posts: posts}
+      end
+    else
+      nil
     end
   end
 
   def display_pending_received_connections
-    connections = current_user.pending_received_connections
-    if connections.any?
-      render partial: 'users/notifications_received_connection_listings', locals: {connections: connections}
+    if current_user
+      connections = current_user.pending_received_connections
+      if connections.any?
+        render partial: 'users/notifications_received_connection_listings', locals: {connections: connections}
+      end
+    else
+      nil
     end
   end
 
   def display_suggested_connections
-    suggested_connections = current_user.suggested_connections
-    if suggested_connections.any?
-      render partial: 'users/notifications_suggested_connection_listings', locals: {suggested_connections: suggested_connections}
+    if current_user
+      suggested_connections = current_user.suggested_connections
+      if suggested_connections.any?
+        render partial: 'users/notifications_suggested_connection_listings', locals: {suggested_connections: suggested_connections}
+      end
+    else
+      nil
     end
   end
 
   def display_latest_unviewed_messages
-    messages = current_user.unviewed_messages.limit(5)
-    if messages.any?
-      render partial: 'users/notifications_message_listings', locals: {messages: messages}
+    if current_user
+      messages = current_user.unviewed_messages.limit(5)
+      if messages.any?
+        render partial: 'users/notifications_message_listings', locals: {messages: messages}
+      end
+    else
+      nil
     end
   end
 
   def display_matches_count_if_current_user_post(post)
-    if post.user == current_user
-      "Matches: #{post.matches.count}"
+    if current_user
+      if post.user == current_user
+        "Matches: #{post.matches.count}"
+      end
+    else
+      nil
     end
   end
 
@@ -195,20 +229,32 @@ module PostsHelper
   end
 
   def display_edit_if_current_user_post(user, post)
-    if user == current_user
-      button_to "Edit", edit_post_path(post), method: :get
+    if current_user
+      if user == current_user
+        button_to "Edit", edit_post_path(post), method: :get
+      end
+    else
+      nil
     end
   end
 
   def display_delete_if_current_user_post(user, post)
-    if user == current_user
-      button_to "Delete", destroy_post_path(post)
+    if current_user
+      if user == current_user
+        button_to "Delete", destroy_post_path(post)
+      end
+    else
+      nil
     end
   end
 
   def display_flag_if_not_current_user_post(user, post)
-    if user != current_user
-      button_to "Flag", create_post_flag_path(current_user, post)
+    if current_user
+      if user != current_user
+        button_to "Flag", create_post_flag_path(current_user, post)
+      end
+    else
+      nil
     end
   end
 
