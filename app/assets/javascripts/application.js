@@ -48,16 +48,9 @@ TrellisdApp.expirationDatepicker = function() {
   });
 };
 
-TrellisdApp.usersSearch = function() {
-  $('#q_first_name_or_last_name_or_full_name_cont').on('keyup', function() {
-    $('#user_search').submit();
-  });
-};
-
 TrellisdApp.setup = function() {
   TrellisdApp.mobileMenuSlider();
   TrellisdApp.expirationDatepicker();
-  TrellisdApp.usersSearch();
 }
 
 $(TrellisdApp.setup);
