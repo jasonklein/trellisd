@@ -24,6 +24,19 @@ module PostsHelper
     end
   end
 
+  def expiration_class_for_post_box(post)
+    days_left = post.expiration - Date.today
+    if days_left < 7
+      if post.category.try(:title) == 'pdq'
+        'impending_expiration_pdq'
+      else
+        'impending_expiration'
+      end
+    else
+      nil
+    end
+  end
+
   def display_edit_if_current_user_post(user, post)
     if user == current_user
       button_to "Edit", edit_post_path(post), method: :get

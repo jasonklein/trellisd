@@ -6,6 +6,9 @@
   &.matching_post {
     background-color: $display_box_matching_background_color;
   }
+  &.pdq_post {
+    background-color: lighten($green, 10%);
+  }
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;
@@ -14,6 +17,11 @@
 .general_impending_expiration {
   font-weight: bold;
   color: $impending_expiration_color;
+}
+
+.general_impending_expiration_pdq {
+  font-weight: bold;
+  color: $impending_expiration_pdq_color;
 }
 
 .post_box {
@@ -33,6 +41,9 @@
     .impending_expiration {
       @extend .general_impending_expiration;
     }
+    .impending_expiration_pdq {
+      @extend .general_impending_expiration_pdq;
+    }
   }
   .post_box_icons {
     @include span-columns(2);
@@ -48,6 +59,9 @@
     vertical-align: top;
     .impending_expiration {
       @extend .general_impending_expiration;
+    }
+    .impending_expiration_pdq {
+      @extend .general_impending_expiration_pdq;
     }
     @include media($mobile) {
       @include row(table);
@@ -96,6 +110,9 @@
   .show_post_user {
     .impending_expiration {
       @extend .general_impending_expiration;
+    }
+    .impending_expiration_pdq {
+      @extend .general_impending_expiration_pdq;
     }
   }
   .show_post_title {
@@ -158,6 +175,9 @@
         vertical-align: top;
         .impending_expiration {
           @extend .general_impending_expiration;
+        }
+        .impending_expiration_pdq {
+          @extend .general_impending_expiration_pdq;
         }
         .text_highlight {
           vertical-align: bottom;

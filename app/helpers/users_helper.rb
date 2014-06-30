@@ -45,8 +45,12 @@ module UsersHelper
   end
 
   def classname_for_post_box(post)
-    matching_ids = current_user.matching_ids_for_all_posts
-    matching_ids.include?(post.id) ? 'matching_post' : 'normal'
+    if post.category.try(:title) == 'pdq'
+      'pdq_post'
+    else
+      matching_ids = current_user.matching_ids_for_all_posts
+      matching_ids.include?(post.id) ? 'matching_post' : 'normal'
+    end
   end
 
   def displaying_in_posts_controller?
@@ -101,15 +105,6 @@ module UsersHelper
   def display_message_button_if_user_not_current_user(user, post)
     if user != current_user
       button_to "Message", new_message_path(sender_id: current_user.id, recipient_id: user.id, post_id: post.id), method: :get
-    else
-      nil
-    end
-  end
-
-  def expiration_class_for_post_box(post)
-    days_left = post.expiration - Date.today
-    if days_left < 7
-      'impending_expiration'
     else
       nil
     end
