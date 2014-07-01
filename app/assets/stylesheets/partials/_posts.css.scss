@@ -160,7 +160,7 @@
     @include media($mobile) {
       @include row(table);
       max-width: 300px;
-      min-height: 150px;
+      min-height: 160px;
       font-size: 12px;
       margin: 0 auto;
     }
