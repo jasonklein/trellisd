@@ -6,7 +6,7 @@ task :expired_posts => :environment do
 
   expired_posts = Post.where('expiration < ?', Date.today)
   expired_posts.each do |expired_post|
-    if expired_post.has_recent_matches
+    if expired_post.has_recent_matches?
       if expired_post.expiration < 5.days.ago.to_date
         expired_post.destroy
       end
