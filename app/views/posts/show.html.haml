@@ -25,6 +25,7 @@
         %div{class: expiration_class_for_post_box(@post)}
           = expiration_message(@post)
       .fb-share-button{"data-href" => "http://trellisd.herokuapp.com" + post_path(@post), "data-type" => "button"}
+      %a{"href" => "https://twitter.com/share", "class" => "twitter-share-button", "data-via" => "trellisdapp", "data-count" => "none", "data-text" => @post.directionality.capitalize + ': ' + truncate(@post.title, length: 50, separator: ' ')} Tweet
     %h6
       %br
       = display_message_button_if_user_not_current_user(@user, @post)
