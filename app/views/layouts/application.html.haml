@@ -3,13 +3,12 @@
   %head
     = favicon_link_tag 'favicon.ico'
     %title
-      = yield(:title).empty? ? 'Trellisd' : yield(:title)
+      = yield(:title).empty? ? 'trellisd' : yield(:title)
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    %meta{property: 'og:site_name', content: 'trellisd.herokuapp.com'}
-    %meta{property: 'fb:app_id', content: "543101752465568"}
+    %meta{property: 'og:site_name', content: 'trellisd'}
     = yield(:dynamic_fb_meta).empty? ? '' : yield(:dynamic_fb_meta)
 
   %body
