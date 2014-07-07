@@ -1,7 +1,7 @@
 - content_for :dynamic_fb_meta do
   %meta{property: 'og:type', content: 'trellisd:post'}
   %meta{property: 'og:url', content: 'http://trellisd.herokuapp.com' + post_path(@post)}
-  %meta{property: 'og:title', content: truncate(@post.title, length: 60, separator: ' ')}
+  %meta{property: 'og:title', content: @post.directionality.capitalize + ': ' + truncate(@post.title, length: 60, separator: ' ')}
   %meta{property: 'og:description', content: truncate(@post.content, length: 150, separator: ' ')}
 
 
