@@ -8,8 +8,8 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    %meta{property: 'og:trellisd', content: 'trellisd.herokuapp.com'}
-    %meta{property: 'fb:app_id', content: 'ENV["TRELLISD_FB_APP_ID"]'}
+    %meta{property: 'og:site_name', content: 'trellisd'}
+    %meta{property: 'og:image', content: 'http://trellisd.herokuapp.com' + image_path('trellisd-for-facebook-1024.png')}
   %body
     .wrapper-for-content-outside-of-footer
       #application_main
