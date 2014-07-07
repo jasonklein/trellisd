@@ -1,3 +1,11 @@
+- content_for :dynamic_fb_meta do
+  %meta{property: 'og:type', content: 'article'}
+  %meta{property: 'og:url', content: 'http://trellisd.herokuapp.com' + post_path(@post)}
+  %meta{property: 'og:title', content: truncate(@post.title, length: 60, separator: ' ')}
+  %meta{property: 'og:description', content: @post.title}
+  %meta{property: 'og:image', content: 'http://localhost:3000' + image_path('trellisd-for-facebook-1024.png')}
+
+
 .show_post.normal_post
   .show_post_headline
     .show_post_category
@@ -30,6 +38,7 @@
     = display_edit_if_current_user_post(@user, @post)
     = display_delete_if_current_user_post(@user, @post)
     = display_flag_if_not_current_user_post(@user, @post)
+    .fb-share-button{"data-href" => "http://trellisd.herokuapp.com/posts/302", "data-type" => "button"}
 - if current_user_and_matches?(@post)
   - @post.matches.each do |match|
     = display_match(match)

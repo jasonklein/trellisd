@@ -3,14 +3,26 @@
   %head
     = favicon_link_tag 'favicon.ico'
     %title
-      = (yield(:title).empty? ? 'Trellisd' : yield(:title) )
+      = yield(:title).empty? ? 'Trellisd' : yield(:title)
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    %meta{property: 'og:trellisd', content: 'trellisd.herokuapp.com'}
-    %meta{property: 'fb:app_id', content: 'ENV["TRELLISD_FB_APP_ID"]'}
+    %meta{property: 'og:site_name', content: 'trellisd.herokuapp.com'}
+    %meta{property: 'fb:app_id', content: "543101752465568"}
+    = yield(:dynamic_fb_meta).empty? ? '' : yield(:dynamic_fb_meta)
+
   %body
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=543101752465568&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
     .wrapper-for-content-outside-of-footer
       #application_main
         = render "layouts/navbar"
