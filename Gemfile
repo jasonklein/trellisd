@@ -15,6 +15,8 @@ gem 'kaminari'
 
 gem 'high_voltage'
 
+gem 'letter_opener', group: :development
+
 gem 'omniauth-facebook'
 gem 'httparty'
 gem 'json'
