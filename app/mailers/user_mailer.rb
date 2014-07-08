@@ -1,3 +1,6 @@
-class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+class UserMailer < Devise::Mailer
+  default from: "trellisdapp@gmail.com"
+  default reply_to: "trellisdapp@gmail.com"
+
+  
 end
