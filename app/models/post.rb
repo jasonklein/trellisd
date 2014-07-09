@@ -162,6 +162,10 @@ class Post < ActiveRecord::Base
   def has_possibly_unseen_matches?
     self.matches.where('created_at > ?', self.user.last_sign_in_at).any?
   end
+
+  def new_matches
+    self.matches.where('created_at > ?', self.last_matched)
+  end
   
 
 end
