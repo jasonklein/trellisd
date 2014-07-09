@@ -1,13 +1,12 @@
-= @recipient.first_name + ','
-\
-= @sender.name + ' sent you a message.'
-\
-Subject: #{@subject}
-Content: #{truncate(@content, length: 200, separator: ' ')}
-\
-= link_to "Click here to reply", messages_url(anchor: "message_#{@message_id}")
-  to reply.
-\
+<%= @recipient.first_name %>,
+
+<%= @sender.name %> sent you a message.
+
+Subject: <%= @subject %>
+Content: <%= @content %>
+
+Click this link to go to the message: <%= messages_url(anchor: "message_#{@message_id}") %>
+
 Cheers,
-\
+
 trellisd
