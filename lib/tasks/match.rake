@@ -9,21 +9,7 @@ namespace :match do
 
     fresh_posts = Post.where(created_at: 1.day.ago..Time.now)
 
-    users_and_posts_ids = {}
-    ids_of_users_to_notify = []
-
-    if fresh_posts.any?
-      fresh_posts.each do |post|
-        post.make_matches
-        if post.has_new_matches?
-          users_and_posts_ids[post.id] = post.user_id
-          ids_of_users_to_notify << post.user_id
-        end
-      end
-    end
-
-    ids_of_users_to_notify = ids_of_users_to_notify.uniq
-    mail_users_of_posts_with_new_matches(users_and_posts_ids, ids_of_users_to_notify)
+    match_posts_and_notify_users(fresh_posts)
   end
 
   desc "Find and make matches for aged posts."
@@ -33,11 +19,12 @@ namespace :match do
 
     # Intention is to reduce resource demands as posts age
 
-    # Posts up to a week old get matched every night
-    # Posts 10 days, 2 weeks, 3 weeks, 4 weeks, 6 weeks, 2 months, and 3 months old
-    # get matched each night. This should mean that a post that is one month old,
-    # should have been selected for match making, after the first day, 10 times
-    # (depending on the month).
+    # On X day, rakes for given ages should be approximately:
+    # one day old: 24 total rakes
+    # one week old: 30 total rakes
+    # one month old: 34 total rakes
+    # two months old: 36 total rakes
+    # three months old: 37 total rakes
 
     up_to_a_week_old_posts = Post.where(created_at: 1.week.ago...1.day.ago)
     ten_day_old_posts = Post.where(created_at: 10.days.ago)
@@ -50,23 +37,7 @@ namespace :match do
     all_aged_posts = up_to_a_week_old_posts | ten_day_old_posts | two_week_old_posts | three_week_old_posts | four_week_old_posts | six_week_old_posts | two_month_old_posts | three_month_old_posts
     all_aged_posts = all_aged_posts.uniq
 
-    # Create hash of user and post ids to notify if any new matches are made
-    users_and_posts_ids = {}
-    ids_of_users_to_notify = []
-
-    if all_aged_posts.any?
-      all_aged_posts.each do |post|
-        post.make_matches
-        if post.has_new_matches?
-          users_and_posts_ids[post.id] = post.user_id
-          ids_of_users_to_notify << post.user_id
-        end
-      end
-    end
-
-    ids_of_users_to_notify = ids_of_users_to_notify.uniq
-
-    mail_users_of_posts_with_new_matches(users_and_posts_ids, ids_of_users_to_notify)
+    match_posts_and_notify_users(all_aged_posts)
 
   end
 end
