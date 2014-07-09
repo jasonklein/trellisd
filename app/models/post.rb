@@ -152,9 +152,16 @@ class Post < ActiveRecord::Base
   end
 
   def has_recent_matches?
-    self.matches.where('created_at > ?', self.last_matched).any? || self.matches.where('created_at > ?', self.user.last_sign_in_at).any? ? true : false
+    self.has_new_matches? || self.has_possibly_unseen_matches? ? true : false
   end
 
+  def has_new_matches?
+    self.matches.where('created_at > ?', self.last_matched).any?
+  end
+
+  def has_possibly_unseen_matches?
+    self.matches.where('created_at > ?', self.user.last_sign_in_at).any?
+  end
   
 
 end
