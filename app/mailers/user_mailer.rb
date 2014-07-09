@@ -9,10 +9,11 @@ class UserMailer < Devise::Mailer
     super
   end
 
-  def notify_user_of_connection_request(user, connecter)
-    @user = user
-    attachments.inline['trellisd_email_image'] = File.read 'app/assets/images/trellisd-logo-100.png'
-    mail to: @user.email, subject: connecter.name + 'wants to connect!'
+  def notify_user_of_connection_request(connectee, connecter)
+    @connectee = connectee
+    @connecter = connecter
+    set_inline_trellisd_logo
+    mail to: @connectee.email, subject: connecter.name + ' wants to connect on trellisd. Nice!'
   end
 
   def set_inline_trellisd_logo
