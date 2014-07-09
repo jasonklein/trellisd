@@ -56,7 +56,7 @@ Trellisd::Application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'trellisd.herokuapp.com',
-    user_name:            'trellisdapp',
+    user_name:            'trellisdapp@gmail.com',
     password:             ENV['TRELLISD_EMAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true  }
