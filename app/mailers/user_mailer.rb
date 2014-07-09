@@ -30,3 +30,5 @@ class UserMailer < Devise::Mailer
     attachments.inline['trellisd_email_image'] = File.read 'app/assets/images/trellisd-logo-100.png'
   end
 end
+
+
