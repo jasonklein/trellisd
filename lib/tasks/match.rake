@@ -1,3 +1,6 @@
+require_relative '../match_helper'
+include MatchHelper
+
 namespace :match do
   desc "Find and make matches for fresh posts."
   task :fresh_posts => :environment do
@@ -6,11 +9,21 @@ namespace :match do
 
     fresh_posts = Post.where(created_at: 1.day.ago..Time.now)
 
+    users_and_posts_ids = {}
+    ids_of_users_to_notify = []
+
     if fresh_posts.any?
       fresh_posts.each do |post|
         post.make_matches
+        if post.has_new_matches?
+          users_and_posts_ids[post.id] = post.user_id
+          ids_of_users_to_notify << post.user_id
+        end
       end
     end
+
+    ids_of_users_to_notify = ids_of_users_to_notify.uniq
+    mail_users_of_posts_with_new_matches(users_and_posts_ids, ids_of_users_to_notify)
   end
 
   desc "Find and make matches for aged posts."
@@ -52,12 +65,8 @@ namespace :match do
     end
 
     ids_of_users_to_notify = ids_of_users_to_notify.uniq
-    ids_of_users_to_notify.each do |user_id|
-      user_posts_ids_hash = users_and_posts_ids.select { |key, value| value == user_id}
-      if user_posts_ids_hash.any?
-        posts_ids = user_posts_ids_hash.keys
-        UserMailer.notify_user_of_new_matches(user_id, posts_ids).deliver
-      end
-    end
+
+    mail_users_of_posts_with_new_matches(users_and_posts_ids, ids_of_users_to_notify)
+
   end
 end

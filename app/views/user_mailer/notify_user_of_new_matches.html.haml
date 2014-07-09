@@ -1,0 +1,18 @@
+%p
+  = @user.first_name + ','
+
+%p
+  Your posts have some new buddies:
+- @posts.each do |post|
+  .post{style: "margin: 0 20px 10px 20px; font-weight: bold"}
+    %p
+      = link_to post.title, post_url(post)
+    - post.new_matches.each do |match|
+      .match{style: "margin: 0 10px; font-style: italic"}
+        %p
+          = link_to "#{match.matching.try(:title)} (#{match.keyword_coverage}%)", post_url(match.matching)
+
+%p
+  Cheers,
+%p
+  = image_tag attachments['trellisd_email_image.png'].url, alt: 'trellisd'
