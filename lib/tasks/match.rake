@@ -35,6 +35,7 @@ namespace :match do
     two_month_old_posts = Post.where(created_at: 2.months.ago)
     three_month_old_posts = Post.where(created_at: 3.months.ago)
     all_aged_posts = up_to_a_week_old_posts | ten_day_old_posts | two_week_old_posts | three_week_old_posts | four_week_old_posts | six_week_old_posts | two_month_old_posts | three_month_old_posts
+    all_aged_posts = all_aged_posts.uniq
 
     if all_aged_posts.any?
       all_aged_posts.each do |post|
