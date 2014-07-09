@@ -1,0 +1,23 @@
+%p
+  = @recipient.first_name + ','
+
+%p
+  = @sender.name + ' sent you a message.'
+
+.message{style: "margin: 0 20px"}
+  %p
+    %strong
+      = @subject
+  %p
+    %em
+      = truncate(@content, length: 200, separator: ' ')
+
+%p
+  Click 
+  = link_to "here", messages_url(anchor: "message_#{@message_id}")
+  to reply.
+
+%p
+  Cheers,
+%p
+  = image_tag attachments['trellisd_email_image'].url, alt: 'trellisd'

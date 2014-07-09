@@ -9,11 +9,21 @@ class UserMailer < Devise::Mailer
     super
   end
 
-  def notify_user_of_connection_request(connectee, connecter)
-    @connectee = connectee
-    @connecter = connecter
+  def notify_user_of_connection_request(connection)
+    @connectee = connection.connectee
+    @connecter = connection.connecter
     set_inline_trellisd_logo
-    mail to: @connectee.email, subject: connecter.name + ' wants to connect on trellisd. Nice!'
+    mail to: @connectee.email, subject: @connecter.name + ' wants to connect on trellisd. Nice!'
+  end
+
+  def notify_user_of_message(message)
+    @recipient = message.recipient
+    @sender = message.sender
+    @subject = message.subject
+    @content = message.content
+    @message_id = message.id.to_s
+    set_inline_trellisd_logo
+    mail to: @recipient.email, subject: 'Your trellisd inbox is getting a workout from ' + @sender.name + '.'
   end
 
   def set_inline_trellisd_logo

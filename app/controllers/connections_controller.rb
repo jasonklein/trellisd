@@ -15,9 +15,7 @@ class ConnectionsController < ApplicationController
     if !Connection.where(connecter_id: connecter_id, connectee_id: connectee_id).any?
       if @connection = Connection.create(connecter_id: connecter_id, connectee_id: connectee_id)
         destroy_suggested_connections(params[:connection])
-        connecter = current_user
-        connectee = User.find(connectee_id)
-        UserMailer.notify_user_of_connection_request(connectee, connecter).deliver
+        UserMailer.notify_user_of_connection_request(@connection).deliver
         redirect_to connections_path, notice: 'Connection requested.'
       else
         redirect_to connections_path, notice: 'Error in connection request. Please try again later.'

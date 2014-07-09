@@ -28,6 +28,7 @@ class MessagesController < ApplicationController
 
   def create
     if @message.save
+      UserMailer.notify_user_of_message(@message).deliver
       redirect_to messages_path, notice: "Message sent."
     else
       render 'new'
@@ -57,6 +58,7 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message])
 
     if @message.save
+      UserMailer.notify_user_of_message(@message).deliver
       redirect_to messages_path, notice: "Reply sent."
     else
       render 'reply'
