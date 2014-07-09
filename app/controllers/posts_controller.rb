@@ -22,10 +22,6 @@ class PostsController < ApplicationController
       
     @posts = @q.result(distinct: true).includes(:keywords).page(params[:page])
 
-    # respond_to do |format|
-    #   format.js { render layout: "posts_index" }
-    #   format.html { render layout: "posts_index" }
-    # end
     render_layout_for_post_views
   end
 
@@ -39,10 +35,6 @@ class PostsController < ApplicationController
 
     @posts = @q.result(distinct: true).includes(:keywords).page(params[:page])
 
-    # respond_to do |format|
-    #   format.js { render layout: "posts_index", template: "posts/index" }
-    #   format.html { render layout: "posts_index", template: "posts/index" }
-    # end
     render_layout_for_post_views
   end
 
