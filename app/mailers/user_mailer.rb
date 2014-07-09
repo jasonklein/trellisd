@@ -3,16 +3,17 @@ class UserMailer < Devise::Mailer
   default reply_to: "trellisdapp@gmail.com"
 
   include Devise::Controllers::UrlHelpers
+  include AbstractController::Callbacks
+
+  before_filter :set_inline_trellisd_logo
 
   def reset_password_instructions(record, token, opts={})
-    set_inline_trellisd_logo
     super
   end
 
   def notify_user_of_connection_request(connection)
     @connectee = connection.connectee
     @connecter = connection.connecter
-    set_inline_trellisd_logo
     mail to: @connectee.email, subject: @connecter.name + ' wants to connect on trellisd. Nice!'
   end
 
@@ -22,14 +23,12 @@ class UserMailer < Devise::Mailer
     @subject = message.subject
     @content = message.content
     @message_id = message.id.to_s
-    set_inline_trellisd_logo
     mail to: @recipient.email, subject: 'Your trellisd inbox is getting a workout from ' + @sender.name + '.'
   end
 
   def notify_user_of_new_matches(user_id, posts_ids)
     @user = User.find(user_id)
-    @titles = Post.where(id: posts_ids).pluck(:title)
-    set_inline_trellisd_logo
+    @posts = Post.where(id: posts_ids)
     mail to: @user.email, subject: "You've got some matches."
   end
 
