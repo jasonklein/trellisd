@@ -19,10 +19,16 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         suggested_connections = []
         friends_uids.each do |uid|
           if identity = Identity.where(uid: uid).first
-            SuggestedConnection.where(user_id: user.id, connectee_id: identity.user_id).first_or_create
+            connection_ids = [user.id, identity.user_id]
+            if !Connection.where(connecter_id: connection_ids, connectee_id: connection_ids).any?
+              SuggestedConnection.where(user_id: user.id, connectee_id: identity.user_id).first_or_create
+            end
           end
         end
       end
+
+          
+
 
       flash.notice = "Signed in through Facebook!"
       sign_in_and_redirect user
