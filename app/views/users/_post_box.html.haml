@@ -3,13 +3,12 @@
     = image_tag post.user.image.url(:thumb)
   .post_box_content
     = link_to post_user_name(post), user_path(post.user_id)
-    %em
-      = display_directionality_if_directionality_cateogry(post)
     %br
+    %span.directionality
+      = post.directionality.capitalize + ':' 
     = link_to truncate(post.title, length: 45, separator: ' '), post_path(post)
-    %em
-      %div{class: expiration_class_for_post_box(post)}
-        = expiration_message(post)
+    .expiration{class: expiration_class_for_post_box(post)}
+      = expiration_message(post)
   .post_box_icons
     = display_category_icon(post, '60px')
     / = display_attachment_icon(post)

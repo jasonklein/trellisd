@@ -10,11 +10,14 @@
     background-color: $display_box_pdq_background_color;
   }
   &.connection_post {
-    border: $table_border_arguments;
+    border: $posts_index_border_arguments;
   }
   margin: $display_box_margin;
   padding: $display_box_padding;
   @include clearfix;
+  .expiration {
+    font-style: italic;
+  }
 }
 
 .general_impending_expiration {
@@ -39,7 +42,7 @@
     }
   }
   .post_box_content {
-    @include span-columns(4);
+    @include span-columns(5);
     vertical-align: top;
     .impending_expiration {
       @extend .general_impending_expiration;
@@ -49,7 +52,7 @@
     }
   }
   .post_box_icons {
-    @include span-columns(2);
+    @include span-columns(1);
     text-align: right;
     vertical-align: middle;
   }
@@ -60,6 +63,9 @@
   .profile_post_box_content {
     @include span-columns(5);
     vertical-align: top;
+    .directionality {
+      font-style: italic;
+    }
     .impending_expiration {
       @extend .general_impending_expiration;
     }
@@ -179,6 +185,9 @@
       .posts_index_post_box_content {
         @include span-columns(2 of 3);
         vertical-align: top;
+        .directionality {
+          font-style: italic;
+        }
         .impending_expiration {
           @extend .general_impending_expiration;
         }

@@ -5,12 +5,12 @@ module PostsHelper
       connection_id = post.user_id
       connections_hash = current_user.all_connections
       if connections_hash[:primary].include? connection_id
-        simple_format "#{post.user.name}\n"
+        "#{post.user.name}"
       else
         if connections_hash[:secondary].include? connection_id
-          simple_format "#{post.user.try(:short_name)} (2°)\n"
+          "#{post.user.try(:short_name)} (2°)"
         else
-          simple_format "#{post.user.try(:short_name)} (3°)\n"
+          "#{post.user.try(:short_name)} (3°)"
         end
       end
     else
@@ -92,12 +92,6 @@ module PostsHelper
       end
     else
       nil
-    end
-  end
-
-  def display_directionality_if_directionality_cateogry(post)
-    if post.directionality_category?
-      post.directionality.capitalize
     end
   end
 
