@@ -1,6 +1,6 @@
 Trellisd::Application.routes.draw do
 
-  devise_for :users, :controllers => { :registrations => 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
 
   devise_scope :user do
     root to: 'devise/sessions#new'

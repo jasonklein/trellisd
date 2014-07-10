@@ -2,7 +2,7 @@
 
 <%= @connecter.name %> wants to connect, lucky you.
 
-To login to accept (or reject) this request, click the following link: http://www.trellisd.com<%= user_home_path(@connectee) %>.
+To check out <%= @connecter.first_name %>'s profile and to accept (or reject) this request, click the following link: http://www.trellisd.com<%= user_path(@connecter) %>
 
 Remember: connections power trellisd!
 

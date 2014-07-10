@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_filter :get_request_url
   before_filter :authenticate_user!
   load_and_authorize_resource
   

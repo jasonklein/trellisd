@@ -5,8 +5,6 @@ class UserMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers
   include AbstractController::Callbacks
 
-  # before_filter :set_inline_trellisd_logo
-
   def reset_password_instructions(record, token, opts={})
     super
   end

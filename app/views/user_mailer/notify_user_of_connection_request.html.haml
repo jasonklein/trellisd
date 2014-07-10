@@ -5,8 +5,11 @@
   = @connecter.name + ' wants to connect, lucky you.'
 
 %p
-  = link_to "Login", "http://www.trellisd.com" + user_home_path(@connectee)
-  to accept (or reject) this request. Remember: connections power trellisd!
+  Click
+  = link_to "here", "http://www.trellisd.com" + user_path(@connecter)
+  to check out
+  = @connecter.first_name + "'s"
+  profile and to accept (or reject) this request. Remember: connections power trellisd!
 
 %p
   Cheers,

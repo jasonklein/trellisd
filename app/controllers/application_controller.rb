@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(resource)
-    user_home_path(current_user)
+    session[:request_url] || user_home_path(current_user)
   end
 
   private
@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     if current_user
       @all_connections = current_user.all_connections
     end
+  end
+
+  protected
+  def get_request_url
+    session[:request_url] = request.url
   end
 
 end

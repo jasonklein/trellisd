@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
 
+  before_filter :get_request_url
   load_and_authorize_resource
 
   def index
