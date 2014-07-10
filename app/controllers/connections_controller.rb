@@ -14,7 +14,7 @@ class ConnectionsController < ApplicationController
     connectee_id = params[:connection][:connectee_id]
     if !Connection.where(connecter_id: connecter_id, connectee_id: connectee_id).any?
       if @connection = Connection.create(connecter_id: connecter_id, connectee_id: connectee_id)
-        destroy_suggested_connections(params[:connection])
+        destroy_suggested_connections(connecter_id, connectee_id)
         UserMailer.notify_user_of_connection_request(@connection).deliver
         redirect_to connections_path, notice: 'Connection requested.'
       else
@@ -47,8 +47,8 @@ class ConnectionsController < ApplicationController
   ### Destroy any suggested connections in the system after either party
   ### initiates a connection.
 
-  def destroy_suggested_connections(connection_hash)
-    connection_ids = connection_hash.map { |key, value| value }
+  def destroy_suggested_connections(connecter_id, connectee_id)
+    connection_ids = [connecter_id, connectee_id]
     suggested_connection_ids = SuggestedConnection.where(user_id: connection_ids, connectee_id: connection_ids).pluck('id')
     suggested_connection_ids.each do |id|
       SuggestedConnection.destroy(id)
