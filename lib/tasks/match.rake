@@ -26,16 +26,18 @@ namespace :match do
     # two months old: 36 total rakes
     # three months old: 37 total rakes
 
-    up_to_a_week_old_posts = Post.where(created_at: 1.week.ago...1.day.ago)
-    ten_day_old_posts = Post.where(created_at: 10.days.ago)
-    two_week_old_posts = Post.where(created_at: 2.weeks.ago)
-    three_week_old_posts = Post.where(created_at: 3.weeks.ago)
-    four_week_old_posts = Post.where(created_at: 4.weeks.ago)
-    six_week_old_posts = Post.where(created_at: 6.weeks.ago)
-    two_month_old_posts = Post.where(created_at: 2.months.ago)
-    three_month_old_posts = Post.where(created_at: 3.months.ago)
+    up_to_a_week_old_posts = Post.where(created_at: 1.week.ago..1.day.ago)
+    ten_day_old_posts = Post.where(created_at: 11.days.ago..10.days.ago)
+    two_week_old_posts = Post.where(created_at: 15.days.ago..14.days.ago)
+    three_week_old_posts = Post.where(created_at: 22.days.ago..21.days.ago)
+    four_week_old_posts = Post.where(created_at: 29.days.ago..28.days.ago)
+    six_week_old_posts = Post.where(created_at: 43.days.ago..42.days.ago)
+    two_month_old_posts = Post.where(created_at: 61.days.ago..60.days.ago)
+    three_month_old_posts = Post.where(created_at: 91.days.ago..90.days.ago)
     all_aged_posts = up_to_a_week_old_posts | ten_day_old_posts | two_week_old_posts | three_week_old_posts | four_week_old_posts | six_week_old_posts | two_month_old_posts | three_month_old_posts
     all_aged_posts = all_aged_posts.uniq
+
+    puts all_aged_posts.count
 
     match_posts_and_notify_users(all_aged_posts)
 
