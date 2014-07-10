@@ -4,7 +4,7 @@ Your posts have some new buddies:
 
 <% @posts.each do |post| %>
   <%= post.title %>
-  <%= post_url(post) %>
+  http://www.trellisd.com<%= post_path(post) %>
   
   <% post.new_matches.each do |match| %>
     - <%= match.matching.try(:title) %> (<%= match.keyword_coverage %>%)
