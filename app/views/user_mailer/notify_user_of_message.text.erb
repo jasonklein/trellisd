@@ -3,6 +3,7 @@
 <%= @sender.name %> sent you a message.
 
 Subject: <%= @subject %>
+
 Content: <%= @content %>
 
 Click this link to go to the message: <%= messages_url(anchor: "message_#{@message_id}") %>

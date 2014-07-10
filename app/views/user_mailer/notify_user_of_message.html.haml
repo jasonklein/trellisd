@@ -5,12 +5,10 @@
   = @sender.name + ' sent you a message.'
 
 .message{style: "margin: 0 20px"}
-  %p
-    %strong
-      = @subject
-  %p
-    %em
-      = @content
+  %p{style: "font-weight: bold"}
+    = @subject
+  %p{style: "font-style: italic"}
+    = @content
 
 %p
   Click 
