@@ -10,4 +10,8 @@ module ApplicationHelper
       link_to "Sign In", new_user_session_path, class: "session_control"
     end
   end
+
+  def display_path_with_protocol_and_host(path)
+    "http://" + request.host_with_port + path
+  end
 end
