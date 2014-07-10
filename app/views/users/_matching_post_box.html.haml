@@ -1,0 +1,16 @@
+%div{class: "matching_post_box #{classname_for_post_box(post)}"}
+  .post_box_image
+    = image_tag post.user.image.url(:thumb)
+  .post_box_content
+    = link_to post_user_name(post), user_path(post.user_id)
+    %br
+    %span.directionality
+      = post.directionality.capitalize + ':' 
+    = link_to truncate(post.title, length: 35, separator: ' '), post_path(post)
+    .expiration{class: expiration_class_for_post_box(post)}
+      = expiration_message(post)
+  .post_box_icons
+    = display_category_icon(post, '60px')
+    / = display_attachment_icon(post)
+    - if displaying_in_posts_controller?
+      = display_keyword_coverage_if_a_match(match)

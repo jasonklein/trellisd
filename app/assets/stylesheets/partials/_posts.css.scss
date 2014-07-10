@@ -58,6 +58,16 @@
   }
 }
 
+.matching_post_box {
+  @extend .post_box;
+  .post_box_content {
+    @include span-columns(4); /*Override .post_box due to box sizing with 2 icons*/
+  }
+  .post_box_icons {
+    @include span-columns(2); /*Override .post_box due to box sizing with 2 icons*/
+  }
+}
+
 .profile_post_box {
   @extend .general_post_display_style;
   .profile_post_box_content {
@@ -117,6 +127,9 @@
     }
   }
   .show_post_user {
+    .directionality {
+      font-style: italic;
+    }
     .impending_expiration {
       @extend .general_impending_expiration;
     }

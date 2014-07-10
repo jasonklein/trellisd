@@ -11,17 +11,14 @@
       %h2
         = @post.title
   .show_post_user
-    %h6
-      %em
-        = display_directionality_if_directionality_cateogry(@post)
+    %h6.directionality
+      = @post.directionality.capitalize 
     %h5
       = display_post_user_name(@user)
       %br
       = display_matches_count_if_current_user_post(@post)
-    %h6
-      %em
-        %div{class: expiration_class_for_post_box(@post)}
-          = expiration_message(@post)
+    %h6.expiration{class: expiration_class_for_post_box(@post)}
+      = expiration_message(@post)
     .social_media_button
       .fb-share-button{"data-href" => "http://trellisd.herokuapp.com" + post_path(@post), "data-type" => "button"}
     .social_media_button
