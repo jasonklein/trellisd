@@ -9,7 +9,7 @@
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
     %meta{property: 'og:site_name', content: 'trellisd'}
-    %meta{property: 'og:image', content: "#{Rails.root}" + image_path('trellisd-for-facebook-300.png')}
+    %meta{property: 'og:image', content: display_path_with_protocol_and_host(image_path('trellisd-for-facebook-300.png'))}
   %body
     .wrapper-for-content-outside-of-footer
       #application_main
