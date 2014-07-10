@@ -10,7 +10,10 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
     %meta{property: 'og:site_name', content: 'trellisd'}
     %meta{property: 'og:image', content: display_path_with_protocol_and_host(image_path('trellisd-for-facebook-300.png'))}
-    = yield(:dynamic_fb_meta).empty? ? '' : yield(:dynamic_fb_meta)
+    %meta{property: 'og:type', content: 'article'}
+    %meta{property: 'og:url', content: display_path_with_protocol_and_host(posts_path)}
+    %meta{property: 'og:title', content: "trellisd Posts"}
+    %meta{property: 'og:description', content: "Listing of all of the posts on trellisd."}
   %body
     .wrapper-for-content-outside-of-footer
       #application_main

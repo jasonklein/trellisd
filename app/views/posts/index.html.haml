@@ -1,7 +1,2 @@
-- content_for :dynamic_fb_meta do
-  %meta{property: 'og:type', content: 'article'}
-  %meta{property: 'og:url', content: display_path_with_protocol_and_host(posts_path)}
-  %meta{property: 'og:title', content: "trellisd Posts"}
-  %meta{property: 'og:description', content: "Listing of all of the posts on trellisd."}
 #posts
   = render partial: 'posts_index_posts', locals: {posts: @posts}
