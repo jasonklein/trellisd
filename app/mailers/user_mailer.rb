@@ -14,7 +14,7 @@ class UserMailer < Devise::Mailer
   def notify_user_of_connection_request(connection)
     @connectee = connection.connectee
     @connecter = connection.connecter
-    mail to: @connectee.email, subject: @connecter.name + ' wants to connect on trellisd. Nice!'
+    mail to: @connectee.email, subject: @connecter.name + ' would like to connect on trellisd. Nice!'
   end
 
   def notify_user_of_message(message)
