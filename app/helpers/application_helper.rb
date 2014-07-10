@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def display_path_with_protocol_and_host(path)
-    "http://" + request.host_with_port + path
+    "http://" + request.host + path
   end
 end

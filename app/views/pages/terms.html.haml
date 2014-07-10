@@ -1,4 +1,9 @@
 = content_for :title, 'Terms of Use'
+- content_for :dynamic_fb_meta do
+  %meta{property: 'og:type', content: 'trellisd:article'}
+  %meta{property: 'og:url', content: display_path_with_protocol_and_host(page_path('terms'))}
+  %meta{property: 'og:title', content: 'trellisd Terms of Use'}
+  %meta{property: 'og:description', content: "Just be cool."}
 %h2.text_highlight Terms of Use
 %h3 Introduction
 %p
