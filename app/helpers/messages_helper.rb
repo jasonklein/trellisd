@@ -12,7 +12,7 @@ module MessagesHelper
 
   def display_original_content
     if @original_content
-      @original_content
+      simple_format @original_content
     end
   end
 end

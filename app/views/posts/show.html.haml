@@ -28,7 +28,7 @@
       = display_message_button_if_user_not_current_user(@user, @post)
   .show_post_content
     %h5
-      = @post.content
+      = simple_format @post.content
   .show_post_keywords
     %h6.text_highlight
       = @post.list_keyword_titles
