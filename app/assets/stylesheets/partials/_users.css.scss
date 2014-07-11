@@ -64,6 +64,9 @@
         @include media($mobile) {
           overflow: hidden;
         }
+        @include media($pro-screen) {
+          overflow: hidden;
+        }
       }
     }
     .connections_buttons {
