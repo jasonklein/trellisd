@@ -1,5 +1,7 @@
 Trellisd::Application.routes.draw do
 
+  get "admin/index"
+
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
 
   devise_scope :user do
@@ -18,6 +20,8 @@ Trellisd::Application.routes.draw do
       get :reply
     end
   end
+
+  resources :admin
 
   get 'users/:id/home', to: 'users#home', as: 'user_home'
   post 'posts/:id', to: 'posts#destroy', as: 'destroy_post'
