@@ -8,6 +8,8 @@ Content: <%= @content %>
 
 Click this link to go to the message: http://www.trellisd.com<%= messages_path(anchor: "message_#{@message_id}") %>
 
+REPLYING TO THIS EMAIL WILL NOT SEND A REPLY TO <%= @sender.first_name.upcase %>.
+
 Cheers,
 
 trellisd

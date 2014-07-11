@@ -14,6 +14,9 @@
   Click 
   = link_to "here", "http://www.trellisd.com" + messages_path(anchor: "message_#{@message_id}")
   to reply.
+%p
+  REPLYING TO THIS EMAIL WILL NOT SEND A REPLY TO
+  = @sender.first_name.upcase + '.'
 
 %p
   Cheers,
