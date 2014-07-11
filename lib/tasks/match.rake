@@ -34,6 +34,8 @@ namespace :match do
     six_week_old_posts = Post.where(created_at: 43.days.ago..42.days.ago)
     two_month_old_posts = Post.where(created_at: 61.days.ago..60.days.ago)
     three_month_old_posts = Post.where(created_at: 91.days.ago..90.days.ago)
+
+    # combine all of the posts into a single array, but removing any duplicates
     all_aged_posts = up_to_a_week_old_posts | ten_day_old_posts | two_week_old_posts | three_week_old_posts | four_week_old_posts | six_week_old_posts | two_month_old_posts | three_month_old_posts
     all_aged_posts = all_aged_posts.uniq
 

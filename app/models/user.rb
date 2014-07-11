@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :sent_messages
   accepts_nested_attributes_for :received_messages
 
+  scope :new_joiners, lambda { where('created_at > ?', 3.days.ago) }
+
   def role?(role)
     self.role.to_s == role.to_s
   end
