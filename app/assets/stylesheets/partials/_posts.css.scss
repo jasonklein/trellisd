@@ -174,6 +174,9 @@
   @include media($mobile) {
     @include span-columns(10);
     @include shift(1);
+    .page_entries_info {
+      padding-left: 5px;
+    }
   }
   .posts_index_post_box_container {
     width: 360px;
@@ -182,7 +185,7 @@
     @include media($mobile) {
       @include row(table);
       max-width: 300px;
-      min-height: 160px;
+      max-height: 160px;
       font-size: 12px;
       margin: 0 auto;
     }
@@ -192,36 +195,44 @@
       width: 320px;
       height: 250px;
       @include media($mobile) {
-        width: 80%;
+        width: 90%;
         height: 100%;
       }
-      .posts_index_post_box_content {
-        @include span-columns(2 of 3);
-        vertical-align: top;
-        .directionality {
-          font-style: italic;
+      .ebkw {
+        @include row(table);
+        margin-bottom: 20px;
+        .posts_index_post_box_content {
+          @include span-columns(2 of 3);
+          vertical-align: top;
+          padding-right: 5px;
+          .directionality {
+            font-style: italic;
+          }
+          .impending_expiration {
+            @extend .general_impending_expiration;
+          }
+          .impending_expiration_pdq {
+            @extend .general_impending_expiration_pdq;
+          }
         }
-        .impending_expiration {
-          @extend .general_impending_expiration;
-        }
-        .impending_expiration_pdq {
-          @extend .general_impending_expiration_pdq;
-        }
-        .text_highlight {
-          vertical-align: bottom;
+        .posts_index_extras {
+          @include span-columns(1 of 3);
+          .posts_index_post_box_icons {
+            @include row(table);
+          }
+          .posts_index_post_box_buttons{
+            @include row(table);
+          }
         }
         @include media($mobile) {
           @include row(table);
           margin-bottom: 10px;
         }
       }
-      .posts_index_extras {
-        @include span-columns(1 of 3);
-        .posts_index_post_box_icons {
-          @include row(table);
-        }
-        .posts_index_post_box_buttons{
-          @include row(table);
+      .posts_index_post_box_keywords {
+        @include row(table);
+        @include media($mobile) {
+          margin-bottom: 10px;
         }
       }
     }

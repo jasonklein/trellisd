@@ -1,25 +1,27 @@
 = paginate posts, remote: true
-= page_entries_info posts
+.page_entries_info
+  = page_entries_info posts
 %br
 - posts.each do |post|
   .posts_index_post_box_container
     %div{class: "posts_index_post_box #{classname_for_post_box(post)} #{classname_for_post_box_if_connected(post)}"}
-      .posts_index_post_box_content
-        %h6.directionality
-          = post.directionality.capitalize 
-        %h5
-          = truncate post.title, length: 45, separator: ' '
-        %h6
-          = display_matches_count_if_current_user_post(post)
-          .expiration{class: expiration_class_for_post_box(post)}
-            = expiration_message(post)
-        %br
+      .ebkw
+        .posts_index_post_box_content
+          %h6.directionality
+            = post.directionality.capitalize 
+          %h5
+            = truncate post.title, length: 45, separator: ' '
+          %h6
+            .expiration{class: expiration_class_for_post_box(post)}
+              = expiration_message(post)
+        .posts_index_extras
+          .posts_index_post_box_icons
+            = display_category_icon(post, '60px')
+            / = display_attachment_icon(post)
+          .posts_index_post_box_buttons
+            = button_to "View", post_path(post), method: :get
+      .posts_index_post_box_keywords
         %h6.text_highlight
-          = truncate post.list_keyword_titles, length: 80, separator: '|'
-      .posts_index_extras
-        .posts_index_post_box_icons
-          = display_category_icon(post, '60px')
-          / = display_attachment_icon(post)
-        .posts_index_post_box_buttons
-          = button_to "View", post_path(post), method: :get
+          = truncate post.list_keyword_titles, length: 100, separator: '|'
+%br
 = paginate posts, remote: true
