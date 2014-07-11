@@ -6,8 +6,8 @@
   = form_for @message do |f|
     = f.label :subject
     = f.text_field :subject, value: @subject
-    = display_original_content_label
-    = display_original_content
+    = display_original_or_post_content_label
+    = display_original_or_post_content
     = f.label :content
     = f.text_area :content, value: "", rows: '10'
     %br

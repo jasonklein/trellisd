@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
     else
       @post = Post.find(params[:post_id])
       @subject = @post.title
+      @post_content = @post.content
     end
   end
 

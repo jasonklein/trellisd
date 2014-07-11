@@ -4,15 +4,19 @@ module MessagesHelper
     recipient.name
   end
 
-  def display_original_content_label
+  def display_original_or_post_content_label
     if @original_content
       label_tag 'Original Message'
+    elsif @post_content
+      label_tag 'Post Content'
     end 
   end
 
-  def display_original_content
+  def display_original_or_post_content
     if @original_content
       simple_format @original_content
+    elsif @post_content
+      simple_format @post_content
     end
   end
 end
