@@ -16,19 +16,19 @@ class ConnectionsController < ApplicationController
       if @connection = Connection.create(connecter_id: connecter_id, connectee_id: connectee_id)
         destroy_suggested_connections(connecter_id, connectee_id)
         UserMailer.notify_user_of_connection_request(@connection).deliver
-        redirect_to connections_path, notice: 'Connection requested.'
+        redirect_to :back, notice: 'Connection requested.'
       else
-        redirect_to connections_path, notice: 'Error in connection request. Please try again later.'
+        redirect_to :back, notice: 'Error in connection request. Please try again later.'
       end
     else
-      redirect_to connections_path, notice: 'You are already connected to that user.'
+      redirect_to :back, notice: 'You are already connected to that user.'
     end
   end
 
   def accept
     connection = Connection.find(params[:id])
     if connection.update_attributes(state: :accepted)
-      redirect_to connections_path, notice: "Connection accepted."
+      redirect_to :back, notice: "Connection accepted."
     else
       redirect_to connections_path, notice: "Something went wrong. Please try again later."
     end
@@ -38,7 +38,7 @@ class ConnectionsController < ApplicationController
     connection = Connection.find(params[:id])
     Connection.destroy(params[:id])
     if connection.state == 'pending'
-      redirect_to connections_path, notice: 'Connection request deleted.'
+      redirect_to :back, notice: 'Connection request deleted.'
     else
       redirect_to connections_path, notice: 'Disconnected.'
     end
