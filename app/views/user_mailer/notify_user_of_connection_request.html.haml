@@ -11,7 +11,4 @@
   = @connecter.first_name + "'s"
   profile and to accept (or reject) this request. Remember: connections power trellisd!
 
-%p
-  Cheers,
-%p
-  = image_tag attachments.inline['trellisd_email_image.png'].url, alt: 'trellisd'
+= render 'trellisd_signature'
